@@ -1,4 +1,5 @@
 import type { Product } from "@/types/products";
+import { NexSevContent } from "@/components/project-content/NexSevContent";
 
 const project1 = "/images/project-feature-1.png";
 const project2 = "/images/project-feature-2.png";
@@ -10,6 +11,26 @@ const project7 = "/images/project-tailwindkit-1.png";
 const project8 = "/images/project-tailwindkit-2.png";
 
 export const products: Product[] = [
+  {
+    href: "https://github.com/sibtihaj",
+    title: "NexSev: AI-Powered Incident Response",
+    description:
+      "HackWeek-led build: LLMs, LangChain agents, and MCP tools to automate RCA, CANs, and knowledge retrieval—cutting post-Sev1 documentation time by ~40% for HashiCorp/IBM APJ.",
+    thumbnail: project5,
+    images: [project5, project6],
+    stack: [
+      "LangChain",
+      "Ollama",
+      "Next.js",
+      "Python",
+      "FastAPI",
+      "MCP",
+      "Slack",
+      "Zendesk",
+    ],
+    slug: "nexsev",
+    content: <NexSevContent />,
+  },
   {
     href: "#",
     title: "Infrastructure Observability Engine",

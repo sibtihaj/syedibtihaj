@@ -6,6 +6,7 @@ import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const stagger = {
   animate: {
@@ -48,10 +49,25 @@ export default function Home() {
         </motion.div>
 
         <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-xl text-base text-zinc-500 mb-12">
+          <Paragraph className="max-w-xl text-base text-zinc-500 mb-6">
             I&apos;m a senior software engineer with{" "}
             <Highlight className="bg-zinc-100 text-zinc-800">7 years of experience</Highlight> building scalable web apps
             that are performance optimized and good looking.
+          </Paragraph>
+        </motion.div>
+
+        <motion.div variants={fadeInUp}>
+          <Paragraph className="max-w-xl text-sm text-zinc-500 mb-12 leading-relaxed">
+            Lately I&apos;ve been more deliberate about visibility: I&apos;m putting selected work on{" "}
+            <Link
+              href="https://github.com/sibtihaj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 underline-offset-4 hover:underline"
+            >
+              GitHub
+            </Link>{" "}
+            and treating this portfolio as a living site I plan to refresh and maintain regularly.
           </Paragraph>
         </motion.div>
       </motion.section>

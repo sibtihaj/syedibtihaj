@@ -6,10 +6,34 @@ import { Heading } from "./Heading";
 import { Paragraph } from "./Paragraph";
 import { motion } from "framer-motion";
 
+function getExternalCta(href: string | undefined): {
+  url: string;
+  label: string;
+} | null {
+  const trimmed = href?.trim();
+  if (!trimmed || trimmed === "#") return null;
+  let parsed: URL;
+  try {
+    parsed = new URL(trimmed);
+  } catch {
+    return null;
+  }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    return null;
+  }
+  const isGithub = trimmed.includes("github.com");
+  return {
+    url: trimmed,
+    label: isGithub ? "View on GitHub" : "Live preview",
+  };
+}
+
 export const SingleProduct = ({ product }: { product: Product }) => {
   const [activeImage, setActiveImage] = useState<ProductImage>(
     product.thumbnail
   );
+  const externalCta = getExternalCta(product.href);
+
   return (
     <div className="py-10">
       <motion.div
@@ -65,31 +89,35 @@ export const SingleProduct = ({ product }: { product: Product }) => {
           </Paragraph>
         </div>
 
-        <motion.a
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          href={product.href}
-          target="_blank"
-          className="flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-2xl font-normal text-sm uppercase tracking-widest transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200 group"
-        >
-          Live Preview
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="transition-transform group-hover:translate-x-1 text-sky-400"
+        {externalCta ? (
+          <motion.a
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            href={externalCta.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-2xl font-normal text-sm uppercase tracking-widest transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200 group"
           >
-            <path d="M5 12l14 0"></path>
-            <path d="M13 18l6 -6"></path>
-            <path d="M13 6l6 6"></path>
-          </svg>
-        </motion.a>
+            {externalCta.label}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform group-hover:translate-x-1 text-sky-400"
+              aria-hidden
+            >
+              <path d="M5 12l14 0"></path>
+              <path d="M13 18l6 -6"></path>
+              <path d="M13 6l6 6"></path>
+            </svg>
+          </motion.a>
+        ) : null}
       </div>
 
       <div className="prose prose-zinc max-w-none mt-20 pt-20 border-t border-zinc-100">

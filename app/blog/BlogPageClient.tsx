@@ -40,6 +40,10 @@ export function BlogPageClient({ blogs }: BlogPageClientProps) {
           by how things work under the hood.
         </Paragraph>
 
+        <Paragraph className="pb-10 text-sm text-zinc-500 leading-relaxed max-w-2xl">
+          Going forward I&apos;m keeping this writing section and my GitHub in sync with what I actually ship—same habit as the rest of the portfolio: update often, not just at launch.
+        </Paragraph>
+
         <Blogs blogs={blogs} />
       </motion.section>
     </Container>

@@ -82,6 +82,9 @@ export default function About() {
           <Paragraph className="mb-6 text-zinc-500">
             In parallel, I&apos;ve been building. Since August 2022 I&apos;ve shipped 20+ production web applications through Webifex Labs — e-commerce stores, SaaS tools, marketing sites — using Next.js, TypeScript, and Stripe, often with AI automation layered on top.
           </Paragraph>
+          <Paragraph className="mb-6 text-zinc-500">
+            More recently I decided to push more of that work to GitHub and to keep this portfolio up to date alongside it—from here on, I intend to maintain both as ongoing, public-facing records of what I ship.
+          </Paragraph>
           <Paragraph className="mb-6 text-zinc-600 italic font-mono border-l-2 border-blue-500 pl-6 py-2 bg-blue-50/50 rounded-r-lg">
             &quot;The support engineering background isn&apos;t separate from the product work — it&apos;s what makes the products more resilient. I know what breaks in production.&quot;
           </Paragraph>

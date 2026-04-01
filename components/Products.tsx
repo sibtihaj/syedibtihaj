@@ -10,7 +10,13 @@ import { motion } from "framer-motion";
 export const Products = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-      {products.map((product, idx) => (
+      {products.map((product, idx) => {
+        const projectHref =
+          product.slug != null && product.slug !== ""
+            ? `/projects/${product.slug}`
+            : product.href;
+
+        return (
         <motion.div
           key={product.slug ?? `${product.title}-${idx}`}
           initial={{ opacity: 0, y: 20 }}
@@ -19,7 +25,7 @@ export const Products = () => {
           transition={{ duration: 0.5, delay: idx * 0.1 }}
         >
           <Link
-            href={product.href}
+            href={projectHref}
             className="group block relative rounded-2xl overflow-hidden bg-white border border-zinc-200 transition-all duration-500 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-500/5"
           >
             <div className="aspect-[16/10] relative overflow-hidden">
@@ -61,7 +67,8 @@ export const Products = () => {
             </div>
           </Link>
         </motion.div>
-      ))}
+        );
+      })}
     </div>
   );
 };

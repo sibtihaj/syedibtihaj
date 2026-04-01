@@ -1,8 +1,10 @@
 "use client";
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
+import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Projects() {
   return (
@@ -26,6 +28,19 @@ export default function Projects() {
           Selected <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Case Studies</span> <br />
           & Projects.
         </Heading>
+
+        <Paragraph className="max-w-2xl text-zinc-500 mb-12 text-base leading-relaxed">
+          I&apos;ve started publishing more builds on{" "}
+          <Link
+            href="https://github.com/sibtihaj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-700 underline-offset-4 hover:underline"
+          >
+            GitHub
+          </Link>{" "}
+          and using this page as the narrative layer—expect this section (and the repos behind it) to stay current as I keep the portfolio maintained.
+        </Paragraph>
 
         <Products />
       </motion.section>

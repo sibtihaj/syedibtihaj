@@ -12,12 +12,15 @@ export const Footer = () => {
           <p className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] font-medium mt-1">
             Design & Code by Syed Ibtihaj
           </p>
+          <p className="text-[10px] text-zinc-400 leading-relaxed mt-3 max-w-sm text-center md:text-left">
+            Actively maintaining this site and pushing new work to GitHub as it ships.
+          </p>
         </div>
         
         <div className="flex items-center gap-4">
           <div className="h-1 w-1 rounded-full bg-blue-500 animate-pulse" />
           <span className="text-[10px] uppercase tracking-widest font-normal text-zinc-400">
-            Available for new projects
+            Open for exploration.
           </span>
           <div className="h-1 w-1 rounded-full bg-sky-500 animate-pulse" />
         </div>

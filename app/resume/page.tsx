@@ -76,13 +76,13 @@ export default function ResumePage() {
             <div className="space-y-8">
               <div>
                 <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Location</p>
-                <p className="text-sm text-zinc-600">New York, NY (Remote-Capable)</p>
+                <p className="text-sm text-zinc-600">Melbourne, VIC, AUS · Remote-capable (any region)</p>
               </div>
               <div>
                 <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Availability</p>
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <p className="text-sm text-zinc-600">Open for new strategic projects</p>
+                  <p className="text-sm text-zinc-600">Open for exploration.</p>
                 </div>
               </div>
               <div>
@@ -93,6 +93,21 @@ export default function ResumePage() {
                 >
                   Get in touch
                   <IconArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </motion.a>
+              </div>
+              <div>
+                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">GitHub &amp; portfolio</p>
+                <p className="text-sm text-zinc-600 leading-relaxed mb-3">
+                  I&apos;ve recently committed to publishing projects on GitHub and keeping this dossier aligned with my public work—both are now on a regular maintenance cadence.
+                </p>
+                <motion.a
+                  href="https://github.com/sibtihaj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-2 group"
+                >
+                  github.com/sibtihaj
+                  <IconExternalLink size={14} className="opacity-70 group-hover:translate-x-0.5 transition-transform" />
                 </motion.a>
               </div>
             </div>

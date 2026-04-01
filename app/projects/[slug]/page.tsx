@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { ProjectDetailToolbar } from "@/components/ProjectDetailToolbar";
 import { SingleProduct } from "@/components/Product";
 import { products } from "@/constants/products";
 import type { Product } from "@/types/products";
@@ -33,6 +34,7 @@ export default async function SingleProjectPage({ params }: Props) {
   }
   return (
     <Container>
+      <ProjectDetailToolbar projectTitle={product.title} />
       <SingleProduct product={product} />
     </Container>
   );

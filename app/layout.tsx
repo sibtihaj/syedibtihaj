@@ -1,11 +1,12 @@
 import { Sidebar } from "@/components/Sidebar";
 import Grainient from "@/components/Grainient";
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Ubuntu } from "next/font/google";
 import localFont from "next/font/local";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
+import { getSiteUrl } from "@/lib/site";
 
 // Load Ubuntu from Google Fonts
 const ubuntu = Ubuntu({
@@ -29,10 +30,47 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
   title: "Syed Ibtihaj",
   description:
     "Syed Ibtihaj is a Senior Support Engineer at HashiCorp and the founder of Webifex Labs, a freelance studio shipping web products for clients.",
+  metadataBase: new URL(siteUrl),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    images: [
+      {
+        url: "/images/headshot.jpeg",
+        width: 800,
+        height: 800,
+        alt: "Syed Ibtihaj",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/headshot.jpeg"],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#f4f4f5",
 };
 
 export default function RootLayout({
