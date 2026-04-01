@@ -114,7 +114,7 @@ export const Navigation = ({
       
       {socials.map((link: Navlink) => (
         <Link
-          key={link.href}
+          key={link.label}
           href={link.href}
           target="_blank"
           className="group flex items-center space-x-3 py-2 px-3 rounded-xl text-sm text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-300"

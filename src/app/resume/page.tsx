@@ -5,65 +5,121 @@ import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
 import { WorkHistory } from "@/components/WorkHistory";
 import { ResumeSkills } from "@/components/ResumeSkills";
-import { motion } from "framer-motion";
-import { IconDownload, IconExternalLink } from "@tabler/icons-react";
+import { motion, useScroll } from "framer-motion";
+import { IconDownload, IconExternalLink, IconFileText, IconArrowRight } from "@tabler/icons-react";
+import { useRef } from "react";
 
 export default function ResumePage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
-    <Container className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 h-[500px] w-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <Container className="relative overflow-visible pb-32" ref={containerRef}>
+      {/* Dynamic Background Elements */}
+      <div className="absolute -top-40 -left-40 h-[600px] w-[600px] bg-blue-500/[0.03] blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-[20%] -right-40 h-[600px] w-[600px] bg-sky-500/[0.03] blur-[150px] rounded-full pointer-events-none" />
+      
+      {/* Sidebar Progress Line (Visual Detail) */}
+      <div className="fixed left-0 top-0 bottom-0 w-px bg-zinc-100 hidden lg:block overflow-hidden">
+        <motion.div 
+          style={{ scaleY: scrollYProgress }}
+          className="w-full bg-gradient-to-b from-blue-500 to-sky-500 origin-top h-full"
+        />
+      </div>
 
       <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative pt-12 lg:pt-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative pt-20 lg:pt-32"
       >
-        <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-8 bg-blue-500/30" />
-          <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
-            Curriculum Vitae
-          </span>
-        </div>
-        
-        <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          The <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Professional</span> <br />
-          Experience.
-        </Heading>
-
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
-          <div className="max-w-xl">
-            <Paragraph className="text-lg md:text-xl text-zinc-700 mb-4">
-              I&apos;m a <Highlight className="bg-gradient-to-r from-blue-500/10 to-sky-500/10 text-blue-700">Senior Software Engineer</Highlight> with
-              expertise in building complex, distributed systems and high-performance web applications.
-            </Paragraph>
-            <Paragraph className="text-zinc-500">
-              Passionate about creating scalable architecture, mentoring teams, and delivering pixel-perfect user experiences that drive business value.
-            </Paragraph>
+        {/* Header Metadata */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
+                <IconFileText size={20} strokeWidth={1.5} />
+              </div>
+              <p className="text-xs font-normal uppercase tracking-[0.4em] text-zinc-400">
+                Curriculum Vitae
+              </p>
+            </div>
+            
+            <Heading className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight">
+              Strategic Technical <br />
+              <span className="text-brand-gradient">Leadership.</span>
+            </Heading>
           </div>
 
-          <div className="flex flex-wrap gap-4 h-fit">
+          <div className="flex flex-col gap-4 min-w-[280px]">
             <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ x: 5 }}
               href="/Syed-Resume-New.pdf"
               target="_blank"
-              className="flex items-center gap-2 bg-zinc-900 text-white px-6 py-3.5 rounded-2xl font-normal text-sm uppercase tracking-widest transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200 group"
+              className="flex items-center justify-between group bg-zinc-900 text-white pl-8 pr-4 py-4 rounded-2xl font-normal text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-zinc-800 shadow-2xl shadow-zinc-200"
             >
-              Open Full PDF <IconExternalLink size={18} className="text-sky-400 group-hover:text-sky-300 transition-colors" />
+              Open Full PDF
+              <div className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 group-hover:bg-sky-400 transition-colors">
+                <IconExternalLink size={16} className="text-white" />
+              </div>
             </motion.a>
             <motion.a
-              whileHover={{ scale: 1.02, backgroundColor: "#f4f4f5" }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ x: 5 }}
               href="/Syed-Resume-New.pdf"
               download
-              className="flex items-center gap-2 bg-white text-zinc-900 border border-zinc-200 px-6 py-3.5 rounded-2xl font-normal text-sm uppercase tracking-widest transition-all hover:border-blue-500/50 shadow-lg shadow-zinc-100 group"
+              className="flex items-center justify-between group bg-white text-zinc-900 pl-8 pr-4 py-4 rounded-2xl border border-zinc-200 font-normal text-[10px] uppercase tracking-[0.2em] transition-all hover:border-blue-500/50 shadow-lg shadow-zinc-100"
             >
-              Download CV <IconDownload size={18} className="text-blue-500 group-hover:text-blue-600 transition-colors" />
+              Download CV
+              <div className="h-8 w-8 flex items-center justify-center rounded-full bg-zinc-50 group-hover:bg-blue-600 transition-all">
+                <IconDownload size={16} className="text-blue-500 group-hover:text-white transition-colors" />
+              </div>
             </motion.a>
           </div>
         </div>
 
+        {/* Narrative Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-40">
+          <div className="lg:col-span-8">
+            <Paragraph className="text-xl md:text-2xl text-zinc-800 font-normal leading-relaxed max-w-3xl mb-10">
+              Senior Software Engineer with specialized focus on <Highlight className="text-blue-700">Cloud-Native Architecture</Highlight> and scalable systems design at the intersection of robust engineering and digital performance.
+            </Paragraph>
+            <div className="h-px w-32 bg-gradient-to-r from-blue-500/30 to-transparent mb-10" />
+            <Paragraph className="text-zinc-500 text-base md:text-lg leading-relaxed max-w-2xl">
+              I specialize in architecting resilient, distributed systems and high-concurrency web applications. My professional trajectory is defined by driving technical innovation, optimizing infrastructure efficiency, and delivering high-impact solutions that align with core business objectives.
+            </Paragraph>
+          </div>
+          
+          <div className="lg:col-span-4 lg:pl-12 border-l border-zinc-100 hidden lg:block">
+            <div className="space-y-8">
+              <div>
+                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Location</p>
+                <p className="text-sm text-zinc-600">New York, NY (Remote-Capable)</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Availability</p>
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  <p className="text-sm text-zinc-600">Available for Strategic Consultations</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Contact</p>
+                <motion.a 
+                  href="mailto:syed@example.com" 
+                  className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-2 group"
+                >
+                  Initiate Correspondence
+                  <IconArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </motion.a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Core Sections */}
         <ResumeSkills />
         <WorkHistory />
       </motion.section>

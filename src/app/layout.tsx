@@ -1,4 +1,5 @@
 import { Sidebar } from "@/components/Sidebar";
+import Grainient from "@/components/Grainient";
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -12,11 +13,11 @@ const plein = localFont({
   variable: "--font-plein",
 });
 
-// Load Switzer for body
-const switzer = localFont({
-  src: "../../fonts/Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2",
+// Load CalSans for body
+const calsans = localFont({
+  src: "../../fonts/CalSans-SemiBold.woff2",
   display: "swap",
-  variable: "--font-switzer",
+  variable: "--font-calsans",
 });
 
 export const metadata: Metadata = {
@@ -31,13 +32,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={twMerge(plein.variable, switzer.variable)}>
+    <html lang="en" className={twMerge(plein.variable, calsans.variable)}>
       <body
         className={twMerge(
           "flex antialiased h-screen overflow-hidden bg-zinc-100 text-zinc-900",
-          switzer.className
+          calsans.className
         )}
       >
+        <div className="fixed inset-0 pointer-events-none opacity-[0.2] z-0">
+          <Grainient 
+            color1="#3b82f6"
+            color2="#0ea5e9"
+            color3="#6366f1"
+            warpStrength={0.5}
+            timeSpeed={0.1}
+            grainAmount={0.05}
+          />
+        </div>
         <Sidebar />
         <main className="flex-1 overflow-y-auto relative">
           {/* Noise Texture Overlay */}

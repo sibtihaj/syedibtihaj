@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
 
@@ -144,9 +146,9 @@ const Grainient: React.FC<GrainientProps> = ({
   centerX = 0.0,
   centerY = 0.0,
   zoom = 0.9,
-  color1 = '#FF9FFC',
-  color2 = '#5227FF',
-  color3 = '#B19EEF',
+  color1 = '#3b82f6', // blue-500
+  color2 = '#0ea5e9', // sky-500
+  color3 = '#6366f1', // indigo-500
   className = ''
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
