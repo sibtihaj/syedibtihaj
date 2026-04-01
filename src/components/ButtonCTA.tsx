@@ -2,18 +2,18 @@ import Link from "next/link";
 
 export const ButtonCTA = () => {
   return (
-    <div className="absolute top-0 inset-x-0  flex justify-center">
+    <div className="absolute top-0 inset-x-0 flex justify-center">
       <Link
         href="/projects"
-        className="bg-black no-underline group  cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block"
+        className="no-underline group cursor-pointer relative shadow-xl shadow-zinc-200 rounded-full p-px text-[10px] font-normal leading-6 text-zinc-900 inline-block bg-white border border-zinc-100"
       >
         <span className="absolute inset-0 overflow-hidden rounded-full">
-          <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+          <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(16,185,129,0.1)_0%,rgba(16,185,129,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
         </span>
-        <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
-          <span>/products</span>
+        <div className="relative flex space-x-2 items-center z-10 rounded-full bg-white py-1 px-4 ring-1 ring-zinc-200/50 group-hover:ring-blue-500/30 transition-all">
+          <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent uppercase tracking-[0.2em]">View Projects</span>
+          <span className="text-blue-500 transition-transform group-hover:translate-x-0.5">→</span>
         </div>
-        <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
       </Link>
     </div>
   );

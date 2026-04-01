@@ -3,84 +3,98 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const defaultFormState = {
-  name: { value: "", error: "" },
-  email: { value: "", error: "" },
-  message: { value: "", error: "" },
+  name: {
+    value: "",
+    error: "",
+  },
+  email: {
+    value: "",
+    error: "",
+  },
+  message: {
+    value: "",
+    error: "",
+  },
 };
 
 export const Contact = () => {
   const [formData, setFormData] = useState(defaultFormState);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
+    // Write your submit logic here
     console.log(formData);
   };
 
   return (
-    <form className="grid grid-cols-1 md:grid-cols-2 gap-8" onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-3">
-        <label className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 pl-2">
-          Your Name
-        </label>
-        <input
-          type="text"
-          placeholder="John Doe"
-          value={formData.name.value}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              name: { value: e.target.value, error: "" },
-            })
-          }
-          className="bg-zinc-950/50 border border-zinc-800 rounded-2xl px-6 py-4 text-zinc-100 placeholder:text-zinc-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 transition-all duration-300 backdrop-blur-sm"
-        />
+    <form className="grid grid-cols-1 gap-8" onSubmit={handleSubmit}>
+      <div className="space-y-6">
+        <div className="relative group">
+          <label className="text-[10px] uppercase tracking-widest font-normal text-zinc-400 mb-2 block ml-1 group-focus-within:text-blue-600 transition-colors">Full Name</label>
+          <input
+            type="text"
+            placeholder="Manu Arora"
+            className="w-full bg-zinc-50/50 backdrop-blur-sm border border-zinc-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 text-zinc-900 placeholder:text-zinc-400 transition-all duration-300"
+            value={formData.name.value}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                name: {
+                  value: e.target.value,
+                  error: "",
+                },
+              })
+            }
+          />
+        </div>
+        
+        <div className="relative group">
+          <label className="text-[10px] uppercase tracking-widest font-normal text-zinc-400 mb-2 block ml-1 group-focus-within:text-blue-600 transition-colors">Email Address</label>
+          <input
+            type="email"
+            placeholder="manu@example.com"
+            className="w-full bg-zinc-50/50 backdrop-blur-sm border border-zinc-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 text-zinc-900 placeholder:text-zinc-400 transition-all duration-300"
+            value={formData.email.value}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                email: {
+                  value: e.target.value,
+                  error: "",
+                },
+              })
+            }
+          />
+        </div>
+        
+        <div className="relative group">
+          <label className="text-[10px] uppercase tracking-widest font-normal text-zinc-400 mb-2 block ml-1 group-focus-within:text-blue-600 transition-colors">Message</label>
+          <textarea
+            placeholder="How can I help you?"
+            rows={6}
+            className="w-full bg-zinc-50/50 backdrop-blur-sm border border-zinc-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 text-zinc-900 placeholder:text-zinc-400 transition-all duration-300 resize-none"
+            value={formData.message.value}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                message: {
+                  value: e.target.value,
+                  error: "",
+                },
+              })
+            }
+          />
+        </div>
       </div>
-
-      <div className="flex flex-col gap-3">
-        <label className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 pl-2">
-          Email Address
-        </label>
-        <input
-          type="email"
-          placeholder="john@doe.com"
-          value={formData.email.value}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              email: { value: e.target.value, error: "" },
-            })
-          }
-          className="bg-zinc-950/50 border border-zinc-800 rounded-2xl px-6 py-4 text-zinc-100 placeholder:text-zinc-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 transition-all duration-300 backdrop-blur-sm"
-        />
-      </div>
-
-      <div className="md:col-span-2 flex flex-col gap-3">
-        <label className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 pl-2">
-          How can I help?
-        </label>
-        <textarea
-          placeholder="Write your message here..."
-          rows={6}
-          value={formData.message.value}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              message: { value: e.target.value, error: "" },
-            })
-          }
-          className="bg-zinc-950/50 border border-zinc-800 rounded-2xl px-6 py-4 text-zinc-100 placeholder:text-zinc-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 transition-all duration-300 backdrop-blur-sm resize-none"
-        />
-      </div>
-
-      <div className="md:col-span-2 flex justify-end">
-        <button
-          type="submit"
-          className="relative group overflow-hidden rounded-xl bg-emerald-500 px-10 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/20"
-        >
-          <span className="relative z-10">Send Message</span>
-          <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-        </button>
-      </div>
+      
+      <motion.button
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-normal py-5 px-8 rounded-2xl transition-all duration-300 shadow-xl shadow-zinc-200 uppercase tracking-widest text-sm"
+        type="submit"
+      >
+        Send Message
+      </motion.button>
     </form>
   );
 };

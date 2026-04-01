@@ -20,7 +20,7 @@ export const Products = () => {
         >
           <Link
             href={product.href}
-            className="group block relative rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 transition-all duration-500 hover:border-zinc-700 hover:shadow-2xl hover:shadow-emerald-500/10"
+            className="group block relative rounded-2xl overflow-hidden bg-white border border-zinc-200 transition-all duration-500 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-500/5"
           >
             <div className="aspect-[16/10] relative overflow-hidden">
               <Image
@@ -29,7 +29,7 @@ export const Products = () => {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/5 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-20" />
             </div>
 
             <div className="p-8">
@@ -37,7 +37,7 @@ export const Products = () => {
                 {product.stack?.map((tech) => (
                   <span
                     key={tech}
-                    className="text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-md bg-zinc-800 text-zinc-400 group-hover:bg-emerald-500/10 group-hover:text-emerald-400 transition-colors"
+                    className="text-[10px] uppercase tracking-widest font-normal px-2 py-1 rounded-md bg-zinc-50 text-zinc-500 group-hover:bg-gradient-to-r group-hover:from-blue-50 group-hover:to-sky-50 group-hover:text-blue-700 transition-colors"
                   >
                     {tech}
                   </span>
@@ -46,17 +46,17 @@ export const Products = () => {
 
               <Heading
                 as="h3"
-                className="text-xl md:text-2xl font-bold text-zinc-100 group-hover:text-white transition-colors mb-2"
+                className="text-xl md:text-2xl font-normal text-zinc-900 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:bg-clip-text group-hover:text-transparent transition-all mb-2"
               >
                 {product.title}
               </Heading>
-              <Paragraph className="text-zinc-400 group-hover:text-zinc-300 transition-colors line-clamp-2">
+              <Paragraph className="text-zinc-500 group-hover:text-zinc-600 transition-colors line-clamp-2">
                 {product.description}
               </Paragraph>
 
-              <div className="mt-6 flex items-center text-emerald-500 text-sm font-bold uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+              <div className="mt-6 flex items-center bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent text-sm font-normal uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                 View Project 
-                <span className="ml-2">→</span>
+                <span className="ml-2 text-blue-600">→</span>
               </div>
             </div>
           </Link>

@@ -17,6 +17,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        plein: ["var(--font-plein)", "sans-serif"],
+        switzer: ["var(--font-switzer)", "sans-serif"],
+      },
       colors: {
         primary: "var(--neutral-700)",
         secondary: "var(--neutral-500)",

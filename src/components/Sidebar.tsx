@@ -10,7 +10,7 @@ import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
 import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconLayoutSidebarRightCollapse, IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 import { isMobile } from "@/lib/utils";
 
 export const Sidebar = () => {
@@ -25,7 +25,7 @@ export const Sidebar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="px-6 z-[100] py-10 bg-zinc-950 border-r border-zinc-800/50 max-w-[16rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between"
+            className="px-6 z-[100] py-10 max-w-[16rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between"
           >
             <div className="flex-1 overflow-y-auto no-scrollbar">
               <SidebarHeader />
@@ -46,7 +46,7 @@ export const Sidebar = () => {
       </AnimatePresence>
       
       <button
-        className="fixed lg:hidden top-4 right-4 h-10 w-10 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center z-[110] text-zinc-400 hover:text-zinc-100 transition-colors"
+        className="fixed lg:hidden top-4 right-4 h-10 w-10 bg-white border border-zinc-200 rounded-xl flex items-center justify-center z-[110] text-zinc-500 hover:text-zinc-900 shadow-lg transition-colors"
         onClick={() => setOpen(!open)}
       >
         {open ? <IconX size={20} /> : <IconMenu2 size={20} />}
@@ -59,18 +59,18 @@ const SidebarHeader = () => {
   return (
     <div className="flex flex-col items-center gap-4 text-center mb-10">
       <div className="relative group">
-        <div className="absolute -inset-1.5 bg-gradient-to-tr from-emerald-500 to-sky-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+        <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
         <Image
           src="/images/headshot.jpeg"
           alt="Syed Ibtihaj"
           height={96}
           width={96}
-          className="relative object-cover object-top rounded-full ring-2 ring-zinc-900 shadow-2xl"
+          className="relative object-cover object-top rounded-full ring-2 ring-white shadow-xl"
         />
       </div>
       <div className="flex flex-col">
-        <p className="font-bold text-lg text-zinc-100 tracking-tight">Syed Ibtihaj</p>
-        <p className="text-xs font-medium text-emerald-500 uppercase tracking-[0.2em]">Full-Stack Developer</p>
+        <p className="font-normal text-lg text-zinc-900 tracking-tight">Syed Ibtihaj</p>
+        <p className="text-xs font-medium bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent uppercase tracking-[0.2em]">Full-Stack Developer</p>
       </div>
     </div>
   );
@@ -92,23 +92,23 @@ export const Navigation = ({
           href={link.href}
           onClick={() => isMobile() && setOpen(false)}
           className={twMerge(
-            "group flex items-center space-x-3 py-2 px-3 rounded-xl text-sm transition-all duration-300",
+            "group flex items-center space-x-3 py-2.5 px-3 rounded-xl text-sm transition-all duration-300",
             isActive(link.href) 
-              ? "bg-emerald-500/10 text-emerald-400 font-medium" 
-              : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"
+              ? "bg-gradient-to-r from-blue-50 to-sky-50 text-blue-700 font-normal shadow-sm ring-1 ring-blue-100" 
+              : "text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"
           )}
         >
           <link.icon
             className={twMerge(
               "h-4 w-4 transition-colors duration-300",
-              isActive(link.href) ? "text-emerald-500" : "text-zinc-500 group-hover:text-zinc-300"
+              isActive(link.href) ? "text-blue-600" : "text-zinc-400 group-hover:text-zinc-600"
             )}
           />
           <span>{link.label}</span>
         </Link>
       ))}
 
-      <div className="pt-10 pb-4 px-3 uppercase tracking-widest text-[10px] font-bold text-zinc-600">
+      <div className="pt-10 pb-4 px-3 uppercase tracking-widest text-[10px] font-normal text-zinc-400">
         Socials
       </div>
       
@@ -117,9 +117,9 @@ export const Navigation = ({
           key={link.href}
           href={link.href}
           target="_blank"
-          className="group flex items-center space-x-3 py-2 px-3 rounded-xl text-sm text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50 transition-all duration-300"
+          className="group flex items-center space-x-3 py-2 px-3 rounded-xl text-sm text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-300"
         >
-          <link.icon className="h-4 w-4 text-zinc-500 group-hover:text-zinc-300 transition-colors" />
+          <link.icon className="h-4 w-4 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
           <span>{link.label}</span>
         </Link>
       ))}

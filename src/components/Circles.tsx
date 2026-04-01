@@ -11,9 +11,8 @@ export const Circles = () => {
           y: "-50%",
         }}
         animate={{
-          opacity: [0, 1, 0.5, 0],
+          opacity: [0, 0.5, 0.2, 0],
           scale: 1,
-
           z: 0,
         }}
         transition={{
@@ -21,7 +20,7 @@ export const Circles = () => {
           repeat: Infinity,
           delay: 0,
         }}
-        className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.2] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+        className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-blue-500/[0.1] shadow-[0_8px_32px_rgba(59,130,246,0.1)]"
       ></motion.div>
       <motion.div
         initial={{
@@ -31,9 +30,8 @@ export const Circles = () => {
           y: "-50%",
         }}
         animate={{
-          opacity: [0, 1, 0.5, 0],
+          opacity: [0, 0.5, 0.2, 0],
           scale: 1,
-
           z: 0,
         }}
         transition={{
@@ -41,7 +39,7 @@ export const Circles = () => {
           repeat: Infinity,
           delay: 2,
         }}
-        className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+        className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.05] shadow-[0_8px_32px_rgba(14,165,233,0.1)]"
       ></motion.div>
       <motion.div
         initial={{
@@ -51,9 +49,8 @@ export const Circles = () => {
           y: "-50%",
         }}
         animate={{
-          opacity: [0, 1, 0.5, 0],
+          opacity: [0, 0.5, 0.2, 0],
           scale: 1,
-
           z: 0,
         }}
         transition={{
@@ -61,7 +58,7 @@ export const Circles = () => {
           repeat: Infinity,
           delay: 4,
         }}
-        className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+        className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-blue-500/[0.05] shadow-[0_8px_32px_rgba(59,130,246,0.1)]"
       ></motion.div>
     </>
   );

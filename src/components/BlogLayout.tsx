@@ -1,5 +1,4 @@
 "use client";
-import Head from "next/head";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { formatDate } from "../../lib/formatDate";
@@ -17,6 +16,7 @@ function ArrowLeftIcon(props: any) {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        stroke="currentColor"
       />
     </svg>
   );
@@ -25,44 +25,61 @@ function ArrowLeftIcon(props: any) {
 export function BlogLayout({
   children,
   meta,
-  isRssFeed = false,
-  previousPathname,
 }: any) {
-  let router = useRouter();
-
   return (
     <Container>
-      <article>
-        <header className="flex flex-col">
+      <article className="max-w-4xl mx-auto">
+        <header className="flex flex-col mb-16">
           <Link
-            type="button"
             href="/blog"
-            aria-label="Go back to articles"
-            className="group mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition  "
+            className="group mb-8 flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-zinc-200 shadow-sm transition hover:border-blue-300 hover:text-blue-600"
           >
-            <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 d" />
+            <ArrowLeftIcon className="h-4 w-4" />
           </Link>
 
-          <Heading className=" py-4">{meta.title}</Heading>
-          <time
-            dateTime={meta.date}
-            className="flex items-center text-base text-zinc-400 "
-          >
-            <Paragraph className=" text-zinc-700">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-blue-600 font-mono text-[10px] uppercase tracking-widest font-normal px-3 py-1 rounded-full bg-blue-50 ring-1 ring-blue-100">
+              {meta.category || "Perspective"}
+            </span>
+            <span className="h-px w-8 bg-zinc-100" />
+            <time
+              dateTime={meta.date}
+              className="text-xs uppercase tracking-widest font-normal text-zinc-400"
+            >
               {formatDate(meta.date)}
-            </Paragraph>
-          </time>
-          <div className="w-full mt-4 aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
+            </time>
+          </div>
+
+          <Heading className="text-4xl md:text-6xl font-normal leading-tight mb-12">
+            {meta.title}
+          </Heading>
+
+          <div className="relative aspect-video rounded-3xl overflow-hidden border border-zinc-100 shadow-2xl shadow-zinc-200/50">
             <Image
               src={meta.image}
-              alt="thumbnail"
-              height="800"
-              width="800"
-              className={`object-cover object-left-top w-full max-h-96`}
+              alt={meta.title}
+              fill
+              className="object-cover"
+              priority
             />
           </div>
         </header>
-        <Prose className="mt-8">{children}</Prose>
+
+        <Prose className="mt-8">
+          {children}
+        </Prose>
+
+        <footer className="mt-20 pt-20 border-t border-zinc-100">
+          <div className="flex flex-col items-center text-center max-w-lg mx-auto">
+            <div className="h-12 w-12 rounded-full overflow-hidden mb-4 ring-2 blue-500/20 shadow-lg">
+              <Image src="/images/headshot.jpeg" alt="Syed" width={48} height={48} />
+            </div>
+            <p className="text-xs font-normal uppercase tracking-[0.2em] text-zinc-900 mb-2">Syed Ibtihaj</p>
+            <Paragraph className="text-sm text-zinc-500">
+              Building the future of software, one pixel at a time. Follow my journey on LinkedIn or reach out for collaborations.
+            </Paragraph>
+          </div>
+        </footer>
       </article>
     </Container>
   );

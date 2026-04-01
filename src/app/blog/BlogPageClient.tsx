@@ -24,19 +24,19 @@ export function BlogPageClient({ blogs }: BlogPageClientProps) {
         className="relative pt-12 lg:pt-24"
       >
         <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-8 bg-emerald-500/50" />
-          <span className="text-emerald-500 font-mono text-sm tracking-widest uppercase">
+          <span className="h-px w-8 bg-blue-500/30" />
+          <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
             Thinking & Writing
           </span>
         </div>
 
-        <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-black leading-[1.1]">
-          I Write About <span className="text-emerald-500">Technology</span> <br />
-          And <span className="text-zinc-500 font-light">Craftsmanship.</span>
+        <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
+          I Write About <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Technology</span> <br />
+          And <span className="text-zinc-400 font-light">Craftsmanship.</span>
         </Heading>
 
-        <Paragraph className="pb-10 text-lg md:text-xl text-zinc-400">
-          Ever since <Highlight>I was a kid</Highlight>, I&apos;ve been fascinated
+        <Paragraph className="pb-10 text-lg md:text-xl text-zinc-500">
+          Ever since <Highlight className="bg-gradient-to-r from-blue-500/10 to-sky-500/10 text-blue-700">I was a kid</Highlight>, I&apos;ve been fascinated
           by how things work under the hood.
         </Paragraph>
 

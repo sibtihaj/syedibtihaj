@@ -1,117 +1,86 @@
 "use client";
-import { Heading } from "@/components/Heading";
-import { Paragraph } from "@/components/Paragraph";
+import React from "react";
+import { Heading } from "./Heading";
+import { Paragraph } from "./Paragraph";
 import { motion } from "framer-motion";
 
-type SkillCategory = {
-  title: string;
-  items: string;
-};
-
-const SKILL_CATEGORIES: readonly SkillCategory[] = [
-  {
-    title: "Platform & Infrastructure",
-    items: "Terraform Enterprise, Kubernetes (CKA), Docker/Podman, AWS (EKS, ECS, RDS, VPC, S3, IAM), GCP, Azure, PostgreSQL, Redis, Multi-cloud architecture, IaC",
-  },
-  {
-    title: "Full-Stack Development",
-    items: "Next.js, TypeScript, React, Node.js, Python, MongoDB, PostgreSQL, Auth (OAuth, JWT, RBAC), REST/GraphQL APIs, Stripe, Headless CMS",
-  },
-  {
-    title: "AI & Automation",
-    items: "OpenAI API, Ollama, MCP, RAG, LangChain, Custom AI Agents, Workflow automation",
-  },
-  {
-    title: "DevOps & Reliability",
-    items: "CI/CD (GitHub Actions, Vercel, Argo CD), Prometheus, Grafana, Incident management, RCA, SLA compliance",
-  },
-  {
-    title: "Enterprise Support",
-    items: "Technical escalations, Architecture reviews, Documentation, Zendesk, Stakeholder communication",
-  },
-  {
-    title: "Tools & Scripting",
-    items: "Git, Bash, Python, kubectl, eksctl, AWS CLI, TLS/SSL, VCS integrations",
-  },
-] as const;
-
-const CERTIFICATIONS: readonly string[] = [
-  "Certified Kubernetes Administrator (CKA)",
-  "AWS Certified Solutions Architect – Associate",
-  "HashiCorp Certified: Terraform Associate",
-] as const;
-
 export const ResumeSkills = () => {
+  const skillsCategories = [
+    {
+      title: "Platform & Infrastructure Engineering",
+      skills: ["Cloud Engineering", "DevOps", "Infrastructure as Code", "CI/CD Pipeline Design", "Cloud Architecture Implementation"],
+    },
+    {
+      title: "Full-Stack Development",
+      skills: ["Front-end Development (React, Next.js)", "Back-end Development (Node.js, Python, Go)", "API Design & Implementation", "Database Management (SQL/NoSQL)", "System Scaling & Performance Tuning"],
+    },
+  ];
+
+  const certifications = [
+    "AWS Certified Solutions Architect",
+    "Certified Kubernetes Administrator (CKA)",
+    "HashiCorp Certified: Terraform Associate",
+    "DeepLearning.AI Machine Learning Specialization (Coursera)",
+  ];
+
   return (
-    <div className="mt-20 mb-6 space-y-24">
-      <section>
-        <div className="flex items-center gap-3 mb-12">
-          <span className="h-px w-12 bg-emerald-500/50" />
-          <Heading
-            as="h2"
-            className="text-2xl md:text-3xl font-black uppercase tracking-wider"
-          >
-            Core <span className="text-emerald-500 font-light tracking-normal">Expertise</span>
-          </Heading>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SKILL_CATEGORIES.map((category, idx) => (
-            <motion.div 
-              key={category.title}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="group p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 transition-all duration-300 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/5"
-            >
-              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-500 mb-4 transition-colors">
-                {category.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-zinc-300 group-hover:text-zinc-100 transition-colors">
-                {category.items}
-              </p>
-            </motion.div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20 mb-32">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+      >
+        <Heading as="h3" className="text-xl md:text-2xl font-normal mb-8">Technical <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-light">Proficiencies</span></Heading>
+        <div className="space-y-8">
+          {skillsCategories.map((category, idx) => (
+            <div key={idx} className="p-1 rounded-3xl bg-gradient-to-br from-zinc-50 to-white shadow-xl shadow-zinc-200/50">
+              <div className="p-8 rounded-[22px] bg-white border border-zinc-100">
+                <p className="text-xs font-normal uppercase tracking-widest bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent mb-4">{category.title}</p>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="text-xs font-normal px-3 py-1.5 rounded-xl bg-zinc-50 text-zinc-600 border border-zinc-100 hover:border-blue-200 hover:text-blue-700 transition-colors cursor-default"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-      </section>
+      </motion.div>
 
-      <section>
-        <div className="flex items-center gap-3 mb-12">
-          <span className="h-px w-12 bg-sky-500/50" />
-          <Heading
-            as="h2"
-            className="text-2xl md:text-3xl font-black uppercase tracking-wider"
-          >
-            Professional <span className="text-sky-500 font-light tracking-normal">Credentials</span>
-          </Heading>
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+      >
+        <Heading as="h3" className="text-xl md:text-2xl font-normal mb-8">Industry <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-light">Certifications</span></Heading>
+        <div className="p-1 rounded-3xl bg-gradient-to-br from-zinc-50 to-white shadow-xl shadow-zinc-200/50 h-fit">
+          <div className="p-8 rounded-[22px] bg-white border border-zinc-100">
+            <div className="space-y-4">
+              {certifications.map((cert, idx) => (
+                <div key={idx} className="flex items-start group">
+                  <div className="h-6 w-6 mt-0.5 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-sky-50 text-blue-600 group-hover:from-blue-600 group-hover:to-sky-500 group-hover:text-white transition-all duration-300 mr-4 flex-shrink-0 border border-blue-100 group-hover:border-transparent">
+                    <span className="text-[10px] font-normal">✓</span>
+                  </div>
+                  <Paragraph className="text-zinc-600 group-hover:text-zinc-900 transition-colors font-normal">
+                    {cert}
+                  </Paragraph>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 pt-8 border-t border-zinc-100">
+              <p className="text-[10px] font-normal uppercase tracking-[0.2em] text-zinc-400 mb-2">Ongoing Learning</p>
+              <Paragraph className="text-zinc-500 italic text-sm">
+                DeepLearning.AI Machine Learning Specialization — currently in progress to expand AI/ML integration capabilities.
+              </Paragraph>
+            </div>
+          </div>
         </div>
-
-        <div className="flex flex-wrap gap-4">
-          {CERTIFICATIONS.map((cert, idx) => (
-            <motion.div
-              key={cert}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="px-6 py-4 rounded-2xl bg-zinc-900 border border-zinc-800 text-sm font-medium text-zinc-300 hover:text-white hover:border-sky-500/30 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300"
-            >
-              {cert}
-            </motion.div>
-          ))}
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="px-6 py-4 rounded-2xl bg-zinc-950/50 border border-dashed border-zinc-800 text-sm font-medium text-zinc-500 italic"
-          >
-            Machine Learning Specialization (DeepLearning.AI) — in progress
-          </motion.div>
-        </div>
-      </section>
+      </motion.div>
     </div>
   );
 };
