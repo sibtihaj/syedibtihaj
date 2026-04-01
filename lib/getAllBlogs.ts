@@ -1,9 +1,12 @@
+import "server-only";
+
 import glob from "fast-glob";
 import * as path from "path";
 
-async function importBlog(blogFileNames: any) {
-  let { meta, default: component } = await import(
-    `src/app/blog/${blogFileNames}`
+async function importBlog(blogFileNames: string) {
+  const { meta, default: component } = await import(
+    /* webpackMode: "eager" */
+    `../src/app/blog/${blogFileNames}`
   );
   return {
     slug: blogFileNames.replace(/(\/content)?\.mdx$/, ""),

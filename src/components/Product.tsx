@@ -1,6 +1,6 @@
 "use client";
-import { Product } from "@/types/products";
-import Image, { StaticImageData } from "next/image";
+import type { Product, ProductImage } from "@/types/products";
+import Image from "next/image";
 import React, { useState } from "react";
 import { Heading } from "./Heading";
 import { Paragraph } from "./Paragraph";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 export const SingleProduct = ({ product }: { product: Product }) => {
-  const [activeImage, setActiveImage] = useState<StaticImageData | string>(
+  const [activeImage, setActiveImage] = useState<ProductImage>(
     product.thumbnail
   );
   return (
@@ -31,8 +31,8 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         <Image
           src={activeImage}
           alt="thumbnail"
-          height="1000"
-          width="1000"
+          height={1000}
+          width={1000}
           className="rounded-md object-contain"
         />
         <div className="absolute bottom-0 bg-white h-40 w-full [mask-image:linear-gradient(to_bottom,transparent,white)]" />
@@ -46,8 +46,8 @@ export const SingleProduct = ({ product }: { product: Product }) => {
             <Image
               src={image}
               alt="product thumbnail"
-              height="1000"
-              width="1000"
+              height={1000}
+              width={1000}
               className="h-14 w-16 md:h-40 md:w-60 object-cover object-top mr-4 mb-r border rounded-lg border-neutral-100"
             />
           </button>

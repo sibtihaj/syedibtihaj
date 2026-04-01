@@ -1,13 +1,15 @@
-import portfolioFeature from "public/images/project-feature-1.png";
-import portfolioFeature2 from "public/images/project-feature-2.png";
-import projectAlgochurn from "public/images/project-algochurn-1.png";
-import projectAlgochurn2 from "public/images/project-algochurn-2.png";
-import projectMoonbeam from "public/images/project-moonbeam-1.png";
-import projectMoonbeam2 from "public/images/project-moonbeam-2.png";
-import projectTailwindKit from "public/images/project-tailwindkit-1.png";
-import projectTailwindKit2 from "public/images/project-tailwindkit-2.png";
+import type { Product } from "@/types/products";
 
-export const products = [
+const portfolioFeature = "/images/project-feature-1.png";
+const portfolioFeature2 = "/images/project-feature-2.png";
+const projectAlgochurn = "/images/project-algochurn-1.png";
+const projectAlgochurn2 = "/images/project-algochurn-2.png";
+const projectMoonbeam = "/images/project-moonbeam-1.png";
+const projectMoonbeam2 = "/images/project-moonbeam-2.png";
+const projectTailwindKit = "/images/project-tailwindkit-1.png";
+const projectTailwindKit2 = "/images/project-tailwindkit-2.png";
+
+export const products: Product[] = [
   {
     href: "#",
     title: "Portfolio Platform",

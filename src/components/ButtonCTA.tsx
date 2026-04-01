@@ -1,9 +1,10 @@
+import Link from "next/link";
+
 export const ButtonCTA = () => {
   return (
     <div className="absolute top-0 inset-x-0  flex justify-center">
-      <a
+      <Link
         href="/projects"
-        target={"_blank"}
         className="bg-black no-underline group  cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block"
       >
         <span className="absolute inset-0 overflow-hidden rounded-full">
@@ -13,7 +14,7 @@ export const ButtonCTA = () => {
           <span>/products</span>
         </div>
         <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
-      </a>
+      </Link>
     </div>
   );
 };

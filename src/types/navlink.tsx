@@ -1,7 +1,11 @@
-import { TablerIconsProps } from "@tabler/icons-react";
+import type { ComponentType, SVGProps } from "react";
+
+export type TablerIconComponent = ComponentType<
+  SVGProps<SVGSVGElement> & { className?: string }
+>;
 
 export type Navlink = {
   href: string;
   label: string;
-  icon?: React.ReactNode | TablerIconsProps | any;
+  icon: TablerIconComponent;
 };
