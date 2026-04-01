@@ -33,7 +33,7 @@ export const Contact = () => {
           <label className="text-[10px] uppercase tracking-widest font-normal text-zinc-400 mb-2 block ml-1 group-focus-within:text-blue-600 transition-colors">Full Name</label>
           <input
             type="text"
-            placeholder="Manu Arora"
+            placeholder="Syed Ibtihaj"
             className="w-full bg-zinc-50/50 backdrop-blur-sm border border-zinc-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 text-zinc-900 placeholder:text-zinc-400 transition-all duration-300"
             value={formData.name.value}
             onChange={(e) =>
@@ -52,7 +52,7 @@ export const Contact = () => {
           <label className="text-[10px] uppercase tracking-widest font-normal text-zinc-400 mb-2 block ml-1 group-focus-within:text-blue-600 transition-colors">Email Address</label>
           <input
             type="email"
-            placeholder="manu@example.com"
+            placeholder="syed@example.com"
             className="w-full bg-zinc-50/50 backdrop-blur-sm border border-zinc-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 text-zinc-900 placeholder:text-zinc-400 transition-all duration-300"
             value={formData.email.value}
             onChange={(e) =>

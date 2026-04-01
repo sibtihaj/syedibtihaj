@@ -4,6 +4,13 @@ const {
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config: Config = {
+  // Heading font is toggled in src/config/typography.ts — keep both utilities generated
+  safelist: [
+    "font-manrope",
+    "font-plein",
+    "prose-headings:font-manrope",
+    "prose-headings:font-plein",
+  ],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -19,7 +26,8 @@ const config: Config = {
       },
       fontFamily: {
         plein: ["var(--font-plein)", "sans-serif"],
-        switzer: ["var(--font-switzer)", "sans-serif"],
+        manrope: ["var(--font-manrope)", "sans-serif"],
+        ubuntu: ["var(--font-ubuntu)", "sans-serif"],
       },
       colors: {
         primary: "var(--neutral-700)",

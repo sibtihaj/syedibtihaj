@@ -19,13 +19,13 @@ export default function AboutPage() {
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
           <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
-            A Story of Bytes and叙述
+            Support Engineer. Product Builder.
           </span>
         </div>
-        
+
         <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          Crafting <span className="text-zinc-400 font-light">Narratives</span> <br />
-          Through <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Code.</span>
+          Deep in the Cloud <span className="text-zinc-400 font-light">by Day,</span> <br />
+          Shipping Products <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">by Night.</span>
         </Heading>
         
         <About />

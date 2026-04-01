@@ -8,24 +8,23 @@ import { IconCircleCheck, IconCpu, IconRocket } from "@tabler/icons-react";
 export const ResumeSkills = () => {
   const skillsCategories = [
     {
-      title: "Infrastructure",
+      title: "Cloud & Infra",
       icon: IconCpu,
-      skills: ["Cloud Engineering", "DevOps", "IaC (Terraform)", "CI/CD", "K8s"],
+      skills: ["AWS (EKS / ECS / Fargate)", "Terraform Enterprise", "Kubernetes", "Datadog / Grafana", "PostgreSQL / Redis"],
       accent: "from-blue-500 to-sky-500",
     },
     {
-      title: "Core Stack",
+      title: "Web Development",
       icon: IconRocket,
-      skills: ["React/Next.js", "Node.js", "Python", "Go", "PostgreSQL"],
+      skills: ["Next.js / React", "TypeScript", "Node.js", "Stripe / PayPal", "Tailwind CSS"],
       accent: "from-indigo-500 to-blue-500",
     },
   ];
 
   const certifications = [
-    "AWS Solutions Architect",
-    "Kubernetes Administrator (CKA)",
-    "HashiCorp Terraform",
-    "ML Specialization (DeepLearning.AI)",
+    "AWS Certified (Container & Networking Services)",
+    "Certified Kubernetes Administrator (CKA)",
+    "HashiCorp Terraform Associate",
   ];
 
   return (
@@ -42,7 +41,7 @@ export const ResumeSkills = () => {
               Technical <span className="text-brand-gradient font-light">Proficiencies</span>
             </Heading>
             <Paragraph className="text-zinc-500 mb-12">
-              Strategic selection of core technologies utilized to architect and implement high-concurrency systems.
+              Cloud infrastructure knowledge from years in the field, paired with full-stack tools for shipping client products.
             </Paragraph>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -120,10 +119,10 @@ export const ResumeSkills = () => {
                 <div className="mt-12 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 border-dashed relative group overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <p className="relative z-10 text-[10px] font-normal uppercase tracking-[0.2em] text-blue-600 mb-3 flex items-center gap-2">
-                    Professional Development
+                    Currently Exploring
                   </p>
                   <Paragraph className="relative z-10 text-xs text-zinc-500 leading-relaxed font-normal">
-                    Actively advancing expertise in neural architectures and generative systems to broaden the scope of software integration capabilities.
+                    Integrating AI workflows (OpenAI, Ollama) into client products, and expanding observability tooling for infrastructure at scale.
                   </Paragraph>
                 </div>
               </div>

@@ -43,17 +43,13 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <Heading as="h3" className="text-xl md:text-2xl font-normal mb-6 text-zinc-900">
-            A Devout Journey <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Since Day One.</span>
+            Started in Support. <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Stayed for the Craft.</span>
           </Heading>
           <Paragraph className="mb-6 text-lg leading-relaxed text-zinc-700">
-            Hey there, I&apos;m Syed Ibtihaj - a passionate developer, avid writer,
-            and a connoisseur of awesome design. Welcome to my corner of the
-            digital world!
+            Hey, I&apos;m Syed — a Senior Support Engineer at HashiCorp and the founder of Webifex Labs, a small freelance studio I started in 2022.
           </Paragraph>
           <Paragraph className="mb-6 text-zinc-500">
-            Since the early days of my journey, I&apos;ve been captivated by the
-            art of crafting exceptional digital experiences. As a developer, I
-            thrive on turning lines of code into functional and elegant solutions.
+            My career started in technical support roles — IT helpdesks, Salesforce administration, higher-degree administration — and steadily grew into cloud infrastructure. I joined AWS in 2022 as a Cloud Support Engineer, working deep in container platforms like EKS, ECS, and Fargate for enterprise customers globally. I now do the same at HashiCorp, specialising in Terraform Enterprise.
           </Paragraph>
         </motion.div>
 
@@ -65,16 +61,13 @@ export default function About() {
           className="flex flex-col justify-end"
         >
           <Paragraph className="mb-6 text-zinc-500">
-            My goal is to not just create software, but to build digital marvels
-            that seamlessly merge form and function. But my journey doesn&apos;t stop at coding. 
+            In parallel, I&apos;ve been building. Since August 2022 I&apos;ve shipped 20+ production web applications through Webifex Labs — e-commerce stores, SaaS tools, marketing sites — using Next.js, TypeScript, and Stripe, often with AI automation layered on top.
           </Paragraph>
           <Paragraph className="mb-6 text-zinc-600 italic font-mono border-l-2 border-blue-500 pl-6 py-2 bg-blue-50/50 rounded-r-lg">
-            &quot;I believe that aesthetics and usability go hand in hand. My eye for awesome design ensures that every project not only works flawlessly but looks stunning.&quot;
+            &quot;The support engineering background isn&apos;t separate from the product work — it&apos;s what makes the products more resilient. I know what breaks in production.&quot;
           </Paragraph>
           <Paragraph className="text-zinc-500">
-            Join me on this journey of bytes and narratives, logic and creativity,
-            code and prose. Together, we can explore the boundless possibilities
-            of technology and storytelling.
+            If you&apos;re looking for someone who can build something from scratch, or bring genuine cloud depth to a technical challenge, let&apos;s talk.
           </Paragraph>
         </motion.div>
       </div>

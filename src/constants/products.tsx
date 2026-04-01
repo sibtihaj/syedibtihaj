@@ -1,132 +1,104 @@
 import type { Product } from "@/types/products";
 
-const portfolioFeature = "/images/project-feature-1.png";
-const portfolioFeature2 = "/images/project-feature-2.png";
-const projectAlgochurn = "/images/project-algochurn-1.png";
-const projectAlgochurn2 = "/images/project-algochurn-2.png";
-const projectMoonbeam = "/images/project-moonbeam-1.png";
-const projectMoonbeam2 = "/images/project-moonbeam-2.png";
-const projectTailwindKit = "/images/project-tailwindkit-1.png";
-const projectTailwindKit2 = "/images/project-tailwindkit-2.png";
+const project1 = "/images/project-feature-1.png";
+const project2 = "/images/project-feature-2.png";
+const project3 = "/images/project-algochurn-1.png";
+const project4 = "/images/project-algochurn-2.png";
+const project5 = "/images/project-moonbeam-1.png";
+const project6 = "/images/project-moonbeam-2.png";
+const project7 = "/images/project-tailwindkit-1.png";
+const project8 = "/images/project-tailwindkit-2.png";
 
 export const products: Product[] = [
   {
     href: "#",
-    title: "Portfolio Platform",
+    title: "Infrastructure Observability Engine",
     description:
-      "A design and development studio that focuses on building quality apps.",
-    thumbnail: portfolioFeature,
-    images: [portfolioFeature, portfolioFeature2],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "portfolio-platform",
+      "Enterprise-grade observability and incident response systems for Terraform and cloud infrastructure.",
+    thumbnail: project1,
+    images: [project1, project2],
+    stack: ["Nextjs", "Tailwindcss", "PostgreSQL", "Terraform"],
+    slug: "infrastructure-observability",
     content: (
       <div>
         <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
+          Designed and implemented comprehensive observability frameworks for enterprise-scale
+          infrastructure. Focused on building intuitive dashboards and automated incident 
+          response systems that reduce MTTR and improve system reliability.
         </p>
         <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
+          Leveraged Datadog and Grafana to build proactive monitoring solutions, while 
+          architecting secure, private networking environments across AWS, Azure, and GCP.
+        </p>
       </div>
     ),
   },
   {
-    href: "https://algochurn.com",
-    title: "Algochurn",
+    href: "#",
+    title: "Cloud Performance Scaler",
     description:
-      "Practice for technical interviews with hands on coding challenges.",
-    thumbnail: projectAlgochurn,
-    images: [projectAlgochurn, projectAlgochurn2],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "algochurn",
+      "Advanced escalation support and deep technical investigations for EKS and container platforms.",
+    thumbnail: project3,
+    images: [project3, project4],
+    stack: ["AWS", "EKS", "Kubernetes", "IAM"],
+    slug: "cloud-scaler",
     content: (
       <div>
         <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
+          Managed high-severity escalations for AWS container platforms, performing root-cause
+          analysis for complex networking and security issues within EKS and ECS environments.
         </p>
         <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
+          Provided architectural guidance for global enterprise workloads, focusing on
+          optimizing cluster performance and ensuring robust security postures through
+          custom IAM and VPC configurations.
+        </p>
       </div>
     ),
   },
   {
-    href: "https://gomoonbeam.com",
-    title: "Moonbeam",
+    href: "#",
+    title: "AI-Driven Automation Systems",
     description:
-      "Never write from scratch again with Moonbeam, your AI first writing tool",
-    thumbnail: projectMoonbeam,
-    images: [projectMoonbeam, projectMoonbeam2],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "moonbeam",
+      "Full-stack AI workflows and automation platforms built for diverse enterprise clients.",
+    thumbnail: project5,
+    images: [project5, project6],
+    stack: ["Nextjs", "OpenAI", "React", "TypeScript"],
+    slug: "ai-automation",
     content: (
       <div>
         <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
+          Developed and deployed production-ready AI applications integrating custom-hosted
+          models and OpenAI APIs. Built to streamline internal workflows and automate 
+          complex business processes.
         </p>
         <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
+          Focused on creating seamless user experiences while managing high-concurrency
+          backend operations and secure data handling for sensitive client information.
+        </p>
       </div>
     ),
   },
   {
-    href: "https://tailwindmasterkit.com",
-    title: "Tailwind Master Kit",
+    href: "#",
+    title: "Enterprise E-Commerce Framework",
     description:
-      "A beautiful and comprehensive Tailwind CSS components library for building modern websites and applications.",
-    thumbnail: projectTailwindKit,
-    images: [projectTailwindKit, projectTailwindKit2],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "tailwindmasterkit",
+      "Scalable e-commerce systems with multi-gateway payment integrations and real-time inventory tracking.",
+    thumbnail: project7,
+    images: [project7, project8],
+    stack: ["Nextjs", "Stripe", "PostgreSQL", "Tailwindcss"],
+    slug: "ecommerce-framework",
     content: (
       <div>
         <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
+          Architected and maintained robust e-commerce platforms capable of handling 
+          thousands of concurrent users. Integrated Stripe and PayPal for secure, 
+          multi-currency transaction processing.
         </p>
         <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
+          Implemented real-time data synchronization between frontend displays and 
+          backend databases, ensuring accurate inventory management and order tracking.
+        </p>
       </div>
     ),
   },

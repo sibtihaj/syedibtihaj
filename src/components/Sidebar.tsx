@@ -70,7 +70,7 @@ const SidebarHeader = () => {
       </div>
       <div className="flex flex-col">
         <p className="font-normal text-lg text-zinc-900 tracking-tight">Syed Ibtihaj</p>
-        <p className="text-xs font-medium bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent uppercase tracking-[0.2em]">Full-Stack Developer</p>
+        <p className="text-xs font-medium bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent uppercase tracking-[0.2em]">Support Engineer & Web Dev</p>
       </div>
     </div>
   );

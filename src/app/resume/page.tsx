@@ -49,8 +49,8 @@ export default function ResumePage() {
             </div>
             
             <Heading className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight">
-              Strategic Technical <br />
-              <span className="text-brand-gradient">Leadership.</span>
+              Support Engineering <br />
+              <span className="text-brand-gradient">Meets Shipped Products.</span>
             </Heading>
           </div>
 
@@ -84,11 +84,11 @@ export default function ResumePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-40">
           <div className="lg:col-span-8">
             <Paragraph className="text-xl md:text-2xl text-zinc-800 font-normal leading-relaxed max-w-3xl mb-10">
-              Senior Software Engineer with specialized focus on <Highlight className="text-blue-700">Cloud-Native Architecture</Highlight> and scalable systems design at the intersection of robust engineering and digital performance.
+              Senior Support Engineer with deep expertise in <Highlight className="text-blue-700">Cloud Infrastructure</Highlight> — and a parallel track shipping real products through freelance since 2022.
             </Paragraph>
             <div className="h-px w-32 bg-gradient-to-r from-blue-500/30 to-transparent mb-10" />
             <Paragraph className="text-zinc-500 text-base md:text-lg leading-relaxed max-w-2xl">
-              I specialize in architecting resilient, distributed systems and high-concurrency web applications. My professional trajectory is defined by driving technical innovation, optimizing infrastructure efficiency, and delivering high-impact solutions that align with core business objectives.
+              I&apos;ve spent years inside AWS and HashiCorp infrastructure — resolving hard escalations, reading logs most engineers never see, and building tooling to prevent the next incident. Since 2022, I&apos;ve channelled that technical depth into Webifex Labs, delivering 20+ web products for clients with full-stack execution.
             </Paragraph>
           </div>
           
@@ -96,13 +96,13 @@ export default function ResumePage() {
             <div className="space-y-8">
               <div>
                 <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Location</p>
-                <p className="text-sm text-zinc-600">New York, NY (Remote-Capable)</p>
+                <p className="text-sm text-zinc-600">Australia (Remote-Capable)</p>
               </div>
               <div>
                 <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Availability</p>
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <p className="text-sm text-zinc-600">Available for Strategic Consultations</p>
+                  <p className="text-sm text-zinc-600">Available for Freelance Projects</p>
                 </div>
               </div>
               <div>
@@ -111,7 +111,7 @@ export default function ResumePage() {
                   href="mailto:syed@example.com" 
                   className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-2 group"
                 >
-                  Initiate Correspondence
+                  Get in Touch
                   <IconArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </motion.a>
               </div>

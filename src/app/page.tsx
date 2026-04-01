@@ -33,13 +33,6 @@ export default function Home() {
         animate="animate"
         className="relative pt-12 lg:pt-24"
       >
-        <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-6">
-          <span className="h-px w-8 bg-blue-500/30" />
-          <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
-            Available for new opportunities
-          </span>
-        </motion.div>
-
         <motion.div variants={fadeInUp}>
           <Heading className="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
             Hello there! I&apos;m <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Syed</span>

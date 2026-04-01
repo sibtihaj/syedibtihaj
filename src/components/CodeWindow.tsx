@@ -2,6 +2,12 @@
 
 import React, { Children, useState, useRef, useSyncExternalStore } from "react";
 import clsx from "clsx";
+import { HEADING_FONT } from "@/config/typography";
+
+const proseHeadingFont =
+  HEADING_FONT === "manrope"
+    ? "prose-headings:font-manrope"
+    : "prose-headings:font-plein";
 
 const emptySubscribe = () => () => {};
 
@@ -38,7 +44,8 @@ export const CodeWindow = ({ title, children }: { title: string; children: React
         className={clsx(
           "bg-white border border-zinc-200 rounded-2xl w-auto overflow-hidden flex flex-col my-10 prose prose-sm shadow-xl shadow-zinc-200/50",
           "prose-zinc max-w-none text-zinc-600",
-          "prose-headings:scroll-mt-28 prose-headings:font-plein prose-headings:font-normal lg:prose-headings:scroll-mt-[8.5rem]",
+          "prose-headings:scroll-mt-28 prose-headings:font-normal lg:prose-headings:scroll-mt-[8.5rem]",
+          proseHeadingFont,
           "prose-lead:text-zinc-500",
           "prose-a:font-semibold text-blue-600",
           "prose-pre:rounded-xl prose-pre:bg-zinc-50 prose-pre:shadow-none prose-pre:border prose-pre:border-zinc-100",

@@ -2,28 +2,37 @@ import { Sidebar } from "@/components/Sidebar";
 import Grainient from "@/components/Grainient";
 import "./globals.css";
 import type { Metadata } from "next";
+import { Manrope, Ubuntu } from "next/font/google";
 import localFont from "next/font/local";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 
-// Load Plein for headings
+// Load Ubuntu from Google Fonts
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+  variable: "--font-ubuntu",
+});
+
+// Plein — local heading option (toggle in src/config/typography.ts)
 const plein = localFont({
   src: "../../fonts/Plein_Complete/Fonts/WEB/fonts/Plein-Variable.woff2",
   display: "swap",
   variable: "--font-plein",
 });
 
-// Load CalSans for body
-const calsans = localFont({
-  src: "../../fonts/CalSans-SemiBold.woff2",
+// Manrope — Google heading option (toggle in src/config/typography.ts)
+const manrope = Manrope({
+  subsets: ["latin"],
   display: "swap",
-  variable: "--font-calsans",
+  variable: "--font-manrope",
 });
 
 export const metadata: Metadata = {
-  title: "Syed Ibtihaj - Developer",
+  title: "Syed Ibtihaj",
   description:
-    "Syed Ibtihaj is a full-stack developer building scalable and reliable digital products.",
+    "Syed Ibtihaj is a Senior Support Engineer at HashiCorp and the founder of Webifex Labs, a freelance studio shipping web products for clients.",
 };
 
 export default function RootLayout({
@@ -32,11 +41,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={twMerge(plein.variable, calsans.variable)}>
+    <html
+      lang="en"
+      className={twMerge(plein.variable, manrope.variable, ubuntu.variable)}
+    >
       <body
         className={twMerge(
           "flex antialiased h-screen overflow-hidden bg-zinc-100 text-zinc-900",
-          calsans.className
+          ubuntu.className
         )}
       >
         <div className="fixed inset-0 pointer-events-none opacity-[0.2] z-0">

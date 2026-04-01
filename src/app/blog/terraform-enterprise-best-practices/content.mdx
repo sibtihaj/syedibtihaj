@@ -1,0 +1,30 @@
+import { BlogLayout } from "@/components/BlogLayout";
+
+export const meta = {
+  date: "2024-11-20",
+  title: "Terraform Enterprise: Best Practices for Multi-Cloud Observability",
+  description:
+    "Implementing robust observability and incident response frameworks for Terraform Enterprise across AWS, Azure, and GCP.",
+  image:
+    "https://images.unsplash.com/photo-1667372333374-0d27473a2c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2332&q=80",
+  tags: ["terraform", "observability", "infrastructure", "devops"],
+};
+
+export default (props) => <BlogLayout meta={meta} {...props} />;
+
+Managing Terraform Enterprise at scale requires more than just infrastructure as code—it requires deep visibility into the deployment lifecycle and system health. In this article, we explore the core pillars of multi-cloud observability.
+
+## The Importance of Visibility
+
+When operating across diverse cloud environments like AWS, Azure, and GCP, maintaining a unified view of your infrastructure state is critical. Without proper monitoring, troubleshooting PostgreSQL, Redis, and S3 backends becomes a significant challenge.
+
+## Key Observability Metrics
+
+Effective observability frameworks focus on:
+- **System Health**: Monitoring the core components of Terraform Enterprise.
+- **Audit Logs**: Tracking who changed what and when.
+- **Performance**: Ensuring deployment pipelines are optimized for speed and reliability.
+
+## Leveraging Datadog and Grafana
+
+By integrating modern observability tools, teams can build proactive monitoring solutions. Automated dashboards provide real-time insights into system performance, enabling faster incident response and root-cause analysis.

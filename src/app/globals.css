@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply text-zinc-700 selection:bg-blue-500/20 selection:text-blue-900 font-switzer;
+    @apply text-zinc-700 selection:bg-blue-500/20 selection:text-blue-900 font-ubuntu;
   }
 }
 
