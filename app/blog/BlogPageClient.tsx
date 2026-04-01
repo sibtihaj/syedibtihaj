@@ -21,7 +21,7 @@ export function BlogPageClient({ blogs }: BlogPageClientProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative pt-12 lg:pt-24"
+        className="relative pt-6 lg:pt-14"
       >
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />

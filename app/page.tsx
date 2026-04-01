@@ -31,7 +31,7 @@ export default function Home() {
         variants={stagger}
         initial="initial"
         animate="animate"
-        className="relative pt-12 lg:pt-24"
+        className="relative pt-6 lg:pt-14"
       >
         <motion.div variants={fadeInUp}>
           <Heading className="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">

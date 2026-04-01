@@ -17,7 +17,7 @@ const ubuntu = Ubuntu({
 
 // Plein — local heading option (toggle in src/config/typography.ts)
 const plein = localFont({
-  src: "../../fonts/Plein_Complete/Fonts/WEB/fonts/Plein-Variable.woff2",
+  src: "../fonts/Plein_Complete/Fonts/WEB/fonts/Plein-Variable.woff2",
   display: "swap",
   variable: "--font-plein",
 });
@@ -47,7 +47,7 @@ export default function RootLayout({
     >
       <body
         className={twMerge(
-          "flex antialiased h-screen overflow-hidden bg-zinc-100 text-zinc-900",
+          "antialiased bg-zinc-100 text-zinc-900",
           ubuntu.className
         )}
       >
@@ -61,18 +61,22 @@ export default function RootLayout({
             grainAmount={0.05}
           />
         </div>
-        <Sidebar />
-        <main className="flex-1 overflow-y-auto relative">
-          {/* Noise Texture Overlay */}
-          <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50"></div>
+        
+        {/* Main Noise Overlay */}
+        <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50"></div>
+
+        <div className="flex flex-col lg:flex-row min-h-screen relative">
+          <aside className="lg:sticky lg:top-0 lg:h-screen z-[100]">
+            <Sidebar />
+          </aside>
           
-          <div className="lg:pl-2 lg:pt-2 h-full">
-            <div className="min-h-screen lg:rounded-tl-3xl border-l border-t border-zinc-200 bg-white/80 backdrop-blur-sm overflow-y-auto shadow-2xl">
+          <main className="flex-1 lg:pl-2">
+            <div className="min-h-screen lg:rounded-tl-3xl border-l border-t border-zinc-200 bg-white/80 backdrop-blur-sm shadow-2xl relative">
               {children}
               <Footer />
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </body>
     </html>
   );

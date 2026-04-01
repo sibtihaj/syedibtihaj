@@ -17,7 +17,7 @@ export default function ContactPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative pt-12 lg:pt-24"
+        className="relative pt-6 lg:pt-14"
       >
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
@@ -55,7 +55,7 @@ export default function ContactPage() {
               {[
                 { label: "Email", value: "syedibtihaj@example.com", icon: IconMail, href: "mailto:syedibtihaj@example.com" },
                 { label: "LinkedIn", value: "syedibtihaj", icon: IconBrandLinkedin, href: "https://linkedin.com/in/syedibtihaj" },
-                { label: "GitHub", value: "syedibtihaj", icon: IconBrandGithub, href: "https://github.com/syedibtihaj" }
+                { label: "GitHub", value: "sibtihaj", icon: IconBrandGithub, href: "https://github.com/sibtihaj" }
               ].map((item, idx) => (
                 <motion.a
                   key={item.label}

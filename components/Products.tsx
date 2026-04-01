@@ -12,7 +12,7 @@ export const Products = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
       {products.map((product, idx) => (
         <motion.div
-          key={product.href}
+          key={product.slug ?? `${product.title}-${idx}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -34,9 +34,9 @@ export const Products = () => {
 
             <div className="p-8">
               <div className="flex flex-wrap gap-2 mb-4">
-                {product.stack?.map((tech) => (
+                {product.stack?.map((tech, techIdx) => (
                   <span
-                    key={tech}
+                    key={`${product.slug}-${tech}-${techIdx}`}
                     className="text-[10px] uppercase tracking-widest font-normal px-2 py-1 rounded-md bg-zinc-50 text-zinc-500 group-hover:bg-gradient-to-r group-hover:from-blue-50 group-hover:to-sky-50 group-hover:text-blue-700 transition-colors"
                   >
                     {tech}

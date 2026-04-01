@@ -12,6 +12,25 @@ export default function About() {
     "https://images.unsplash.com/photo-1692445381633-7999ebc03730?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
   ];
 
+  const badges = [
+    {
+      title: "AWS Certified Solutions Architect",
+      image: "/badges/AWS%20Certified%20Solutions%20Architect%20Badge.png",
+    },
+    {
+      title: "Certified Kubernetes Administrator (CKA)",
+      image: "/badges/CKA%20Certified%20Kubernetes%20Administrator%20Badge.png",
+    },
+    {
+      title: "HashiCorp Certified Terraform Associate",
+      image: "/badges/HashiCorp%20Certified%20Terraform%20Associate%20Badge.png",
+    },
+    {
+      title: "Amazon EKS Training",
+      image: "/badges/Amazon%20EKS%20Training%20Badge.png",
+    },
+  ];
+
   return (
     <div className="max-w-6xl">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 my-20">
@@ -70,6 +89,49 @@ export default function About() {
             If you&apos;re looking for someone who can build something from scratch, or bring genuine cloud depth to a technical challenge, let&apos;s talk.
           </Paragraph>
         </motion.div>
+      </div>
+
+      <div className="mb-32">
+        <div className="flex items-baseline gap-4 mb-8">
+          <span className="font-mono text-[10px] text-zinc-300 uppercase tracking-[0.5em]">
+            Credentials
+          </span>
+          <div className="h-px w-16 bg-zinc-100" />
+        </div>
+
+        <Heading as="h3" className="text-3xl md:text-5xl font-normal tracking-tight mb-4">
+          Certification <span className="text-zinc-300 font-light italic">Badges</span>
+        </Heading>
+        <Paragraph className="text-zinc-500 mb-10 max-w-2xl">
+          Verified credentials in cloud architecture, Kubernetes, and infrastructure automation.
+        </Paragraph>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+          {badges.map((badge, index) => (
+            <motion.div
+              key={badge.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="group rounded-3xl border border-zinc-100 bg-white p-4 md:p-5 shadow-sm transition-all duration-500 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/50"
+            >
+              <div className="relative h-64 md:h-72 w-full overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-50">
+                <Image
+                  src={badge.image}
+                  alt={badge.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  className="object-contain p-5 md:p-7"
+                />
+              </div>
+              <p className="mt-4 text-sm md:text-base text-zinc-700 font-medium font-ubuntu group-hover:text-zinc-900 transition-colors">
+                {badge.title}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

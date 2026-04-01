@@ -12,7 +12,7 @@ export const Container = React.forwardRef<
     <div
       ref={ref}
       className={twMerge(
-        "max-w-6xl w-full mx-auto py-12 md:py-24 px-6 md:px-12",
+        "max-w-6xl w-full mx-auto pt-0 pb-12 md:pb-24 px-6 md:px-12",
         className
       )}
     >

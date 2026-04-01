@@ -1,4 +1,4 @@
-import { getAllBlogs } from "../../../lib/getAllBlogs";
+import { getAllBlogs } from "@/lib/getAllBlogs";
 import { BlogPageClient } from "./BlogPageClient";
 import type { BlogMeta } from "@/types/blog";
 
