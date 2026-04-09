@@ -2,23 +2,23 @@ import { Sidebar } from "@/components/Sidebar";
 import Grainient from "@/components/Grainient";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Libre_Franklin, Noto_Serif } from "next/font/google";
+import { Outfit, Playfair_Display } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 import { getSiteUrl } from "@/lib/site";
 
-const notoSerif = Noto_Serif({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-heading",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const libreFranklin = Libre_Franklin({
+const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
 });
 
 const siteUrl = getSiteUrl();
@@ -72,27 +72,27 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={twMerge(notoSerif.variable, libreFranklin.variable)}
+      className={twMerge(playfair.variable, outfit.variable)}
     >
       <body
         className={twMerge(
-          "antialiased bg-zinc-100 text-zinc-900 font-sans",
-          libreFranklin.className
+          "antialiased bg-[#FAF9F6] text-stone-800 font-sans selection:bg-emerald-500/20 selection:text-emerald-900",
+          outfit.className
         )}
       >
-        <div className="fixed inset-0 pointer-events-none opacity-[0.2] z-0">
+        <div className="fixed inset-0 pointer-events-none opacity-[0.15] z-0">
           <Grainient
-            color1="#3b82f6"
-            color2="#0ea5e9"
-            color3="#6366f1"
-            warpStrength={0.5}
-            timeSpeed={0.1}
-            grainAmount={0.05}
+            color1="#047857" // emerald-700
+            color2="#0f766e" // teal-700
+            color3="#4d7c0f" // lime-700
+            warpStrength={0.7}
+            timeSpeed={0.05}
+            grainAmount={0.08}
           />
         </div>
 
         {/* Main Noise Overlay */}
-        <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50"></div>
+        <div className="fixed inset-0 pointer-events-none opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50 mix-blend-multiply"></div>
 
         <div className="flex flex-col lg:flex-row min-h-screen relative">
           <aside className="lg:sticky lg:top-0 lg:h-screen z-[100]">
@@ -100,7 +100,7 @@ export default function RootLayout({
           </aside>
 
           <main className="flex-1 lg:pl-2">
-            <div className="min-h-screen lg:rounded-tl-3xl border-l border-t border-zinc-200 bg-white/80 backdrop-blur-sm shadow-2xl relative">
+            <div className="min-h-screen lg:rounded-tl-[2.5rem] border-l border-t border-stone-200/60 bg-[#FAF9F6]/90 backdrop-blur-md shadow-2xl relative">
               {children}
               <Footer />
             </div>

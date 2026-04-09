@@ -28,28 +28,28 @@ export const Blogs = ({ blogs }: { blogs: BlogMeta[] }) => {
           >
             <div className="flex flex-col flex-1 gap-4">
               <div className="flex items-center gap-4">
-                <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-[10px] uppercase tracking-widest font-normal px-2 py-0.5 rounded-full bg-blue-50 shadow-sm ring-1 ring-blue-100">
+                <span className="text-emerald-700 font-mono text-[10px] uppercase tracking-widest font-medium px-2 py-0.5 rounded-full bg-emerald-50 shadow-sm ring-1 ring-emerald-100">
                   {blog.category || "Design"}
                 </span>
-                <span className="text-zinc-400 font-mono text-xs uppercase tracking-widest">
+                <span className="text-stone-400 font-mono text-xs uppercase tracking-widest">
                   {blog.date}
                 </span>
               </div>
               
               <Heading
                 as="h3"
-                className="text-xl md:text-3xl font-normal text-zinc-900 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:bg-clip-text group-hover:text-transparent transition-all"
+                className="text-xl md:text-3xl font-normal text-stone-900 group-hover:text-emerald-800 transition-colors"
               >
                 {blog.title}
               </Heading>
               
-              <Paragraph className="text-zinc-500 group-hover:text-zinc-700 transition-colors max-w-2xl">
+              <Paragraph className="text-stone-500 group-hover:text-stone-700 transition-colors max-w-2xl">
                 {blog.description}
               </Paragraph>
             </div>
             
-            <div className="hidden md:flex flex-col items-end gap-2 text-zinc-400 group-hover:text-zinc-900 transition-all duration-500">
-              <div className="h-10 w-10 flex items-center justify-center rounded-full border border-zinc-200 group-hover:border-blue-500 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:text-white transition-all duration-500 shadow-sm">
+            <div className="hidden md:flex flex-col items-end gap-2 text-stone-400 group-hover:text-stone-900 transition-all duration-500">
+              <div className="h-10 w-10 flex items-center justify-center rounded-full border border-stone-200 group-hover:border-emerald-500 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500 shadow-sm">
                 <span className="text-xl">→</span>
               </div>
               <span className="text-[10px] uppercase tracking-[0.2em] font-normal opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">

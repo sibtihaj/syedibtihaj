@@ -44,7 +44,7 @@ export const Products = () => {
                 {product.stack?.map((tech, techIdx) => (
                   <span
                     key={`${product.slug}-${tech}-${techIdx}`}
-                    className="rounded-md bg-zinc-50 px-2 py-1 text-[10px] font-normal uppercase tracking-widest text-zinc-500 transition-colors group-hover:bg-gradient-to-r group-hover:from-blue-50 group-hover:to-sky-50 group-hover:text-blue-700"
+                    className="rounded-md bg-stone-50 px-2 py-1 text-[10px] font-normal uppercase tracking-widest text-stone-500 transition-colors group-hover:bg-emerald-50 group-hover:text-emerald-700"
                   >
                     {tech}
                   </span>
@@ -53,7 +53,7 @@ export const Products = () => {
 
               <Heading
                 as="h3"
-                className="mb-2 line-clamp-2 min-h-[3.5rem] text-xl font-normal text-zinc-900 transition-all group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:bg-clip-text group-hover:text-transparent md:min-h-[4rem] md:text-2xl"
+                className="mb-2 line-clamp-2 min-h-[3.5rem] text-xl font-normal text-stone-900 transition-all group-hover:text-emerald-800 md:min-h-[4rem] md:text-2xl"
               >
                 {product.title}
               </Heading>
@@ -62,10 +62,10 @@ export const Products = () => {
               </Paragraph>
 
               <div className="mt-auto flex min-h-[1.75rem] -translate-x-2 items-center pt-6 text-sm font-normal uppercase tracking-widest opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
-                <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
+                <span className="text-emerald-700 font-medium">
                   View Project
                 </span>
-                <span className="ml-2 text-blue-600">→</span>
+                <span className="ml-2 text-emerald-600">→</span>
               </div>
             </div>
           </Link>

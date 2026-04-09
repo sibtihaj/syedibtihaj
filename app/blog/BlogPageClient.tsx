@@ -25,14 +25,14 @@ export function BlogPageClient({ blogs }: BlogPageClientProps) {
       >
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
-          <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
+          <span className="text-emerald-700 font-mono text-[10px] tracking-[0.3em] uppercase font-medium">
             Support Engineering Notes
           </span>
         </div>
 
         <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          Published <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Support Articles</span> <br />
-          From <span className="text-zinc-400 font-light">Production Incidents.</span>
+          Published <span className="text-brand-gradient italic">Support Articles</span> <br />
+          From <span className="text-stone-400 font-light italic">Production Incidents.</span>
         </Heading>
 
         <Paragraph className="pb-10 text-lg md:text-xl text-zinc-500">

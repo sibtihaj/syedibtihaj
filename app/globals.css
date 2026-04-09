@@ -4,13 +4,13 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 244, 244, 245;
+  --background-start-rgb: 250, 249, 246; /* #FAF9F6 */
+  --background-end-rgb: 250, 249, 246;
 }
 
 @layer base {
   body {
-    @apply text-zinc-700 selection:bg-blue-500/20 selection:text-blue-900 font-sans;
+    @apply text-stone-700 selection:bg-emerald-500/20 selection:text-emerald-900 font-sans;
   }
 }
 
@@ -22,7 +22,7 @@
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-200 rounded-full hover:bg-zinc-300 transition-colors;
+  @apply bg-stone-300 rounded-full hover:bg-stone-400 transition-colors;
 }
 
 /* Typography Overrides */
@@ -32,23 +32,23 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Brand Gradient Utility */
 .text-brand-gradient {
-  @apply bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-emerald-800 to-teal-700 bg-clip-text text-transparent font-medium;
 }
 
 /* Prose refinements — typography plugin defaults headings to semibold; keep all heading weights normal */
 .prose {
-  @apply text-zinc-600 prose-headings:font-heading prose-headings:font-normal prose-headings:text-zinc-900 prose-a:text-blue-600 hover:prose-a:text-blue-700;
+  @apply text-stone-600 prose-headings:font-heading prose-headings:font-normal prose-headings:text-stone-900 prose-a:text-emerald-700 hover:prose-a:text-emerald-800;
 }
 
 /* Glassmorphism utility */
 .glass {
-  @apply bg-white/40 backdrop-blur-md border border-zinc-200/50;
+  @apply bg-[#FAF9F6]/40 backdrop-blur-xl border border-stone-200/50 shadow-xl;
 }
 
 /* Smooth motion */
 .stagger-reveal > * {
   @apply opacity-0 translate-y-4;
-  animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes reveal {
@@ -59,5 +59,5 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Floating Gradient Blob */
 .glow-blob {
-  @apply absolute rounded-full blur-[100px] opacity-30 pointer-events-none;
+  @apply absolute rounded-full blur-[100px] opacity-30 pointer-events-none mix-blend-multiply;
 }

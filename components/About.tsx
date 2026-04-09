@@ -66,7 +66,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <Heading as="h3" className="text-xl md:text-2xl font-normal mb-6 text-zinc-900">
-            Started in Support. <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Stayed for the Craft.</span>
+            Started in Support. <span className="text-brand-gradient italic">Stayed for the Craft.</span>
           </Heading>
           <Paragraph className="mb-6 text-lg leading-relaxed text-zinc-700">
             Hey, I&apos;m Syed — a Senior Support Engineer at HashiCorp and the founder of Webifex Labs, a small freelance studio I started in 2022.

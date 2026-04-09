@@ -39,15 +39,15 @@ export default function ResumePage() {
         <div className="mb-24 flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl space-y-8">
             <div className="flex items-center gap-3">
-              <div className="h-px w-8 bg-blue-500/30" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-blue-600/60">
+              <div className="h-px w-8 bg-stone-300" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-stone-400">
                 Professional Dossier
               </span>
             </div>
 
             <div>
-              <Heading className="text-2xl font-normal leading-tight tracking-tight text-zinc-400 md:text-3xl lg:text-4xl">
-                Solutions <span className="text-zinc-900">Architecture</span>
+              <Heading className="text-2xl font-normal leading-tight tracking-tight text-stone-500 md:text-3xl lg:text-4xl">
+                Solutions <span className="text-stone-900">Architecture</span>
                 <br />
                 <span className="font-light italic opacity-60">
                   Grounded in platform engineering.
@@ -177,7 +177,7 @@ export default function ResumePage() {
             </div>
             <Link 
               href="/contact"
-              className="group flex items-center gap-3 rounded-full bg-blue-50 px-8 py-4 text-xs font-normal uppercase tracking-[0.2em] text-blue-600 transition-all hover:bg-blue-100"
+              className="group flex items-center gap-3 rounded-full bg-emerald-50 px-8 py-4 text-xs font-normal uppercase tracking-[0.2em] text-emerald-800 transition-all hover:bg-emerald-100"
             >
               Start a conversation
               <IconArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -192,8 +192,8 @@ export default function ResumePage() {
 function ContactItem({ icon: Icon, label, href }: { icon: any; label: string; href?: string }) {
   const content = (
     <div className="flex items-center gap-2 group cursor-default">
-      <Icon size={14} className="text-zinc-300 group-hover:text-blue-500 transition-colors" />
-      <span className="text-sm text-zinc-500 group-hover:text-zinc-900 transition-colors">{label}</span>
+      <Icon size={14} className="text-stone-400 group-hover:text-emerald-700 transition-colors" />
+      <span className="text-sm text-stone-500 group-hover:text-stone-900 transition-colors">{label}</span>
     </div>
   );
 

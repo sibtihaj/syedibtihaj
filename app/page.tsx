@@ -25,8 +25,8 @@ export default function Home() {
   return (
     <Container className="relative overflow-hidden">
       {/* Decorative background glow */}
-      <div className="absolute -top-24 -left-24 h-[500px] w-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/2 -right-24 h-[400px] w-[400px] bg-sky-500/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute -top-24 -left-24 h-[500px] w-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 -right-24 h-[400px] w-[400px] bg-teal-500/5 blur-[100px] rounded-full pointer-events-none" />
 
       <motion.section 
         variants={stagger}
@@ -36,34 +36,34 @@ export default function Home() {
       >
         <motion.div variants={fadeInUp}>
           <Heading className="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
-            Hello there! I&apos;m <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Syed</span>
+            Hello. I&apos;m <span className="text-brand-gradient italic">Syed.</span>
           </Heading>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-xl text-lg md:text-xl text-zinc-700 mb-6 leading-relaxed">
+          <Paragraph className="max-w-xl text-lg md:text-xl text-stone-700 mb-6 leading-relaxed">
             I&apos;m a full-stack developer that loves{" "}
-            <Highlight className="bg-gradient-to-r from-blue-500/10 to-sky-500/10 text-blue-700">building products</Highlight> and web apps that can impact
+            <Highlight className="bg-emerald-500/10 text-emerald-800 px-2 py-0.5 rounded-md">building products</Highlight> and web apps that can impact
             millions of lives.
           </Paragraph>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-xl text-base text-zinc-500 mb-6">
+          <Paragraph className="max-w-xl text-base text-stone-500 mb-6">
             I&apos;m a senior software engineer with{" "}
-            <Highlight className="bg-zinc-100 text-zinc-800">7 years of experience</Highlight> building scalable web apps
-            that are performance optimized and good looking.
+            <Highlight className="bg-stone-200/50 text-stone-800 px-2 py-0.5 rounded-md">7 years of experience</Highlight> building scalable web apps
+            that are performance optimized and visually striking.
           </Paragraph>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-xl text-sm text-zinc-500 mb-12 leading-relaxed">
+          <Paragraph className="max-w-xl text-sm text-stone-500 mb-12 leading-relaxed">
             Lately I&apos;ve been more deliberate about visibility: I&apos;m putting selected work on{" "}
             <Link
               href="https://github.com/sibtihaj"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-700 underline-offset-4 hover:underline"
+              className="text-emerald-700 hover:text-emerald-800 underline-offset-4 hover:underline font-medium"
             >
               GitHub
             </Link>{" "}
@@ -84,9 +84,9 @@ export default function Home() {
             as="h2"
             className="text-2xl md:text-3xl lg:text-4xl font-normal"
           >
-            Selected <span className="text-zinc-400 font-light">Works</span>
+            Selected <span className="text-stone-400 font-light italic">Works</span>
           </Heading>
-          <div className="h-px flex-1 bg-zinc-100 mx-8 hidden md:block" />
+          <div className="h-px flex-1 bg-stone-200 mx-8 hidden md:block" />
         </div>
         
         <Products />

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const colors = require("tailwindcss/colors");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -45,6 +46,11 @@ const config: Config = {
       colors: {
         primary: "var(--neutral-700)",
         secondary: "var(--neutral-500)",
+        // Map generic colors to an elegant earthy palette
+        zinc: colors.stone,
+        blue: colors.emerald,
+        sky: colors.teal,
+        indigo: colors.lime,
       },
     },
   },

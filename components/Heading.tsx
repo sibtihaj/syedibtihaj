@@ -16,7 +16,7 @@ export const Heading = ({
     <Tag
       id={id}
       className={twMerge(
-        "font-heading text-2xl md:text-3xl lg:text-5xl font-normal tracking-tight text-zinc-900",
+        "font-heading text-2xl md:text-3xl lg:text-5xl font-normal tracking-normal text-stone-900",
         className
       )}
     >

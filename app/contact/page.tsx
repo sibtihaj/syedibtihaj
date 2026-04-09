@@ -72,14 +72,14 @@ export default function ContactPage() {
       >
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
-          <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
+          <span className="text-emerald-700 font-mono text-[10px] tracking-[0.3em] uppercase font-medium">
             Contact
           </span>
         </div>
 
         <Heading className="text-4xl md:text-5xl lg:text-6xl mb-8 font-normal leading-[1.15]">
-          An <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">opportunity</span> or a{" "}
-          <span className="text-zinc-400 font-light">project</span> in mind?
+          An <span className="text-brand-gradient italic">opportunity</span> or a{" "}
+          <span className="text-stone-400 font-light italic">project</span> in mind?
         </Heading>
 
         <Paragraph className="pb-10 text-lg md:text-xl text-zinc-600 max-w-2xl leading-relaxed">

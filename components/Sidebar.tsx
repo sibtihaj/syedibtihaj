@@ -46,7 +46,7 @@ export const Sidebar = () => {
       </AnimatePresence>
       
       <button
-        className="fixed lg:hidden top-4 right-4 h-10 w-10 bg-white border border-zinc-200 rounded-xl flex items-center justify-center z-[110] text-zinc-500 hover:text-zinc-900 shadow-lg transition-colors"
+        className="fixed lg:hidden top-4 right-4 h-10 w-10 bg-[#FAF9F6] border border-stone-200 rounded-xl flex items-center justify-center z-[110] text-stone-500 hover:text-stone-900 shadow-lg transition-colors"
         onClick={() => setOpen(!open)}
       >
         {open ? <IconX size={20} /> : <IconMenu2 size={20} />}
@@ -59,18 +59,18 @@ const SidebarHeader = () => {
   return (
     <div className="flex flex-col items-center gap-4 text-center mb-10">
       <div className="relative group">
-        <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+        <div className="absolute -inset-1.5 bg-gradient-to-tr from-emerald-700 via-teal-600 to-lime-500 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
         <Image
           src="/images/headshot.jpeg"
           alt="Syed Ibtihaj"
           height={96}
           width={96}
-          className="relative object-cover object-top rounded-full ring-2 ring-white shadow-xl"
+          className="relative object-cover object-top rounded-full ring-2 ring-[#FAF9F6] shadow-xl grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
         />
       </div>
       <div className="flex flex-col">
-        <p className="font-normal text-lg text-zinc-900 tracking-tight">Syed Ibtihaj</p>
-        <p className="text-xs font-normal bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent uppercase tracking-[0.2em]">Cloud & Platform Engineer | Solutions Architecture</p>
+        <p className="font-normal text-lg text-stone-900 tracking-tight font-heading">Syed Ibtihaj</p>
+        <p className="text-[10px] font-medium text-emerald-800 uppercase tracking-[0.2em] mt-1">Cloud & Platform Engineer</p>
       </div>
     </div>
   );
@@ -94,14 +94,14 @@ export const Navigation = ({
           className={twMerge(
             "group flex items-center space-x-3 py-2.5 px-3 rounded-xl text-sm transition-all duration-300",
             isActive(link.href) 
-              ? "bg-gradient-to-r from-blue-50 to-sky-50 text-blue-700 font-normal shadow-sm ring-1 ring-blue-100" 
-              : "text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"
+              ? "text-emerald-800 font-medium" 
+              : "text-stone-500 hover:text-stone-900"
           )}
         >
           <link.icon
             className={twMerge(
-              "h-4 w-4 transition-colors duration-300",
-              isActive(link.href) ? "text-blue-600" : "text-zinc-400 group-hover:text-zinc-600"
+              "h-4 w-4 transition-all duration-300",
+              isActive(link.href) ? "text-emerald-700 opacity-100" : "text-stone-400 group-hover:text-stone-600 opacity-60 group-hover:opacity-100"
             )}
           />
           <span>{link.label}</span>
