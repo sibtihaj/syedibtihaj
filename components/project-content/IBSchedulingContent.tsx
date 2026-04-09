@@ -129,7 +129,7 @@ export function IBSchedulingContent() {
           The summary above names the pieces; here is how work is divided:
           Next.js (TypeScript) owns the product UI and browser session; Go owns
           booking rules, JWT verification against Supabase&apos;s OIDC issuer,
-          and Postgres access via pgx—nothing authoritative runs in the client.
+          and Postgres access via pgx. Nothing authoritative runs in the client.
         </p>
         <ul>
           <li>

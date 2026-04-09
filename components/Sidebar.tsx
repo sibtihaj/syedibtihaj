@@ -59,18 +59,19 @@ const SidebarHeader = () => {
   return (
     <div className="flex flex-col items-center gap-4 text-center mb-10">
       <div className="relative group">
-        <div className="absolute -inset-1.5 bg-gradient-to-tr from-emerald-700 via-teal-600 to-lime-500 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+        <div className="absolute -inset-2 bg-gradient-to-tr from-emerald-700 via-teal-600 to-lime-500 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500" />
         <Image
           src="/images/headshot.jpeg"
           alt="Syed Ibtihaj"
-          height={96}
-          width={96}
-          className="relative object-cover object-top rounded-full ring-2 ring-[#FAF9F6] shadow-xl grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
+          width={128}
+          height={128}
+          priority
+          className="relative h-32 w-32 object-cover object-top rounded-full ring-2 ring-[#FAF9F6] shadow-xl grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
         />
       </div>
       <div className="flex flex-col">
         <p className="font-normal text-lg text-stone-900 tracking-tight font-heading">Syed Ibtihaj</p>
-        <p className="text-[10px] font-medium text-emerald-800 uppercase tracking-[0.2em] mt-1">Cloud & Platform Engineer</p>
+        <p className="text-[10px] font-medium text-emerald-800 uppercase tracking-[0.2em] mt-1">Senior Product Support Engineer</p>
       </div>
     </div>
   );

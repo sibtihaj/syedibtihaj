@@ -24,9 +24,8 @@ export default function Projects() {
           </span>
         </div>
         
-        <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          Selected <span className="text-brand-gradient italic">Case Studies</span> <br />
-          & Projects.
+        <Heading className="text-2xl md:text-3xl lg:text-4xl mb-12 font-normal leading-[1.15]">
+          Some of my <span className="text-brand-gradient italic">Projects</span>
         </Heading>
 
         <Paragraph className="max-w-2xl text-zinc-500 mb-12 text-base leading-relaxed">
@@ -39,7 +38,7 @@ export default function Projects() {
           >
             GitHub
           </Link>{" "}
-          and using this page as the narrative layer—expect this section (and the repos behind it) to stay current as I keep the portfolio maintained.
+          and using this page as the narrative layer. Expect this section (and the repos behind it) to stay current as I keep the portfolio maintained.
         </Paragraph>
 
         <Products />

@@ -167,7 +167,7 @@ export function AIIncidentAssistantContent() {
   return (
     <div className="space-y-16">
       <section className="space-y-6">
-        <Heading as="h2" className="text-3xl font-normal text-zinc-900 tracking-tight">What it is</Heading>
+        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">What it is</Heading>
         <div className="space-y-4">
           <Paragraph className="text-lg leading-relaxed text-zinc-600">
             AI Incident Assistant is a production-style incident response
@@ -184,7 +184,7 @@ export function AIIncidentAssistantContent() {
       </section>
 
       <section className="space-y-6">
-        <Heading as="h2" className="text-3xl font-normal text-zinc-900 tracking-tight">Capability Matrix</Heading>
+        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">Capability Matrix</Heading>
         <div className="overflow-hidden rounded-2xl border border-blue-100 bg-white/50 shadow-sm backdrop-blur-sm">
           <table className="min-w-full divide-y divide-blue-50 text-sm">
             <thead className="bg-gradient-to-r from-blue-50/50 to-sky-50/50 text-left text-blue-900">
@@ -224,7 +224,7 @@ export function AIIncidentAssistantContent() {
       </section>
 
       <section className="space-y-6">
-        <Heading as="h2" className="text-3xl font-normal text-zinc-900 tracking-tight">MCP Tool Surface</Heading>
+        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">MCP Tool Surface</Heading>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { title: 'Incident', items: ['create_incident', 'get_incident', 'update_incident', 'list_incidents'] },
@@ -252,7 +252,7 @@ export function AIIncidentAssistantContent() {
       {/* Architecture Diagrams Section */}
       <section className="space-y-16">
         <div className="space-y-4 text-center max-w-2xl mx-auto">
-          <Heading as="h2" className="text-4xl font-normal text-zinc-900 tracking-tight">Architecture & Flow</Heading>
+          <Heading as="h2" className="text-2xl md:text-3xl font-normal text-zinc-900 tracking-tight">Architecture & Flow</Heading>
           <Paragraph className="text-lg text-zinc-500">
             A high-fidelity breakdown of how the AI Incident Assistant orchestrates UI, model generation, and tool execution.
           </Paragraph>
@@ -288,7 +288,7 @@ export function AIIncidentAssistantContent() {
               <div className="space-y-2">
                 <Heading as="h3" className="text-2xl font-normal text-zinc-900">Context Retention Flow</Heading>
                 <Paragraph className="text-zinc-500 max-w-3xl">
-                  From the browser through load/merge of the envelope, optional CAN guardrails, token trimming, and generation—with memory written back under the same row the user already owns via RLS.
+                  From the browser through load/merge of the envelope, optional CAN guardrails, token trimming, and generation, with memory written back under the same row the user already owns via RLS.
                 </Paragraph>
               </div>
               <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 backdrop-blur-xl shadow-sm ring-1 ring-black/5">

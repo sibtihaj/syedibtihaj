@@ -5,34 +5,12 @@ import Image from "next/image";
 import { Heading } from "./Heading";
 import { motion } from "framer-motion";
 import { IconCpu, IconRocket } from "@tabler/icons-react";
+import { certificationBadges } from "@/constants/certificationBadges";
 import { skillsBlocks } from "@/constants/resumeContent";
 
 const sectionIcons = [IconCpu, IconRocket] as const;
 
 export const ResumeSkills = () => {
-  const certifications = [
-    {
-      title: "AWS Certified Solutions Architect",
-      image: "/badges/AWS%20Certified%20Solutions%20Architect%20Badge.png",
-    },
-    {
-      title: "Certified Kubernetes Administrator (CKA)",
-      image: "/badges/CKA%20Certified%20Kubernetes%20Administrator%20Badge.png",
-    },
-    {
-      title: "HashiCorp Certified Terraform Associate",
-      image: "/badges/HashiCorp%20Certified%20Terraform%20Associate%20Badge.png",
-    },
-    {
-      title: "HashiCorp Certified Consul Associate",
-      image: "/badges/HashiCorp%20Certified%20Consul%20Associate%20Badge.png",
-    },
-    {
-      title: "Amazon EKS Training",
-      image: "/badges/Amazon%20EKS%20Training%20Badge.png",
-    },
-  ];
-
   return (
     <section className="mt-32 md:mt-48 mb-32 overflow-x-clip">
       <div className="grid grid-cols-1 gap-16 items-start lg:grid-cols-12">
@@ -46,7 +24,7 @@ export const ResumeSkills = () => {
             </div>
             <Heading
               as="h3"
-              className="mb-6 text-3xl font-normal tracking-tight md:text-4xl"
+              className="mb-6 text-2xl font-normal tracking-tight md:text-3xl"
             >
               Skills <span className="font-light italic text-zinc-300">&amp;</span>{" "}
               <span className="text-zinc-300 font-light italic">credentials.</span>
@@ -96,7 +74,7 @@ export const ResumeSkills = () => {
                 </p>
               </div>
               <div className="flex w-full max-w-full flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-                {certifications.map((cert, idx) => (
+                {certificationBadges.map((cert, idx) => (
                   <motion.div
                     key={cert.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -126,11 +104,12 @@ export const ResumeSkills = () => {
                       <div className="absolute inset-4 rounded-full bg-blue-500/0 blur-2xl transition-colors duration-500 group-hover/cert:bg-blue-500/10" />
 
                       <Image
-                        src={cert.image}
+                        src={cert.src}
                         alt={cert.title}
-                        fill
-                        sizes="(max-width: 768px) 160px, 250px"
-                        className="object-contain brightness-[1.02] contrast-[1.02] filter drop-shadow-xl transition-all duration-500 group-hover/cert:drop-shadow-[0_20px_30px_rgba(59,130,246,0.3)]"
+                        width={cert.width}
+                        height={cert.height}
+                        unoptimized
+                        className="max-h-full max-w-full object-contain brightness-[1.02] contrast-[1.02] filter drop-shadow-xl transition-all duration-500 group-hover/cert:drop-shadow-[0_20px_30px_rgba(59,130,246,0.3)]"
                       />
                     </motion.div>
 

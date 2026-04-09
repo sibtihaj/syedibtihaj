@@ -20,7 +20,7 @@ export const TechStack = () => {
     <div className="pt-20">
       <Heading
         as="h2"
-        className="text-2xl md:text-3xl lg:text-4xl font-normal mb-12"
+        className="text-xl md:text-2xl lg:text-3xl font-normal mb-12"
       >
         Tools <span className="text-zinc-400 font-light">& Tech Stack</span>
       </Heading>

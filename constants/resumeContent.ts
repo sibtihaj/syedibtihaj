@@ -1,4 +1,4 @@
-/** On-site resume copy aligned with PDF / Syed-Resume-New.pdf — keep in sync when CV updates. */
+/** On-site resume copy aligned with PDF / Syed-Resume-New.pdf; keep in sync when CV updates. */
 
 export const resumeHeader = {
   name: "Syed Haque",

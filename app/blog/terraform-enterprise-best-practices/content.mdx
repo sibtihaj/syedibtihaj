@@ -13,39 +13,69 @@ export const meta = {
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-Terraform Enterprise is flexible, but that flexibility is easiest to use when teams understand where defaults become bottlenecks. Many support escalations are not caused by a hard platform failure; they come from limit assumptions that were never revisited as usage grew.
+<p>
+  Terraform Enterprise is flexible, but that flexibility is easiest to use when teams understand where defaults become
+  bottlenecks. Many support escalations are not caused by a hard platform failure; they come from limit assumptions
+  that were never revisited as usage grew.
+</p>
 
-## Limits vs. Configurable Capacity
+<h2>Limits vs. Configurable Capacity</h2>
 
-One key planning principle: not every value is a strict quota. Several controls are administrator-configurable and should be aligned to infrastructure capacity, workload profile, and organization growth.
+<p>
+  One key planning principle: not every value is a strict quota. Several controls are administrator-configurable and
+  should be aligned to infrastructure capacity, workload profile, and organization growth.
+</p>
 
-Important examples include:
+<p>Important examples include:</p>
 
-- API rate limits (default per-user request rate)
-- Concurrent runs per node
-- Memory allocation per run
-- Plan and apply timeout windows
-- Workspace and organization-level operational constraints
+<ul>
+  <li>API rate limits (default per-user request rate)</li>
+  <li>Concurrent runs per node</li>
+  <li>Memory allocation per run</li>
+  <li>Plan and apply timeout windows</li>
+  <li>Workspace and organization-level operational constraints</li>
+</ul>
 
-## Where Teams Usually Feel Pressure First
+<h2>Where Teams Usually Feel Pressure First</h2>
 
-In practical environments, the first pain points typically show up in run concurrency, API behavior during automation bursts, and workspace governance. Variable constraints and VCS integration ceilings also become relevant as platform adoption broadens across teams.
+<p>
+  In practical environments, the first pain points typically show up in run concurrency, API behavior during
+  automation bursts, and workspace governance. Variable constraints and VCS integration ceilings also become relevant
+  as platform adoption broadens across teams.
+</p>
 
-## Operational Guidance
+<h2>Operational Guidance</h2>
 
-Treat limits review as a routine platform exercise, not a one-time setup task:
+<p>Treat limits review as a routine platform exercise, not a one-time setup task:</p>
 
-- baseline defaults before onboarding new business units
-- validate run memory and timeout settings against real pipeline behavior
-- document non-configurable constraints early to avoid design surprises
-- review API consumption patterns from internal tooling and CI integrations
+<ul>
+  <li>baseline defaults before onboarding new business units</li>
+  <li>validate run memory and timeout settings against real pipeline behavior</li>
+  <li>document non-configurable constraints early to avoid design surprises</li>
+  <li>review API consumption patterns from internal tooling and CI integrations</li>
+</ul>
 
-The goal is predictable throughput with fewer reactive escalations.
+<p>The goal is predictable throughput with fewer reactive escalations.</p>
 
-## Support Links
+<h2>Support Links</h2>
 
-HashiCorp Support article: [Terraform Enterprise Limits and Quotas](https://support.hashicorp.com/hc/en-us/articles/43153290742547-Terraform-Enterprise-Limits-and-Quotas)
+<p>
+  <strong>HashiCorp Support article:</strong>{" "}
+  <a href="https://support.hashicorp.com/hc/en-us/articles/43153290742547-Terraform-Enterprise-Limits-and-Quotas">
+    Terraform Enterprise Limits and Quotas
+  </a>
+</p>
 
-IBM Support article: [Terraform Enterprise Limits and Quotas](https://www.ibm.com/support/pages/terraform-enterprise-limits-and-quotas)
+<p>
+  <strong>IBM Support article:</strong>{" "}
+  <a href="https://www.ibm.com/support/pages/terraform-enterprise-limits-and-quotas">
+    Terraform Enterprise Limits and Quotas
+  </a>
+</p>
 
-> HashiCorp Support content migrated to IBM Support on April 1, 2026. The IBM link is included as the current support platform reference.
+<blockquote>
+  <p>
+    HashiCorp Support content migrated to IBM Support on April 1, 2026. The IBM link is included as the current
+    support platform reference.
+  </p>
+</blockquote>

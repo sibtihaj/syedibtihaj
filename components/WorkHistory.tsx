@@ -48,7 +48,7 @@ export const WorkHistory = () => {
           <span className="font-mono text-[10px] text-zinc-300 uppercase tracking-[0.5em]">Section 02</span>
           <div className="h-px w-12 bg-zinc-100" />
         </div>
-        <Heading as="h3" className="text-4xl md:text-5xl lg:text-7xl font-normal tracking-tighter mb-8">
+        <Heading as="h3" className="text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight mb-8">
           Career <span className="text-zinc-300 font-light italic">Milestones.</span>
         </Heading>
         <div className="max-w-xl">
@@ -101,7 +101,7 @@ export const WorkHistory = () => {
 
                 <div className="relative p-8 md:p-10 rounded-3xl bg-white border border-zinc-100 group-hover:border-blue-100 group-hover:shadow-xl group-hover:shadow-blue-500/5 transition-all duration-500">
                   <div className="mb-6">
-                    <h4 className="font-heading text-2xl md:text-3xl font-normal text-zinc-900 mb-2 group-hover:text-blue-950 transition-colors">
+                    <h4 className="font-heading text-xl md:text-2xl font-normal text-zinc-900 mb-2 group-hover:text-emerald-900 transition-colors">
                       {item.company}
                     </h4>
                     <p className="text-[11px] md:text-xs font-sans uppercase tracking-[0.25em] text-blue-600 font-medium">

@@ -26,7 +26,7 @@ export const Footer = () => {
         </div>
         
         <p className="text-xs font-mono text-zinc-400">
-          © {new Date().getFullYear()} — Built with Next.js 16
+          © {new Date().getFullYear()}. Built with Next.js 16
         </p>
       </div>
     </div>

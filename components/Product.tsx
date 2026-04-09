@@ -73,7 +73,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
 
       <div className="mt-16 flex flex-col gap-8 lg:mt-20 lg:flex-row lg:items-start lg:gap-10">
         <div className="min-w-0 max-w-3xl">
-          <Heading className="text-3xl md:text-5xl font-normal mb-6">
+          <Heading className="text-xl md:text-2xl lg:text-3xl font-normal mb-6">
             {product.title}
           </Heading>
           <div className="flex flex-wrap gap-2 mb-8">

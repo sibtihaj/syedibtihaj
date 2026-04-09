@@ -26,22 +26,26 @@ export function BlogPageClient({ blogs }: BlogPageClientProps) {
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
           <span className="text-emerald-700 font-mono text-[10px] tracking-[0.3em] uppercase font-medium">
-            Support Engineering Notes
+            Product support writing
           </span>
         </div>
 
-        <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          Published <span className="text-brand-gradient italic">Support Articles</span> <br />
-          From <span className="text-stone-400 font-light italic">Production Incidents.</span>
+        <Heading className="text-2xl md:text-3xl lg:text-4xl mb-4 font-normal leading-[1.15]">
+          Product support articles I have published{" "}
+          <span className="text-brand-gradient italic">publicly</span>.
         </Heading>
 
+        <Paragraph className="pb-8 text-sm md:text-base text-stone-600 leading-relaxed max-w-2xl">
+          I have authored many more articles that were published only for customers inside support and internal knowledge bases. This page is limited to pieces that also appear on the public HashiCorp and IBM support sites.
+        </Paragraph>
+
         <Paragraph className="pb-10 text-lg md:text-xl text-zinc-500">
-          These posts are based on real Terraform Enterprise support scenarios from my work at{" "}
-          <Highlight className="bg-gradient-to-r from-blue-500/10 to-sky-500/10 text-blue-700">HashiCorp (now IBM)</Highlight>.
+          These posts draw on real Terraform Enterprise scenarios from my work at{" "}
+          <Highlight>HashiCorp (now IBM)</Highlight>.
         </Paragraph>
 
         <Paragraph className="pb-10 text-sm text-zinc-500 leading-relaxed max-w-2xl">
-          At the moment, this section contains only the three official support articles I authored. HashiCorp Support content migrated to IBM Support on April 1, 2026, and each post includes both source links below.
+          Below are the three official support articles mirrored here for my portfolio. HashiCorp Support content migrated to IBM Support on April 1, 2026; each post includes both source links at the bottom.
         </Paragraph>
 
         <Blogs blogs={blogs} />

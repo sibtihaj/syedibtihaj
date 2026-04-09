@@ -5,9 +5,9 @@ const PRODUCTION_ORIGIN = "https://syedibtihaj.com";
  * Canonical site origin for metadata, sitemap, and robots.
  *
  * Priority:
- * 1. `NEXT_PUBLIC_SITE_URL` — override for any environment
+ * 1. `NEXT_PUBLIC_SITE_URL`: override for any environment
  * 2. Vercel production (`VERCEL_ENV=production`) → `https://syedibtihaj.com`
- * 3. `VERCEL_URL` — preview deployments and dev URL (e.g. syedibtihaj.vercel.app)
+ * 3. `VERCEL_URL`: preview deployments and dev URL (e.g. syedibtihaj.vercel.app)
  * 4. Local dev → http://localhost:3000
  */
 export function getSiteUrl(): string {

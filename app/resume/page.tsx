@@ -46,7 +46,7 @@ export default function ResumePage() {
             </div>
 
             <div>
-              <Heading className="text-2xl font-normal leading-tight tracking-tight text-stone-500 md:text-3xl lg:text-4xl">
+              <Heading className="text-xl font-normal leading-tight tracking-tight text-stone-500 md:text-2xl lg:text-3xl">
                 Solutions <span className="text-stone-900">Architecture</span>
                 <br />
                 <span className="font-light italic opacity-60">

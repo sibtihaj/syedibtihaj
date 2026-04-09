@@ -26,7 +26,7 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   title: "Syed Ibtihaj",
   description:
-    "Syed Ibtihaj is a Senior Support Engineer at HashiCorp and the founder of Webifex Labs, a freelance studio shipping web products for clients.",
+    "Syed Ibtihaj is a Senior Product Support Engineer at HashiCorp and the founder of Webifex Labs, a freelance studio shipping web products for clients.",
   metadataBase: new URL(siteUrl),
   robots: {
     index: true,

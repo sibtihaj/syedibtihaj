@@ -50,7 +50,7 @@ export function BlogLayout({
             </time>
           </div>
 
-          <Heading className="text-4xl md:text-6xl font-normal leading-tight mb-12">
+          <Heading className="text-2xl md:text-3xl lg:text-4xl font-normal leading-tight mb-12">
             {meta.title}
           </Heading>
 

@@ -19,13 +19,13 @@ export default function AboutPage() {
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
           <span className="text-emerald-700 font-mono text-[10px] tracking-[0.3em] uppercase font-medium">
-            Support Engineer. Product Builder.
+            Support depth, solutions architecture
           </span>
         </div>
 
-        <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          Deep in the Cloud <span className="text-stone-400 font-light italic">by Day,</span> <br />
-          Shipping Products <span className="text-brand-gradient italic">by Night.</span>
+        <Heading className="text-2xl md:text-3xl lg:text-4xl mb-12 font-normal leading-[1.15]">
+          Deep in production platforms <span className="text-stone-400 font-light italic">by day,</span> <br />
+          <span className="text-brand-gradient italic">Architecture-minded</span> delivery by night.
         </Heading>
         
         <About />

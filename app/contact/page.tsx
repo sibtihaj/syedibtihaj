@@ -77,13 +77,13 @@ export default function ContactPage() {
           </span>
         </div>
 
-        <Heading className="text-4xl md:text-5xl lg:text-6xl mb-8 font-normal leading-[1.15]">
+        <Heading className="text-2xl md:text-3xl lg:text-4xl mb-8 font-normal leading-[1.15]">
           An <span className="text-brand-gradient italic">opportunity</span> or a{" "}
           <span className="text-stone-400 font-light italic">project</span> in mind?
         </Heading>
 
         <Paragraph className="pb-10 text-lg md:text-xl text-zinc-600 max-w-2xl leading-relaxed">
-          If you have an opportunity or a project in mind, please reach out using the contact details on this page or the contact form below—I&apos;ll respond as soon as I can.
+          If you have an opportunity or a project in mind, please reach out using the contact details on this page or the contact form below. I&apos;ll respond as soon as I can.
         </Paragraph>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-8 mb-32 items-start">
@@ -107,7 +107,7 @@ export default function ContactPage() {
                 Contact details
               </Heading>
               <Paragraph className="text-zinc-500 text-base leading-relaxed">
-                Use whichever channel suits you—email, phone, or the form.
+                Use whichever channel suits you: email, phone, or the form.
               </Paragraph>
             </div>
 

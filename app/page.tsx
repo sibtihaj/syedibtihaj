@@ -35,7 +35,7 @@ export default function Home() {
         className="relative pt-6 lg:pt-14"
       >
         <motion.div variants={fadeInUp}>
-          <Heading className="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
+          <Heading className="text-2xl md:text-3xl lg:text-4xl mb-8 leading-[1.15]">
             Hello. I&apos;m <span className="text-brand-gradient italic">Syed.</span>
           </Heading>
         </motion.div>
@@ -82,7 +82,7 @@ export default function Home() {
         <div className="flex items-end justify-between mb-12">
           <Heading
             as="h2"
-            className="text-2xl md:text-3xl lg:text-4xl font-normal"
+            className="text-lg md:text-xl lg:text-2xl font-normal"
           >
             Selected <span className="text-stone-400 font-light italic">Works</span>
           </Heading>

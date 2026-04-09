@@ -17,20 +17,20 @@ export function NexSevContent() {
       <section>
         <h2>The problem: incident response is a time sink</h2>
         <p>
-          If you&apos;ve been on-call for enterprise infrastructure, you know the pattern: an alert fires, you troubleshoot, you resolve—then the administrative work begins: detailed Root Cause Analysis (RCA), Customer Action Notices (CANs), searching past tickets, and updating the knowledge base.
+          If you&apos;ve been on-call for enterprise infrastructure, you know the pattern: an alert fires, you troubleshoot, you resolve, and then the administrative work begins: detailed Root Cause Analysis (RCA), Customer Action Notices (CANs), searching past tickets, and updating the knowledge base.
         </p>
         <p>
           At HashiCorp, our support team was spending <strong>2+ hours per Sev1 incident</strong> on post-resolution work. Across dozens of critical incidents per month, that added up to weeks of manual documentation.
         </p>
         <p>
-          During IBM&apos;s AI HackWeek, I led a cross-functional team to build <strong>NexSev</strong>—an AI-powered incident response assistant that automates those workflows.
+          During IBM&apos;s AI HackWeek, I led a cross-functional team to build <strong>NexSev</strong>, an AI-powered incident response assistant that automates those workflows.
         </p>
       </section>
 
       <section>
         <h2>The vision: an AI teammate for support engineers</h2>
         <p>
-          The goal was not to replace engineers—it was to handle the tedious parts so people can focus on solving customer problems.
+          The goal was not to replace engineers. It was to handle the tedious parts so people can focus on solving customer problems.
         </p>
         <p>What we wanted NexSev to do:</p>
         <ol>
@@ -104,7 +104,7 @@ export function NexSevContent() {
         </p>
         <blockquote>
           <p>
-            The key insight: <strong>don&apos;t chase perfect AI copy</strong>—ship a strong first draft an engineer can polish in minutes instead of writing from scratch for an hour.
+            The key insight: <strong>don&apos;t chase perfect AI copy</strong>. Ship a strong first draft an engineer can polish in minutes instead of writing from scratch for an hour.
           </p>
         </blockquote>
 
@@ -112,23 +112,31 @@ export function NexSevContent() {
         <p>Support engineers live in Slack during incidents. We shipped slash-style workflows such as:</p>
         <ul>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev analyze</code> — suggest troubleshooting steps for the active incident
+            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev analyze</code>
+            {" "}
+            to suggest troubleshooting steps for the active incident
           </li>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev rca [ticket-id]</code> — RCA draft for a resolved incident
+            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev rca [ticket-id]</code>
+            {" "}
+            for an RCA draft on a resolved incident
           </li>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev can [ticket-id]</code> — CAN draft
+            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev can [ticket-id]</code>
+            {" "}
+            for a CAN draft
           </li>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev search [query]</code> — knowledge base search
+            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev search [query]</code>
+            {" "}
+            for knowledge base search
           </li>
         </ul>
         <p>The bot used MCP-backed tools to pull Zendesk context, search knowledge, generate documents, and post results back to the channel.</p>
 
         <h3>Phase 4: Next.js review interface</h3>
         <p>
-          Long-form review needed more than a thread. We built a Next.js app to review and edit RCAs and CANs, track approval state, and export finalized documents to Zendesk—closing the loop so engineer edits inform prompt improvements over time.
+          Long-form review needed more than a thread. We built a Next.js app to review and edit RCAs and CANs, track approval state, and export finalized documents to Zendesk, which closed the loop so engineer edits inform prompt improvements over time.
         </p>
       </section>
 
@@ -155,16 +163,16 @@ export function NexSevContent() {
         <h2>Lessons learned</h2>
         <ul>
           <li>
-            <strong>Local LLMs are viable in production</strong> when privacy matters—fast enough, no per-token bill, and room to customize.
+            <strong>Local LLMs are viable in production</strong> when privacy matters: fast enough, no per-token bill, and room to customize.
           </li>
           <li>
             <strong>Agentic flows beat one-shot prompts</strong> for reliability when context must be gathered from multiple systems.
           </li>
           <li>
-            <strong>Human-in-the-loop is non-negotiable</strong> for customer-facing quality—draft, review, then publish.
+            <strong>Human-in-the-loop is non-negotiable</strong> for customer-facing quality: draft, review, then publish.
           </li>
           <li>
-            <strong>Adoption follows the workflow</strong>—Slack integration mattered as much as model quality.
+            <strong>Adoption follows the workflow</strong>. Slack integration mattered as much as model quality.
           </li>
         </ul>
       </section>

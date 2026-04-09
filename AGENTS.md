@@ -8,7 +8,7 @@
 - Prefers blue-forward gradient branding rather than green or flat solid blue.
 - Prefers restrained typography and copy: headings not bold and not unnecessarily large; professional, humanized wording that does not read as generic AI output.
 - Prefers the sidebar without a solid white panel behind it (minimal / transparent treatment).
-- Prefers accurate professional positioning in site copy and resume content (technical services / product support engineering with software engineering experience)—avoid inflated titles such as "senior software engineer" unless accurate.
+- Prefers accurate professional positioning in site copy and resume content (technical services / product support engineering with software engineering experience). Avoid inflated titles such as "senior software engineer" unless accurate.
 - Prefers a monorepo layout for multi-service projects (e.g., `apps/api` and `apps/web`) to keep API and UI changes synchronized.
 
 ## Learned Workspace Facts
