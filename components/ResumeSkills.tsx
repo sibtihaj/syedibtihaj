@@ -55,7 +55,7 @@ export const ResumeSkills = () => {
             <Heading as="h3" className="text-3xl md:text-4xl font-normal tracking-tight mb-6">
               Technical <span className="text-zinc-300 font-light italic">Arsenal.</span>
             </Heading>
-            <p className="text-sm text-zinc-500 leading-relaxed font-ubuntu">
+            <p className="text-sm text-zinc-500 leading-relaxed font-sans">
               Strategic selection of core technologies utilized to architect and implement high-concurrency systems and digital products.
             </p>
           </div>
@@ -86,7 +86,7 @@ export const ResumeSkills = () => {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[11px] font-normal px-4 py-2 rounded-xl bg-zinc-50 text-zinc-600 border border-zinc-100 group-hover:border-blue-200 group-hover:text-blue-700 transition-all duration-300 cursor-default font-ubuntu"
+                      className="text-[11px] font-normal px-4 py-2 rounded-xl bg-zinc-50 text-zinc-600 border border-zinc-100 group-hover:border-blue-200 group-hover:text-blue-700 transition-all duration-300 cursor-default font-sans"
                     >
                       {skill}
                     </span>
@@ -103,7 +103,7 @@ export const ResumeSkills = () => {
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
               <div className="max-w-xs">
                 <p className="text-[10px] font-normal uppercase tracking-[0.4em] text-zinc-400 mb-4">Verified Credentials</p>
-                <Paragraph className="text-xs text-zinc-500 leading-relaxed font-ubuntu italic">
+                <Paragraph className="text-xs text-zinc-500 leading-relaxed font-sans italic">
                   Actively expanding proficiency in generative AI architectures and distributed systems observability to drive next-generation infrastructure solutions.
                 </Paragraph>
               </div>
@@ -124,7 +124,7 @@ export const ResumeSkills = () => {
                         className="object-contain p-4 md:p-5"
                       />
                     </div>
-                    <p className="mt-3 text-sm text-zinc-600 group-hover/cert:text-zinc-900 transition-colors font-medium leading-snug font-ubuntu">
+                    <p className="mt-3 text-sm text-zinc-600 group-hover/cert:text-zinc-900 transition-colors font-medium leading-snug font-sans">
                       {cert.title}
                     </p>
                   </motion.div>

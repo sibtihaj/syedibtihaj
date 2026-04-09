@@ -71,9 +71,11 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         ))}
       </div>
 
-      <div className="flex lg:flex-row justify-between items-start flex-col gap-8 mt-20">
-        <div className="flex-1">
-          <Heading className="text-3xl md:text-5xl font-normal mb-6"> {product.title}</Heading>
+      <div className="mt-16 flex flex-col gap-8 lg:mt-20 lg:flex-row lg:items-start lg:gap-10">
+        <div className="min-w-0 max-w-3xl">
+          <Heading className="text-3xl md:text-5xl font-normal mb-6">
+            {product.title}
+          </Heading>
           <div className="flex flex-wrap gap-2 mb-8">
             {product.stack?.map((stack: string) => (
               <span
@@ -84,7 +86,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
               </span>
             ))}
           </div>
-          <Paragraph className="text-lg md:text-xl text-zinc-700 leading-relaxed mb-10">
+          <Paragraph className="mb-0 max-w-none text-lg text-zinc-700 md:text-xl leading-relaxed">
             {product.description}
           </Paragraph>
         </div>
@@ -96,9 +98,9 @@ export const SingleProduct = ({ product }: { product: Product }) => {
             href={externalCta.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-2xl font-normal text-sm uppercase tracking-widest transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200 group"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-2xl bg-zinc-900 px-8 py-3.5 text-sm font-normal uppercase tracking-widest text-white shadow-xl shadow-zinc-200 transition-all hover:bg-zinc-800"
           >
-            {externalCta.label}
+            <span className="leading-none">{externalCta.label}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -109,7 +111,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="transition-transform group-hover:translate-x-1 text-sky-400"
+              className="size-5 shrink-0 text-sky-400 transition-transform group-hover:translate-x-1"
               aria-hidden
             >
               <path d="M5 12l14 0"></path>
@@ -120,7 +122,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         ) : null}
       </div>
 
-      <div className="prose prose-zinc max-w-none mt-20 pt-20 border-t border-zinc-100">
+      <div className="prose prose-zinc mt-10 max-w-none border-t border-zinc-100/90 pt-8 prose-headings:font-normal prose-headings:font-heading">
         {product?.content}
       </div>
     </div>

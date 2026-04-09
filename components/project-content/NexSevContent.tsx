@@ -8,7 +8,7 @@ export function NexSevContent() {
     <div className="space-y-10">
       <div>
         <p className="text-lg text-zinc-700 leading-relaxed not-prose">
-          <strong className="font-medium text-zinc-900">How we used LLMs and agentic workflows to cut Sev1 response time by 40%</strong>
+          <strong className="font-normal text-zinc-900">How we used LLMs and agentic workflows to cut Sev1 response time by 40%</strong>
         </p>
       </div>
 
@@ -176,7 +176,7 @@ export function NexSevContent() {
 
       <section>
         <h2>Technical details</h2>
-        <p className="not-prose font-medium text-zinc-900">Reference stack</p>
+        <p className="not-prose font-normal text-zinc-900">Reference stack</p>
         <pre className="not-prose overflow-x-auto rounded-2xl bg-zinc-900 text-zinc-100 p-5 text-xs leading-relaxed font-mono">
           <code>{`Backend:
 - Python 3.11

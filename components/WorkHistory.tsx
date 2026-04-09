@@ -2,12 +2,8 @@
 
 import React from "react";
 import { timeline } from "@/constants/timeline";
-import { HEADING_FONT } from "@/config/typography";
 import { Heading } from "./Heading";
 import { motion } from "framer-motion";
-
-const headingFontClass =
-  HEADING_FONT === "manrope" ? "font-manrope" : "font-plein";
 
 type Category = {
   label: string;
@@ -56,7 +52,7 @@ export const WorkHistory = () => {
           Career <span className="text-zinc-300 font-light italic">Milestones.</span>
         </Heading>
         <div className="max-w-xl">
-          <p className="text-zinc-500 text-lg md:text-xl font-light leading-relaxed font-ubuntu italic">
+          <p className="text-zinc-500 text-lg md:text-xl font-light leading-relaxed font-sans italic">
             A chronological record of engineering leadership, platform stability, and technical excellence.
           </p>
         </div>
@@ -68,7 +64,6 @@ export const WorkHistory = () => {
 
         {timeline.map((item, index) => {
           const category = getCategory(item.company);
-          const isPresent = item.date.includes("Present");
 
           return (
             <motion.div
@@ -84,7 +79,7 @@ export const WorkHistory = () => {
                 <time className="font-mono text-xs text-zinc-400 group-hover:text-blue-500 transition-colors">
                   {item.date}
                 </time>
-                <span className={`inline-flex px-2 py-0.5 rounded border text-[9px] font-ubuntu uppercase tracking-[0.2em] mt-3 ${category.tagClass}`}>
+                <span className={`inline-flex px-2 py-0.5 rounded border text-[9px] font-sans uppercase tracking-[0.2em] mt-3 ${category.tagClass}`}>
                   {category.label}
                 </span>
               </div>
@@ -99,22 +94,22 @@ export const WorkHistory = () => {
                   <time className="font-mono text-xs text-zinc-400">
                     {item.date}
                   </time>
-                  <span className={`inline-flex px-2 py-0.5 rounded border text-[9px] font-ubuntu uppercase tracking-[0.15em] ${category.tagClass}`}>
+                  <span className={`inline-flex px-2 py-0.5 rounded border text-[9px] font-sans uppercase tracking-[0.15em] ${category.tagClass}`}>
                     {category.label}
                   </span>
                 </div>
 
                 <div className="relative p-8 md:p-10 rounded-3xl bg-white border border-zinc-100 group-hover:border-blue-100 group-hover:shadow-xl group-hover:shadow-blue-500/5 transition-all duration-500">
                   <div className="mb-6">
-                    <h4 className={`${headingFontClass} text-2xl md:text-3xl font-normal text-zinc-900 mb-2 group-hover:text-blue-950 transition-colors`}>
+                    <h4 className="font-heading text-2xl md:text-3xl font-normal text-zinc-900 mb-2 group-hover:text-blue-950 transition-colors">
                       {item.company}
                     </h4>
-                    <p className="text-[11px] md:text-xs font-ubuntu uppercase tracking-[0.25em] text-blue-600 font-medium">
+                    <p className="text-[11px] md:text-xs font-sans uppercase tracking-[0.25em] text-blue-600 font-medium">
                       {item.title}
                     </p>
                   </div>
 
-                  <p className="text-sm md:text-base text-zinc-500 leading-relaxed mb-8 max-w-[60ch] font-ubuntu">
+                  <p className="text-sm md:text-base text-zinc-500 leading-relaxed mb-8 max-w-[60ch] font-sans">
                     {item.description}
                   </p>
 

@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply text-zinc-700 selection:bg-blue-500/20 selection:text-blue-900 font-ubuntu;
+    @apply text-zinc-700 selection:bg-blue-500/20 selection:text-blue-900 font-sans;
   }
 }
 
@@ -27,7 +27,7 @@
 
 /* Typography Overrides */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-normal tracking-tight;
+  @apply font-heading font-normal tracking-tight;
 }
 
 /* Brand Gradient Utility */
@@ -35,9 +35,9 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent;
 }
 
-/* Prose refinements */
+/* Prose refinements — typography plugin defaults headings to semibold; keep all heading weights normal */
 .prose {
-  @apply text-zinc-600 prose-headings:text-zinc-900 prose-a:text-blue-600 hover:prose-a:text-blue-700;
+  @apply text-zinc-600 prose-headings:font-heading prose-headings:font-normal prose-headings:text-zinc-900 prose-a:text-blue-600 hover:prose-a:text-blue-700;
 }
 
 /* Glassmorphism utility */

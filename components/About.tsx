@@ -129,7 +129,7 @@ export default function About() {
                   className="object-contain p-5 md:p-7"
                 />
               </div>
-              <p className="mt-4 text-sm md:text-base text-zinc-700 font-medium font-ubuntu group-hover:text-zinc-900 transition-colors">
+              <p className="mt-4 text-sm md:text-base text-zinc-700 font-medium font-sans group-hover:text-zinc-900 transition-colors">
                 {badge.title}
               </p>
             </motion.div>

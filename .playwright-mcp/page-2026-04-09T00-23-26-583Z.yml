@@ -1,0 +1,62 @@
+- main [ref=e7]:
+  - status "Logged in" [ref=e75]:
+    - generic [ref=e76]:
+      - img [ref=e79]
+      - generic [ref=e81]: Logged in
+      - button "Close alert" [ref=e83] [cursor=pointer]:
+        - img [ref=e84]
+  - generic [ref=e12]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - img "Grafana" [ref=e16]
+        - heading "Update your password" [level=1] [ref=e86]
+      - generic [ref=e88]:
+        - status "Continuing to use the default password exposes you to security risks." [ref=e89]:
+          - generic [ref=e90]:
+            - img [ref=e93]
+            - generic [ref=e95]: Continuing to use the default password exposes you to security risks.
+        - generic [ref=e96]:
+          - generic [ref=e99]: New password
+          - generic [ref=e103]:
+            - textbox "New password" [active] [ref=e104]
+            - switch "Show password" [ref=e106] [cursor=pointer]:
+              - img [ref=e107]
+        - generic [ref=e109]:
+          - generic [ref=e112]: Confirm new password
+          - generic [ref=e116]:
+            - textbox "Confirm new password" [ref=e117]
+            - switch "Show password" [ref=e119] [cursor=pointer]:
+              - img [ref=e120]
+        - generic [ref=e122]:
+          - button "Submit" [ref=e123] [cursor=pointer]:
+            - generic [ref=e124]: Submit
+          - button "Skip" [ref=e125] [cursor=pointer]:
+            - generic [ref=e126]: Skip
+    - list [ref=e52]:
+      - listitem [ref=e53]:
+        - img [ref=e54]
+        - link "Documentation" [ref=e56] [cursor=pointer]:
+          - /url: https://grafana.com/docs/grafana/latest/?utm_source=grafana_footer
+        - text: "|"
+      - listitem [ref=e57]:
+        - img [ref=e58]
+        - link "Support" [ref=e60] [cursor=pointer]:
+          - /url: https://grafana.com/products/enterprise/?utm_source=grafana_footer
+        - text: "|"
+      - listitem [ref=e61]:
+        - img [ref=e62]
+        - link "Community" [ref=e64] [cursor=pointer]:
+          - /url: https://community.grafana.com/?utm_source=grafana_footer
+        - text: "|"
+      - listitem [ref=e65]:
+        - link "Open Source" [ref=e66] [cursor=pointer]:
+          - /url: https://grafana.com/oss/grafana?utm_source=grafana_footer
+        - text: "|"
+      - listitem [ref=e67]:
+        - link "Grafana v11.3.0 (d9455ff7db)" [ref=e68] [cursor=pointer]:
+          - /url: https://github.com/grafana/grafana/blob/main/CHANGELOG.md
+        - text: "|"
+      - listitem [ref=e69]:
+        - img [ref=e70]
+        - link "New version available!" [ref=e72] [cursor=pointer]:
+          - /url: https://grafana.com/grafana/download?utm_source=grafana_footer

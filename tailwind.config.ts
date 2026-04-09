@@ -4,12 +4,10 @@ const {
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config: Config = {
-  // Heading font is toggled in src/config/typography.ts — keep both utilities generated
   safelist: [
-    "font-manrope",
-    "font-plein",
-    "prose-headings:font-manrope",
-    "prose-headings:font-plein",
+    "font-heading",
+    "prose-headings:font-heading",
+    "prose-headings:font-normal",
   ],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -25,9 +23,24 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        plein: ["var(--font-plein)", "sans-serif"],
-        manrope: ["var(--font-manrope)", "sans-serif"],
-        ubuntu: ["var(--font-ubuntu)", "sans-serif"],
+        sans: [
+          "var(--font-body)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        serif: [
+          "var(--font-heading)",
+          "ui-serif",
+          "Georgia",
+          "serif",
+        ],
+        heading: [
+          "var(--font-heading)",
+          "ui-serif",
+          "Georgia",
+          "serif",
+        ],
       },
       colors: {
         primary: "var(--neutral-700)",

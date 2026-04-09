@@ -1,0 +1,385 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - navigation [ref=e7]:
+        - link "IB Scheduling" [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img [ref=e10]
+          - generic [ref=e12]: IB Scheduling
+        - generic [ref=e13]:
+          - link "Application Architecture" [ref=e14] [cursor=pointer]:
+            - /url: /application-architecture
+            - img
+            - text: Application Architecture
+          - link "Deployment Architecture" [ref=e15] [cursor=pointer]:
+            - /url: /deployment-architecture
+            - img
+            - text: Deployment Architecture
+          - link "Open Grafana in a new tab" [ref=e17] [cursor=pointer]:
+            - /url: https://grafana-production-53f7.up.railway.app
+            - img
+            - text: Grafana
+            - img
+          - link "Open Prometheus in a new tab" [ref=e18] [cursor=pointer]:
+            - /url: https://railway-prometheus-production-07f7.up.railway.app
+            - img
+            - generic [ref=e19]: Prometheus
+            - img
+          - link "Open API metrics in a new tab" [ref=e20] [cursor=pointer]:
+            - /url: https://go-booking-api-production.up.railway.app/metrics
+            - img
+            - generic [ref=e21]: API metrics
+            - img
+          - link "Sign up" [ref=e22] [cursor=pointer]:
+            - /url: /signup
+            - img
+            - text: Sign up
+          - link "Sign In" [ref=e23] [cursor=pointer]:
+            - /url: /login
+            - img
+            - text: Sign In
+      - main [ref=e24]:
+        - generic [ref=e25]:
+          - heading "Application Architecture" [level=1] [ref=e26]
+          - link "Home" [ref=e27] [cursor=pointer]:
+            - /url: /
+            - img
+            - text: Home
+        - generic [ref=e30]:
+          - generic [ref=e31]: Architecture
+          - paragraph [ref=e32]: "This project demonstrates a clear split: TypeScript for the product UI and session handling, Go for authoritative booking logic and JWT verification, Supabase for Postgres + Auth."
+          - list [ref=e33]:
+            - listitem [ref=e34]: "Identity: Supabase Auth issues JWTs; Next keeps the session; Go verifies tokens with OIDC."
+            - listitem [ref=e35]: "Data: Single Postgres (Supabase); Go connects with DATABASE_URL (service/pooler role — never expose in the browser)."
+            - listitem [ref=e36]: "Deploy pattern: Next on Vercel (typical) + Go on Railway (long-lived) + CORS restricted to the web origin."
+            - listitem [ref=e37]: See the Mermaid system diagram on this page (#system-architecture); source lives in apps/web/src/content/system-architecture.mmd.ts.
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: Architecture
+              - generic [ref=e42]: System diagram
+            - generic [ref=e43]:
+              - text: How the browser, Next.js, Supabase (Auth + Postgres), and the Go API exchange requests. The Go service never sees the Supabase anon key—only the user's
+              - code [ref=e44]: access_token
+              - text: as a Bearer JWT, verified against the Auth issuer (JWKS). Observability in this diagram represents metrics scrape/query flow (Prometheus/Grafana), not centralized logs.
+            - button "Open diagram" [ref=e46]:
+              - img
+              - text: Open diagram
+          - generic [ref=e47]:
+            - generic "Loading architecture diagram" [ref=e48]
+            - paragraph [ref=e50]:
+              - text: "Source:"
+              - code [ref=e51]: apps/web/src/content/system-architecture.mmd.ts
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - generic [ref=e55]: Deployment
+              - generic [ref=e56]: Deployment diagram
+            - generic [ref=e57]: How Supabase, Vercel, and Railway services are connected in production.
+            - link "View full deployment architecture" [ref=e59] [cursor=pointer]:
+              - /url: /deployment-architecture
+          - paragraph [ref=e63]:
+            - text: "Source:"
+            - code [ref=e64]: apps/web/src/content/deployment-architecture.mmd.ts
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - generic [ref=e68]: Go API
+              - generic [ref=e69]: HTTP surface
+            - generic [ref=e70]:
+              - text: Public vs JWT-protected routes mounted in
+              - code [ref=e71]: apps/api/cmd/server/main.go
+              - text: .
+          - table [ref=e73]:
+            - rowgroup [ref=e74]:
+              - row "Method Path Auth Handler" [ref=e75]:
+                - columnheader "Method" [ref=e76]
+                - columnheader "Path" [ref=e77]
+                - columnheader "Auth" [ref=e78]
+                - columnheader "Handler" [ref=e79]
+            - rowgroup [ref=e80]:
+              - row "GET /health none API.Health apps/api/internal/handlers/handlers.go" [ref=e81]:
+                - cell "GET" [ref=e82]
+                - cell "/health" [ref=e83]
+                - cell "none" [ref=e84]
+                - cell "API.Health apps/api/internal/handlers/handlers.go" [ref=e85]:
+                  - text: API.Health
+                  - generic [ref=e86]: apps/api/internal/handlers/handlers.go
+              - row "GET /api/v1/db-status Bearer (Supabase access_token) API.DBStatus apps/api/internal/handlers/handlers.go" [ref=e87]:
+                - cell "GET" [ref=e88]
+                - cell "/api/v1/db-status" [ref=e89]
+                - cell "Bearer (Supabase access_token)" [ref=e90]
+                - cell "API.DBStatus apps/api/internal/handlers/handlers.go" [ref=e91]:
+                  - text: API.DBStatus
+                  - generic [ref=e92]: apps/api/internal/handlers/handlers.go
+              - row "GET /api/v1/availability Bearer (Supabase access_token) API.Availability apps/api/internal/handlers/handlers.go" [ref=e93]:
+                - cell "GET" [ref=e94]
+                - cell "/api/v1/availability" [ref=e95]
+                - cell "Bearer (Supabase access_token)" [ref=e96]
+                - cell "API.Availability apps/api/internal/handlers/handlers.go" [ref=e97]:
+                  - text: API.Availability
+                  - generic [ref=e98]: apps/api/internal/handlers/handlers.go
+              - row "GET /api/v1/reservations Bearer (Supabase access_token) API.ListMyReservations apps/api/internal/handlers/handlers.go" [ref=e99]:
+                - cell "GET" [ref=e100]
+                - cell "/api/v1/reservations" [ref=e101]
+                - cell "Bearer (Supabase access_token)" [ref=e102]
+                - cell "API.ListMyReservations apps/api/internal/handlers/handlers.go" [ref=e103]:
+                  - text: API.ListMyReservations
+                  - generic [ref=e104]: apps/api/internal/handlers/handlers.go
+              - row "POST /api/v1/reservations Bearer (Supabase access_token) API.CreateReservation apps/api/internal/handlers/handlers.go" [ref=e105]:
+                - cell "POST" [ref=e106]
+                - cell "/api/v1/reservations" [ref=e107]
+                - cell "Bearer (Supabase access_token)" [ref=e108]
+                - cell "API.CreateReservation apps/api/internal/handlers/handlers.go" [ref=e109]:
+                  - text: API.CreateReservation
+                  - generic [ref=e110]: apps/api/internal/handlers/handlers.go
+              - row "POST /api/v1/slots Bearer (Supabase access_token) API.CreateSlot apps/api/internal/handlers/handlers.go" [ref=e111]:
+                - cell "POST" [ref=e112]
+                - cell "/api/v1/slots" [ref=e113]
+                - cell "Bearer (Supabase access_token)" [ref=e114]
+                - cell "API.CreateSlot apps/api/internal/handlers/handlers.go" [ref=e115]:
+                  - text: API.CreateSlot
+                  - generic [ref=e116]: apps/api/internal/handlers/handlers.go
+              - row "POST /api/v1/benchmark/booking-rush Bearer (Supabase access_token) API.BenchmarkBookingRush apps/api/internal/handlers/benchmark.go" [ref=e117]:
+                - cell "POST" [ref=e118]
+                - cell "/api/v1/benchmark/booking-rush" [ref=e119]
+                - cell "Bearer (Supabase access_token)" [ref=e120]
+                - cell "API.BenchmarkBookingRush apps/api/internal/handlers/benchmark.go" [ref=e121]:
+                  - text: API.BenchmarkBookingRush
+                  - generic [ref=e122]: apps/api/internal/handlers/benchmark.go
+              - row "POST /api/v1/mimic/notification/email Bearer (Supabase access_token) API.MimicEmailPost apps/api/internal/handlers/mimic.go" [ref=e123]:
+                - cell "POST" [ref=e124]
+                - cell "/api/v1/mimic/notification/email" [ref=e125]
+                - cell "Bearer (Supabase access_token)" [ref=e126]
+                - cell "API.MimicEmailPost apps/api/internal/handlers/mimic.go" [ref=e127]:
+                  - text: API.MimicEmailPost
+                  - generic [ref=e128]: apps/api/internal/handlers/mimic.go
+              - row "POST /api/v1/mimic/notification/whatsapp Bearer (Supabase access_token) API.MimicWhatsAppPost apps/api/internal/handlers/mimic.go" [ref=e129]:
+                - cell "POST" [ref=e130]
+                - cell "/api/v1/mimic/notification/whatsapp" [ref=e131]
+                - cell "Bearer (Supabase access_token)" [ref=e132]
+                - cell "API.MimicWhatsAppPost apps/api/internal/handlers/mimic.go" [ref=e133]:
+                  - text: API.MimicWhatsAppPost
+                  - generic [ref=e134]: apps/api/internal/handlers/mimic.go
+        - generic [ref=e135]:
+          - generic [ref=e136]:
+            - generic [ref=e137]:
+              - generic [ref=e138]: Database invariants
+              - generic [ref=e139]:
+                - text: Schema in
+                - code [ref=e140]: db/migrations/
+            - list [ref=e142]:
+              - listitem [ref=e143]: public.resources — bookable entity.
+              - listitem [ref=e144]: public.slots — UNIQUE (resource_id, starts_at) defines discrete windows.
+              - listitem [ref=e145]: public.reservations — UNIQUE (slot_id) ensures at most one confirmed row per slot (ON CONFLICT target).
+              - listitem [ref=e146]: reservations.user_id REFERENCES auth.users(id) — aligns with JWT sub.
+          - generic [ref=e147]:
+            - generic [ref=e148]:
+              - generic [ref=e149]: Deploy & env
+              - generic [ref=e150]: Operational recap
+            - list [ref=e152]:
+              - listitem [ref=e153]: "apps/api: Dockerfile; set DATABASE_URL, SUPABASE_URL (or SUPABASE_JWT_ISSUER), CORS_ALLOWED_ORIGINS."
+              - listitem [ref=e154]: "apps/web: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_API_URL."
+              - listitem [ref=e155]: See DEPLOY.md at repo root for Supabase redirect URLs and local dev commands.
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - generic [ref=e158]: Deep dive by topic
+            - generic [ref=e159]: Expand each section for file pointers, HTTP details, and snippets tied to this repository.
+          - region [ref=e161]:
+            - generic [ref=e162]:
+              - heading "Architecture Stack and separation" [level=3] [ref=e163]:
+                - button "Architecture Stack and separation" [expanded] [ref=e164] [cursor=pointer]:
+                  - generic [ref=e165]:
+                    - generic [ref=e166]: Architecture
+                    - generic [ref=e167]: Stack and separation
+                  - img
+              - region "Architecture Stack and separation" [ref=e168]:
+                - generic [ref=e170]:
+                  - paragraph [ref=e171]: The UI is a Next.js frontend; the Go binary is a stateless HTTP API. Supabase provides Postgres + Auth so identity and booking data stay in one database.
+                  - list [ref=e172]:
+                    - listitem [ref=e173]: apps/web — App Router, Supabase browser client, fetch wrapper with Bearer token.
+                    - listitem [ref=e174]: apps/api — chi, CORS, OIDC JWT verification, pgxpool, transactional handlers.
+                    - listitem [ref=e175]: db/migrations — DDL (resources, slots, reservations) applied to Supabase Postgres.
+                  - generic [ref=e176]:
+                    - generic [ref=e177]:
+                      - paragraph [ref=e178]: Go
+                      - list [ref=e179]:
+                        - listitem [ref=e180]:
+                          - code [ref=e181]: apps/api/cmd/server/main.go
+                          - generic [ref=e182]: Wires chi middleware, CORS, /health, and /api/v1 routes with JWT middleware on protected handlers.
+                    - generic [ref=e183]:
+                      - paragraph [ref=e184]: TypeScript / Next
+                      - list [ref=e185]:
+                        - listitem [ref=e186]:
+                          - code [ref=e187]: apps/web/src/lib/api.ts
+                          - generic [ref=e188]: "Attaches Authorization: Bearer for every call to the Go base URL."
+            - heading "Architecture End-to-end request flow" [level=3] [ref=e190]:
+              - button "Architecture End-to-end request flow" [ref=e191] [cursor=pointer]:
+                - generic [ref=e192]:
+                  - generic [ref=e193]: Architecture
+                  - generic [ref=e194]: End-to-end request flow
+                - img
+            - heading "Go API Why Go + Postgres for booking" [level=3] [ref=e196]:
+              - button "Go API Why Go + Postgres for booking" [ref=e197] [cursor=pointer]:
+                - generic [ref=e198]:
+                  - generic [ref=e199]: Go API
+                  - generic [ref=e200]: Why Go + Postgres for booking
+                - img
+            - generic [ref=e201]:
+              - heading "Auth Supabase Auth in the browser" [level=3] [ref=e202]:
+                - button "Auth Supabase Auth in the browser" [expanded] [ref=e203] [cursor=pointer]:
+                  - generic [ref=e204]:
+                    - generic [ref=e205]: Auth
+                    - generic [ref=e206]: Supabase Auth in the browser
+                  - img
+              - region "Auth Supabase Auth in the browser" [ref=e207]:
+                - generic [ref=e209]:
+                  - paragraph [ref=e210]: This app uses @supabase/supabase-js with the anon key in the browser only. Email/password (and sign-up with email confirmation) talk to Supabase Auth — not to the Go API.
+                  - list [ref=e211]:
+                    - listitem [ref=e212]: signInWithPassword / signUp set a session; cookies are maintained for SSR via @supabase/ssr.
+                    - listitem [ref=e213]: Go never receives the anon key. Protected API calls send only the user’s access_token as Bearer.
+                  - generic [ref=e215]:
+                    - paragraph [ref=e216]: TypeScript / Next
+                    - list [ref=e217]:
+                      - listitem [ref=e218]:
+                        - code [ref=e219]: apps/web/src/lib/supabase/client.ts — createClient
+                        - generic [ref=e220]: Browser Supabase client (anon key).
+                      - listitem [ref=e221]:
+                        - code [ref=e222]: apps/web/src/app/login/page.tsx
+                        - generic [ref=e223]: signInWithPassword after the user has an account.
+                      - listitem [ref=e224]:
+                        - code [ref=e225]: apps/web/src/app/signup/page.tsx
+                        - generic [ref=e226]: signUp with emailRedirectTo → /auth/callback?next=…
+            - 'heading "Next.js Middleware: session refresh + /book gate" [level=3] [ref=e228]':
+              - 'button "Next.js Middleware: session refresh + /book gate" [ref=e229] [cursor=pointer]':
+                - generic [ref=e230]:
+                  - generic [ref=e231]: Next.js
+                  - generic [ref=e232]: "Middleware: session refresh + /book gate"
+                - img
+            - 'heading "Auth PKCE / email link: /auth/callback" [level=3] [ref=e234]':
+              - 'button "Auth PKCE / email link: /auth/callback" [ref=e235] [cursor=pointer]':
+                - generic [ref=e236]:
+                  - generic [ref=e237]: Auth
+                  - generic [ref=e238]: "PKCE / email link: /auth/callback"
+                - img
+            - heading "Go API What Go validates on each protected request" [level=3] [ref=e240]:
+              - button "Go API What Go validates on each protected request" [ref=e241] [cursor=pointer]:
+                - generic [ref=e242]:
+                  - generic [ref=e243]: Go API
+                  - generic [ref=e244]: What Go validates on each protected request
+                - img
+            - heading "Architecture Booking flow — who talks to whom" [level=3] [ref=e246]:
+              - button "Architecture Booking flow — who talks to whom" [ref=e247] [cursor=pointer]:
+                - generic [ref=e248]:
+                  - generic [ref=e249]: Architecture
+                  - generic [ref=e250]: Booking flow — who talks to whom
+                - img
+            - heading "Architecture Concurrency, pooling, and why the booking engine is Go (not Node)" [level=3] [ref=e252]:
+              - button "Architecture Concurrency, pooling, and why the booking engine is Go (not Node)" [ref=e253] [cursor=pointer]:
+                - generic [ref=e254]:
+                  - generic [ref=e255]: Architecture
+                  - generic [ref=e256]: Concurrency, pooling, and why the booking engine is Go (not Node)
+                - img
+            - generic [ref=e257]:
+              - heading "Go API Loading open slots" [level=3] [ref=e258]:
+                - button "Go API Loading open slots" [expanded] [ref=e259] [cursor=pointer]:
+                  - generic [ref=e260]:
+                    - generic [ref=e261]: Go API
+                    - generic [ref=e262]: Loading open slots
+                  - img
+              - region "Go API Loading open slots" [ref=e263]:
+                - generic [ref=e265]:
+                  - paragraph [ref=e266]: The UI calls GET /api/v1/availability with the Supabase access token. The handler returns future slots for a resource that have no confirmed reservation (LEFT JOIN + r.id IS NULL).
+                  - generic [ref=e268]: GET /api/v1/availability?resource_id=<uuid>
+                  - list [ref=e269]:
+                    - listitem [ref=e270]: handlers.Availability validates resource_id, pgxpool.Query with timestamptz scan → RFC3339 strings in JSON.
+                    - listitem [ref=e271]: "Client: apiFetchJson in apps/web/src/lib/api.ts with Bearer from supabase.auth.getSession()."
+                  - generic [ref=e272]:
+                    - generic [ref=e273]:
+                      - paragraph [ref=e274]: Go
+                      - list [ref=e275]:
+                        - listitem [ref=e276]:
+                          - code [ref=e277]: apps/api/internal/handlers/handlers.go — Availability
+                          - generic [ref=e278]: SQL selects open slots; limit 200.
+                    - generic [ref=e279]:
+                      - paragraph [ref=e280]: TypeScript / Next
+                      - list [ref=e281]:
+                        - listitem [ref=e282]:
+                          - code [ref=e283]: apps/web/src/app/book/page.tsx
+                          - generic [ref=e284]: load() reads session, then GET availability for NEXT_PUBLIC_DEFAULT_RESOURCE_ID or demo UUID.
+            - heading "Go API Reserving a slot (race-safe)" [level=3] [ref=e286]:
+              - button "Go API Reserving a slot (race-safe)" [ref=e287] [cursor=pointer]:
+                - generic [ref=e288]:
+                  - generic [ref=e289]: Go API
+                  - generic [ref=e290]: Reserving a slot (race-safe)
+                - img
+            - heading "Go API Listing your bookings" [level=3] [ref=e292]:
+              - button "Go API Listing your bookings" [ref=e293] [cursor=pointer]:
+                - generic [ref=e294]:
+                  - generic [ref=e295]: Go API
+                  - generic [ref=e296]: Listing your bookings
+                - img
+            - heading "Go API Adding bookable slots" [level=3] [ref=e298]:
+              - button "Go API Adding bookable slots" [ref=e299] [cursor=pointer]:
+                - generic [ref=e300]:
+                  - generic [ref=e301]: Go API
+                  - generic [ref=e302]: Adding bookable slots
+                - img
+    - contentinfo [ref=e303]:
+      - generic [ref=e304]:
+        - generic [ref=e305]:
+          - generic [ref=e306]:
+            - link "IB Scheduling" [ref=e307] [cursor=pointer]:
+              - /url: /
+              - img [ref=e309]
+              - generic [ref=e311]: IB Scheduling
+            - paragraph [ref=e312]: "A portfolio-grade booking flow: Supabase Auth in the browser, a Go API on Postgres, and a Next.js UI wired for clarity."
+            - generic [ref=e313]:
+              - img [ref=e314]
+              - text: Next.js · Go · Supabase
+          - navigation "Site" [ref=e318]:
+            - heading "Explore" [level=2] [ref=e319]
+            - list [ref=e320]:
+              - listitem [ref=e321]:
+                - link "Home" [ref=e322] [cursor=pointer]:
+                  - /url: /
+                  - text: Home
+              - listitem [ref=e323]:
+                - link "Application Architecture" [ref=e324] [cursor=pointer]:
+                  - /url: /application-architecture
+                  - text: Application Architecture
+              - listitem [ref=e325]:
+                - link "Book" [ref=e326] [cursor=pointer]:
+                  - /url: /book
+                  - text: Book
+              - listitem [ref=e327]:
+                - link "Sign in" [ref=e328] [cursor=pointer]:
+                  - /url: /login
+                  - text: Sign in
+          - generic [ref=e329]:
+            - heading "Links" [level=2] [ref=e330]
+            - generic [ref=e331]:
+              - 'link "GitHub: sibtihaj / go-booking-system (opens in a new tab)" [ref=e332] [cursor=pointer]':
+                - /url: https://github.com/sibtihaj/go-booking-system
+                - img [ref=e334]
+                - generic [ref=e336]:
+                  - generic [ref=e337]: GitHub
+                  - generic [ref=e338]: sibtihaj / go-booking-system
+                - img [ref=e339]
+              - 'link "Portfolio: syedibtihaj.com (opens in a new tab)" [ref=e342] [cursor=pointer]':
+                - /url: https://syedibtihaj.com
+                - img [ref=e344]
+                - generic [ref=e347]:
+                  - generic [ref=e348]: Portfolio
+                  - generic [ref=e349]: syedibtihaj.com
+                - img [ref=e350]
+        - generic [ref=e353]:
+          - paragraph [ref=e354]: © 2026 Syed Ibtihaj. Built as a portfolio piece.
+          - paragraph [ref=e355]:
+            - text: Source available on
+            - link "GitHub" [ref=e356] [cursor=pointer]:
+              - /url: https://github.com/sibtihaj/go-booking-system
+            - text: .
+  - region "Notifications alt+T"
+  - img [ref=e358]
+  - alert [ref=e359]

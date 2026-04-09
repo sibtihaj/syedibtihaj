@@ -1,14 +1,16 @@
 import type { Product } from "@/types/products";
+import { IBSchedulingContent } from "@/components/project-content/IBSchedulingContent";
 import { NexSevContent } from "@/components/project-content/NexSevContent";
 
-const project1 = "/images/project-feature-1.png";
-const project2 = "/images/project-feature-2.png";
 const project3 = "/images/project-algochurn-1.png";
 const project4 = "/images/project-algochurn-2.png";
 const project5 = "/images/project-moonbeam-1.png";
 const project6 = "/images/project-moonbeam-2.png";
 const project7 = "/images/project-tailwindkit-1.png";
 const project8 = "/images/project-tailwindkit-2.png";
+const ibSchedulingHome = "/images/ib-scheduling-home.png";
+const ibSchedulingArch = "/images/ib-scheduling-architecture.png";
+const ibSchedulingGrafana = "/images/grafana.png";
 
 export const products: Product[] = [
   {
@@ -32,27 +34,24 @@ export const products: Product[] = [
     content: <NexSevContent />,
   },
   {
-    href: "#",
-    title: "Infrastructure Observability Engine",
+    href: "https://go-booking-system.vercel.app/",
+    title: "IB Scheduling: Go + Next.js Booking Platform",
     description:
-      "Enterprise-grade observability and incident response systems for Terraform and cloud infrastructure.",
-    thumbnail: project1,
-    images: [project1, project2],
-    stack: ["Nextjs", "Tailwindcss", "PostgreSQL", "Terraform"],
-    slug: "infrastructure-observability",
-    content: (
-      <div>
-        <p>
-          Designed and implemented comprehensive observability frameworks for enterprise-scale
-          infrastructure. Focused on building intuitive dashboards and automated incident 
-          response systems that reduce MTTR and improve system reliability.
-        </p>
-        <p>
-          Leveraged Datadog and Grafana to build proactive monitoring solutions, while 
-          architecting secure, private networking environments across AWS, Azure, and GCP.
-        </p>
-      </div>
-    ),
+      "Portfolio booking engine: Supabase Auth + Postgres, Go API (chi, pgx, OIDC JWT) on Railway, Next.js on Vercel, Prometheus/Grafana for metrics - race-safe reservations and full telemetry.",
+    thumbnail: ibSchedulingHome,
+    images: [ibSchedulingHome, ibSchedulingArch, ibSchedulingGrafana],
+    stack: [
+      "Next.js",
+      "Go",
+      "Supabase",
+      "PostgreSQL",
+      "Railway",
+      "Vercel",
+      "Prometheus",
+      "Grafana",
+    ],
+    slug: "ib-scheduling",
+    content: <IBSchedulingContent />,
   },
   {
     href: "#",

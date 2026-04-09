@@ -67,7 +67,7 @@ export default function ResumePage() {
               I am a <Highlight className="text-blue-700 italic">Technical Services & Product Support Engineer</Highlight> with 7 years of experience helping teams run reliable platforms and resolve complex production issues.
             </Paragraph>
             <div className="h-px w-32 bg-gradient-to-r from-blue-500/30 to-transparent mb-10" />
-            <Paragraph className="text-zinc-500 text-lg leading-relaxed max-w-2xl font-ubuntu">
+            <Paragraph className="text-zinc-500 text-lg leading-relaxed max-w-2xl font-sans">
               Alongside my core support role, I bring hands-on software engineering experience and build full-stack products in my own time. I focus on practical, performance-aware solutions that improve customer outcomes and scale with real-world demand.
             </Paragraph>
           </div>

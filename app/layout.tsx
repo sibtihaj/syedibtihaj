@@ -2,32 +2,23 @@ import { Sidebar } from "@/components/Sidebar";
 import Grainient from "@/components/Grainient";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Manrope, Ubuntu } from "next/font/google";
-import localFont from "next/font/local";
+import { Libre_Franklin, Noto_Serif } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 import { getSiteUrl } from "@/lib/site";
 
-// Load Ubuntu from Google Fonts
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-  variable: "--font-ubuntu",
-});
-
-// Plein — local heading option (toggle in src/config/typography.ts)
-const plein = localFont({
-  src: "../fonts/Plein_Complete/Fonts/WEB/fonts/Plein-Variable.woff2",
-  display: "swap",
-  variable: "--font-plein",
-});
-
-// Manrope — Google heading option (toggle in src/config/typography.ts)
-const manrope = Manrope({
+const notoSerif = Noto_Serif({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
+});
+
+const libreFranklin = Libre_Franklin({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
 });
 
 const siteUrl = getSiteUrl();
@@ -81,16 +72,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={twMerge(plein.variable, manrope.variable, ubuntu.variable)}
+      className={twMerge(notoSerif.variable, libreFranklin.variable)}
     >
       <body
         className={twMerge(
-          "antialiased bg-zinc-100 text-zinc-900",
-          ubuntu.className
+          "antialiased bg-zinc-100 text-zinc-900 font-sans",
+          libreFranklin.className
         )}
       >
         <div className="fixed inset-0 pointer-events-none opacity-[0.2] z-0">
-          <Grainient 
+          <Grainient
             color1="#3b82f6"
             color2="#0ea5e9"
             color3="#6366f1"
@@ -99,7 +90,7 @@ export default function RootLayout({
             grainAmount={0.05}
           />
         </div>
-        
+
         {/* Main Noise Overlay */}
         <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50"></div>
 
@@ -107,7 +98,7 @@ export default function RootLayout({
           <aside className="lg:sticky lg:top-0 lg:h-screen z-[100]">
             <Sidebar />
           </aside>
-          
+
           <main className="flex-1 lg:pl-2">
             <div className="min-h-screen lg:rounded-tl-3xl border-l border-t border-zinc-200 bg-white/80 backdrop-blur-sm shadow-2xl relative">
               {children}

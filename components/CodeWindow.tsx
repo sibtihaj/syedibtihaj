@@ -2,12 +2,8 @@
 
 import React, { Children, useState, useRef, useSyncExternalStore } from "react";
 import clsx from "clsx";
-import { HEADING_FONT } from "@/config/typography";
 
-const proseHeadingFont =
-  HEADING_FONT === "manrope"
-    ? "prose-headings:font-manrope"
-    : "prose-headings:font-plein";
+const proseHeadingFont = "prose-headings:font-heading";
 
 const emptySubscribe = () => () => {};
 

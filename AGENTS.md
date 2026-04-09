@@ -13,10 +13,9 @@
 ## Learned Workspace Facts
 - The project is a Next.js personal portfolio for Syed Ibtihaj.
 - Workspace rule `codacy.mdc` requires running `codacy_cli_analyze` after any file edit.
-- The repository structure includes `app/resume/page.tsx` for the resume and `src/components/Sidebar.tsx` for navigation.
-- Real professional experience (HashiCorp, AWS, IBM) is stored in `src/constants/timeline.tsx`.
+- The repository includes `app/resume/page.tsx` for the resume and `components/Sidebar.tsx` for navigation.
+- Real professional experience (HashiCorp, AWS, IBM) is stored in `constants/timeline.tsx`.
 - The resume PDF is stored at `public/Syed-Resume-New.pdf` and serves as the source of truth for professional data.
 - The sidebar layout uses a vertical column with an 80x80 rounded avatar and centered text for name/title.
 - Certification badge images are in `public/badges/` and used on About and resume-related UI.
-- Body text uses Ubuntu via Next.js Google Fonts; headings default to local Plein, with optional Manrope via `config/typography.ts`.
-- Local heading font files live under `fonts/Plein_Complete/`.
+- Typography uses Noto Serif for headings and Libre Franklin for body text via `next/font/google` in `app/layout.tsx`; `config/typography.ts` documents the pair for Tailwind (`font-heading`, default `font-sans`).

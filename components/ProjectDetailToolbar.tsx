@@ -10,7 +10,7 @@ export function ProjectDetailToolbar({
 }: ProjectDetailToolbarProps) {
   return (
     <nav
-      className="sticky top-0 z-[45] -mx-6 mb-6 border-b border-zinc-100/90 px-6 py-3 md:-mx-12 md:px-12"
+      className="sticky top-0 z-[45] -mx-6 mb-6 border-b border-zinc-200 bg-white px-6 py-3 md:-mx-12 md:px-12"
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center gap-2 text-sm text-zinc-500">
@@ -25,7 +25,7 @@ export function ProjectDetailToolbar({
         <li aria-hidden>
           <IconChevronRight size={16} className="text-zinc-400" />
         </li>
-        <li className="max-w-[70vw] truncate font-medium text-zinc-900">
+        <li className="max-w-[70vw] truncate font-normal text-zinc-900">
           {projectTitle}
         </li>
       </ol>
