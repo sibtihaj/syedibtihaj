@@ -42,11 +42,8 @@ export default function Home() {
 
         <motion.div variants={fadeInUp}>
           <Paragraph className="max-w-2xl text-lg md:text-xl text-stone-700 mb-6 leading-relaxed">
-            I&apos;m Syed, a{" "}
-            <Highlight className="bg-emerald-500/10 text-emerald-800 px-2 py-0.5 rounded-md">
-              Senior Product Support Engineer
-            </Highlight>{" "}
-            at HashiCorp (now IBM), deep in Terraform Enterprise with enterprises across AWS, Azure, and GCP. My
+            I&apos;m Syed, a Senior Product Support Engineer at HashiCorp (now IBM), deep in Terraform Enterprise with
+            enterprises across AWS, Azure, and GCP. My
             week is the space between what a team meant to deploy and what still runs after upgrades, credentials,
             data dependencies, and real on call pressure. I am deliberately steering toward{" "}
             <Highlight className="bg-stone-200/50 text-stone-800 px-2 py-0.5 rounded-md">

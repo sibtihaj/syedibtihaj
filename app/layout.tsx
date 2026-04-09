@@ -2,16 +2,16 @@ import { Sidebar } from "@/components/Sidebar";
 import Grainient from "@/components/Grainient";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Outfit, Playfair_Display } from "next/font/google";
+import { Outfit, Source_Serif_4 } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 import { getSiteUrl } from "@/lib/site";
 
-const playfair = Playfair_Display({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-heading",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
 });
 
 const outfit = Outfit({
@@ -72,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={twMerge(playfair.variable, outfit.variable)}
+      className={twMerge(sourceSerif.variable, outfit.variable)}
     >
       <body
         className={twMerge(

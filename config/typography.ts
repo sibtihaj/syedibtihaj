@@ -1,5 +1,5 @@
 /**
  * Font pair (Google Fonts, `app/layout.tsx`):
- * - Headings: Noto Serif (`--font-heading`, `font-heading`).
- * - Body / UI: Libre Franklin (`--font-body`, default `font-sans`).
+ * - Headings: Source Serif 4 (`--font-heading`, Tailwind `font-heading` / `font-serif`).
+ * - Body / UI: Outfit (`--font-body`, default `font-sans`).
  */

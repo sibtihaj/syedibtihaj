@@ -1,5 +1,4 @@
-"use client";
-import { useRouter } from "next/navigation";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { formatDate } from "@/lib/formatDate";
 import { Prose } from "@/components/Prose";
@@ -25,14 +24,24 @@ function ArrowLeftIcon(props: any) {
 export function BlogLayout({
   children,
   meta,
-}: any) {
+}: {
+  children?: ReactNode;
+  meta: {
+    date: string;
+    title: string;
+    description?: string;
+    image: string;
+    category?: string;
+    tags?: string[];
+  };
+}) {
   return (
     <Container>
       <article className="max-w-4xl mx-auto">
         <header className="flex flex-col mb-16">
           <Link
             href="/blog"
-            className="group mb-8 flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-zinc-200 shadow-sm transition hover:border-blue-300 hover:text-blue-600"
+            className="group self-start mt-4 md:mt-6 mb-8 inline-flex items-center justify-center rounded-xl bg-white border border-zinc-200 p-3 shadow-sm transition hover:border-blue-300 hover:text-blue-600"
           >
             <ArrowLeftIcon className="h-4 w-4" />
           </Link>
@@ -65,9 +74,7 @@ export function BlogLayout({
           </div>
         </header>
 
-        <Prose className="mt-8">
-          {children}
-        </Prose>
+        <Prose className="mt-8">{children ?? null}</Prose>
 
         <footer className="mt-20 pt-20 border-t border-zinc-100">
           <div className="flex flex-col items-center text-center max-w-lg mx-auto">

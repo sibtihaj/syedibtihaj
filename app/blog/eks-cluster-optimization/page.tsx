@@ -1,5 +1,90 @@
-import Content from "./content.mdx";
+import { BlogLayout } from "@/components/BlogLayout";
+
+const meta = {
+  date: "2025-12-03",
+  title: "Container ptfe_base_startup Failed: Timeout Waiting for Startup Sequencing (Phase 1)",
+  description:
+    "A troubleshooting path for Terraform Enterprise upgrade failures where ptfe_base_startup times out during startup phase 1.",
+  image:
+    "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=2400&q=80",
+  category: "Terraform Enterprise Support",
+  tags: ["terraform-enterprise", "upgrade", "postgresql", "troubleshooting"],
+};
 
 export default function Page() {
-  return <Content />;
+  return (
+    <BlogLayout meta={meta}>
+      <p>
+        During some Terraform Enterprise upgrades, the application can remain in startup transition and eventually fail
+        with:
+      </p>
+
+      <p>
+        <code>
+          Container [ptfe_base_startup/tfe_base_startup] failed: Timeout waiting for event startup sequencing - phase 1
+        </code>
+      </p>
+
+      <p>
+        This pattern usually requires quick differentiation between generic startup delay and a specific dependency
+        authentication failure.
+      </p>
+
+      <h2>Diagnostic Pattern to Confirm</h2>
+
+      <p>
+        Start with targeted container logs from the host and verify whether repeated authentication failures are
+        present during bootstrap. A common signal set includes:
+      </p>
+
+      <ul>
+        <li>
+          startup sequencing timeout in <code>ptfe_base_startup</code> (or <code>tfe_base_startup</code>)
+        </li>
+        <li>
+          repeated PostgreSQL auth failures for the internal <code>hashicorp</code> user
+        </li>
+        <li>corresponding migration container log failures in relevant versions</li>
+      </ul>
+
+      <h2>Root Cause Pattern</h2>
+
+      <p>
+        When these indicators align, the failure path often points to an incorrect internal PostgreSQL password
+        during upgrade startup sequence. The application remains blocked because core dependencies do not reach
+        healthy readiness in order.
+      </p>
+
+      <h2>Recommended Recovery Direction</h2>
+
+      <p>
+        Use the mounted-disk recovery process for PostgreSQL credentials and then re-attempt startup with validated
+        dependency readiness. The key is to resolve credential mismatch before broader rollback or infrastructure
+        rework.
+      </p>
+
+      <h2>Support Links</h2>
+
+      <p>
+        <strong>HashiCorp Support article:</strong>{" "}
+        <a href="https://support.hashicorp.com/hc/en-us/articles/44027916694419-Container-ptfe-base-startup-failed-Timeout-waiting-for-event-startup-sequencing-phase-1">
+          Container ptfe_base_startup failed: Timeout waiting for event startup sequencing - phase 1
+        </a>
+      </p>
+
+      <p>
+        <strong>IBM Support article:</strong>{" "}
+        <a href="https://www.ibm.com/support/pages/container-ptfebasestartup-failed-timeout-waiting-event-startup-sequencing-phase-1">
+          Container ptfe_base_startup failed: Timeout waiting for event startup sequencing - phase 1
+        </a>
+      </p>
+
+      <blockquote>
+        <p>
+          HashiCorp Support content migrated to IBM Support on April 1, 2026. The IBM link is included as the current
+          support platform reference.
+        </p>
+      </blockquote>
+    </BlogLayout>
+  );
 }

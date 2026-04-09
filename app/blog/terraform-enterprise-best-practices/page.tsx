@@ -1,5 +1,84 @@
-import Content from "./content.mdx";
+import { BlogLayout } from "@/components/BlogLayout";
+
+const meta = {
+  date: "2025-11-06",
+  title: "Terraform Enterprise Limits and Quotas: What to Size Before You Scale",
+  description:
+    "A practical guide to Terraform Enterprise defaults, configurable ceilings, and the limits that most often affect reliability at scale.",
+  image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80",
+  category: "Terraform Enterprise Support",
+  tags: ["terraform-enterprise", "capacity-planning", "limits", "operations"],
+};
 
 export default function Page() {
-  return <Content />;
+  return (
+    <BlogLayout meta={meta}>
+      <p>
+        Terraform Enterprise is flexible, but that flexibility is easiest to use when teams understand where defaults
+        become bottlenecks. Many support escalations are not caused by a hard platform failure; they come from limit
+        assumptions that were never revisited as usage grew.
+      </p>
+
+      <h2>Limits vs. Configurable Capacity</h2>
+
+      <p>
+        One key planning principle: not every value is a strict quota. Several controls are administrator-configurable
+        and should be aligned to infrastructure capacity, workload profile, and organization growth.
+      </p>
+
+      <p>Important examples include:</p>
+
+      <ul>
+        <li>API rate limits (default per-user request rate)</li>
+        <li>Concurrent runs per node</li>
+        <li>Memory allocation per run</li>
+        <li>Plan and apply timeout windows</li>
+        <li>Workspace and organization-level operational constraints</li>
+      </ul>
+
+      <h2>Where Teams Usually Feel Pressure First</h2>
+
+      <p>
+        In practical environments, the first pain points typically show up in run concurrency, API behavior during
+        automation bursts, and workspace governance. Variable constraints and VCS integration ceilings also become
+        relevant as platform adoption broadens across teams.
+      </p>
+
+      <h2>Operational Guidance</h2>
+
+      <p>Treat limits review as a routine platform exercise, not a one-time setup task:</p>
+
+      <ul>
+        <li>baseline defaults before onboarding new business units</li>
+        <li>validate run memory and timeout settings against real pipeline behavior</li>
+        <li>document non-configurable constraints early to avoid design surprises</li>
+        <li>review API consumption patterns from internal tooling and CI integrations</li>
+      </ul>
+
+      <p>The goal is predictable throughput with fewer reactive escalations.</p>
+
+      <h2>Support Links</h2>
+
+      <p>
+        <strong>HashiCorp Support article:</strong>{" "}
+        <a href="https://support.hashicorp.com/hc/en-us/articles/43153290742547-Terraform-Enterprise-Limits-and-Quotas">
+          Terraform Enterprise Limits and Quotas
+        </a>
+      </p>
+
+      <p>
+        <strong>IBM Support article:</strong>{" "}
+        <a href="https://www.ibm.com/support/pages/terraform-enterprise-limits-and-quotas">
+          Terraform Enterprise Limits and Quotas
+        </a>
+      </p>
+
+      <blockquote>
+        <p>
+          HashiCorp Support content migrated to IBM Support on April 1, 2026. The IBM link is included as the current
+          support platform reference.
+        </p>
+      </blockquote>
+    </BlogLayout>
+  );
 }
