@@ -113,7 +113,7 @@ export const WorkHistory = () => {
                     {item.description}
                   </p>
 
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+                  <ul className="grid grid-cols-1 gap-y-4">
                     {item.responsibilities.map((resp, i) => (
                       <li key={i} className="flex gap-4 text-sm text-zinc-500 group-hover:text-zinc-600 transition-colors leading-snug">
                         <span className="mt-[7px] h-[2px] w-2 bg-zinc-200 shrink-0 group-hover:bg-blue-300 transition-colors" />

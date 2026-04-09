@@ -26,22 +26,22 @@ export function BlogPageClient({ blogs }: BlogPageClientProps) {
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-8 bg-blue-500/30" />
           <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-mono text-sm tracking-widest uppercase">
-            Thinking & Writing
+            Support Engineering Notes
           </span>
         </div>
 
         <Heading className="text-4xl md:text-6xl lg:text-7xl mb-12 font-normal leading-[1.1]">
-          I Write About <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Technology</span> <br />
-          And <span className="text-zinc-400 font-light">Craftsmanship.</span>
+          Published <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Support Articles</span> <br />
+          From <span className="text-zinc-400 font-light">Production Incidents.</span>
         </Heading>
 
         <Paragraph className="pb-10 text-lg md:text-xl text-zinc-500">
-          Ever since <Highlight className="bg-gradient-to-r from-blue-500/10 to-sky-500/10 text-blue-700">I was a kid</Highlight>, I&apos;ve been fascinated
-          by how things work under the hood.
+          These posts are based on real Terraform Enterprise support scenarios from my work at{" "}
+          <Highlight className="bg-gradient-to-r from-blue-500/10 to-sky-500/10 text-blue-700">HashiCorp (now IBM)</Highlight>.
         </Paragraph>
 
         <Paragraph className="pb-10 text-sm text-zinc-500 leading-relaxed max-w-2xl">
-          Going forward I&apos;m keeping this writing section and my GitHub in sync with what I actually ship—same habit as the rest of the portfolio: update often, not just at launch.
+          At the moment, this section contains only the three official support articles I authored. HashiCorp Support content migrated to IBM Support on April 1, 2026, and each post includes both source links below.
         </Paragraph>
 
         <Blogs blogs={blogs} />

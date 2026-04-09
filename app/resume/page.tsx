@@ -1,13 +1,30 @@
 "use client";
 
+import React from "react";
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
-import { WorkHistory } from "@/components/WorkHistory";
 import { ResumeSkills } from "@/components/ResumeSkills";
+import { WorkHistory } from "@/components/WorkHistory";
+import {
+  careerSummary,
+  certificationsDetailed,
+  education,
+  referencesNote,
+  resumeHeader,
+} from "@/constants/resumeContent";
 import { motion } from "framer-motion";
-import { IconDownload, IconExternalLink, IconFileText, IconArrowRight } from "@tabler/icons-react";
+import {
+  IconDownload,
+  IconExternalLink,
+  IconFileText,
+  IconArrowRight,
+  IconMail,
+  IconPhone,
+  IconMapPin,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function ResumePage() {
   return (
@@ -18,105 +35,175 @@ export default function ResumePage() {
         transition={{ duration: 0.8 }}
         className="relative pt-12 lg:pt-20"
       >
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
-                <IconFileText size={24} strokeWidth={1.5} />
-              </div>
-              <p className="text-xs font-normal uppercase tracking-[0.4em] text-zinc-400">
+        {/* Header - Minimal & Refined */}
+        <div className="mb-24 flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-3xl space-y-8">
+            <div className="flex items-center gap-3">
+              <div className="h-px w-8 bg-blue-500/30" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-blue-600/60">
                 Professional Dossier
-              </p>
+              </span>
             </div>
-            
-            <Heading className="text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tighter">
-              Support <span className="text-brand-gradient">Engineering</span> <br />
-              <span className="font-light italic opacity-80">at Scale.</span>
-            </Heading>
+
+            <div>
+              <Heading className="text-2xl font-normal leading-tight tracking-tight text-zinc-400 md:text-3xl lg:text-4xl">
+                Solutions <span className="text-zinc-900">Architecture</span>
+                <br />
+                <span className="font-light italic opacity-60">
+                  Grounded in platform engineering.
+                </span>
+              </Heading>
+            </div>
+
+            <div className="flex flex-wrap gap-x-8 gap-y-4">
+              <ContactItem
+                icon={IconMail}
+                href={`mailto:${resumeHeader.email}`}
+                label={resumeHeader.email}
+              />
+              <ContactItem
+                icon={IconPhone}
+                label={resumeHeader.phone}
+              />
+              <ContactItem
+                icon={IconMapPin}
+                label={resumeHeader.location}
+              />
+              <ContactItem
+                icon={IconBrandLinkedin}
+                href={resumeHeader.linkedInHref}
+                label="LinkedIn"
+              />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-4 min-w-[280px]">
+          <div className="flex flex-row gap-4 lg:flex-col">
             <motion.a
-              whileHover={{ x: 5 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
               href="/Syed-Resume-New.pdf"
               target="_blank"
-              className="flex items-center justify-between group bg-zinc-900 text-white pl-8 pr-4 py-4 rounded-[2rem] font-normal text-xs uppercase tracking-[0.2em] transition-all hover:bg-zinc-800 shadow-2xl shadow-zinc-200"
+              className="group flex items-center gap-3 rounded-2xl bg-zinc-900 px-6 py-3 text-xs font-normal uppercase tracking-[0.2em] text-white transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200"
             >
-              Open Full PDF
-              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/10 group-hover:bg-sky-400 transition-colors">
-                <IconExternalLink size={18} className="text-white" />
-              </div>
+              <IconExternalLink size={16} className="text-sky-400" />
+              View PDF
             </motion.a>
             <motion.a
-              whileHover={{ x: 5 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
               href="/Syed-Resume-New.pdf"
               download
-              className="flex items-center justify-between group bg-white text-zinc-900 pl-8 pr-4 py-4 rounded-[2rem] border border-zinc-200 font-normal text-xs uppercase tracking-[0.2em] transition-all hover:border-blue-500/50 shadow-lg shadow-zinc-100"
+              className="group flex items-center gap-3 rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-xs font-normal uppercase tracking-[0.2em] text-zinc-600 transition-all hover:border-blue-500/30 hover:text-zinc-900 shadow-sm"
             >
-              Download CV
-              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-zinc-50 group-hover:bg-blue-600 transition-all">
-                <IconDownload size={18} className="text-blue-500 group-hover:text-white transition-colors" />
-              </div>
+              <IconDownload size={16} className="text-blue-500" />
+              Download
             </motion.a>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-40">
-          <div className="lg:col-span-8">
-            <Paragraph className="text-xl md:text-2xl text-zinc-700 font-light leading-relaxed max-w-3xl mb-10">
-              I am a <Highlight className="text-blue-700 italic">Technical Services & Product Support Engineer</Highlight> with 7 years of experience helping teams run reliable platforms and resolve complex production issues.
-            </Paragraph>
-            <div className="h-px w-32 bg-gradient-to-r from-blue-500/30 to-transparent mb-10" />
-            <Paragraph className="text-zinc-500 text-lg leading-relaxed max-w-2xl font-sans">
-              Alongside my core support role, I bring hands-on software engineering experience and build full-stack products in my own time. I focus on practical, performance-aware solutions that improve customer outcomes and scale with real-world demand.
-            </Paragraph>
+        {/* Summary & Education Grid */}
+        <div className="mb-32 grid grid-cols-1 gap-20 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <div className="mb-8 flex items-center gap-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-300">
+                Summary
+              </span>
+              <div className="h-px flex-1 bg-zinc-100" />
+            </div>
+            <p className="font-sans text-lg font-light leading-relaxed text-zinc-600 md:text-xl">
+              {careerSummary}
+            </p>
           </div>
-          
-          <div className="lg:col-span-4 lg:pl-12 border-l border-zinc-100 hidden lg:block">
+
+          <div className="lg:col-span-5">
+            <div className="mb-8 flex items-center gap-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-300">
+                Education
+              </span>
+              <div className="h-px flex-1 bg-zinc-100" />
+            </div>
             <div className="space-y-8">
-              <div>
-                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Location</p>
-                <p className="text-sm text-zinc-600">Melbourne, VIC, AUS · Remote-capable (any region)</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Availability</p>
-                <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <p className="text-sm text-zinc-600">Open for exploration.</p>
+              {education.map((item) => (
+                <div key={item.institution} className="group">
+                  <p className="font-heading text-lg font-normal text-zinc-900 transition-colors group-hover:text-blue-600">
+                    {item.institution}
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-500">{item.credential}</p>
+                  <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
+                    {item.period}
+                  </p>
                 </div>
-              </div>
-              <div>
-                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">Contact</p>
-                <motion.a 
-                  href="mailto:syed@example.com" 
-                  className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-2 group"
-                >
-                  Get in touch
-                  <IconArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </motion.a>
-              </div>
-              <div>
-                <p className="text-[10px] font-normal uppercase tracking-widest text-zinc-400 mb-2">GitHub &amp; portfolio</p>
-                <p className="text-sm text-zinc-600 leading-relaxed mb-3">
-                  I&apos;ve recently committed to publishing projects on GitHub and keeping this dossier aligned with my public work—both are now on a regular maintenance cadence.
-                </p>
-                <motion.a
-                  href="https://github.com/sibtihaj"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-2 group"
-                >
-                  github.com/sibtihaj
-                  <IconExternalLink size={14} className="opacity-70 group-hover:translate-x-0.5 transition-transform" />
-                </motion.a>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
+        {/* Skills & Badges Section */}
         <ResumeSkills />
+
+        {/* Experience Section */}
         <WorkHistory />
+
+        {/* Certifications Prose Section */}
+        <div className="mt-32 mb-32">
+          <div className="mb-12 flex items-center gap-4">
+            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-300">
+              Certifications &amp; Training
+            </span>
+            <div className="h-px flex-1 bg-zinc-100" />
+          </div>
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+            {certificationsDetailed.map((cert) => (
+              <div key={cert.title} className="group relative rounded-3xl border border-zinc-100 bg-white p-8 transition-all duration-500 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-500/5">
+                <h4 className="font-heading text-base font-normal text-zinc-900 group-hover:text-blue-600 transition-colors">
+                  {cert.title}
+                </h4>
+                <p className="mt-4 font-sans text-sm leading-relaxed text-zinc-500">
+                  {cert.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-48 border-t border-zinc-100 pt-16">
+          <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-400">
+                References
+              </p>
+              <p className="mt-2 font-sans text-sm text-zinc-500">{referencesNote}</p>
+            </div>
+            <Link 
+              href="/contact"
+              className="group flex items-center gap-3 rounded-full bg-blue-50 px-8 py-4 text-xs font-normal uppercase tracking-[0.2em] text-blue-600 transition-all hover:bg-blue-100"
+            >
+              Start a conversation
+              <IconArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </footer>
       </motion.section>
     </Container>
   );
+}
+
+function ContactItem({ icon: Icon, label, href }: { icon: any; label: string; href?: string }) {
+  const content = (
+    <div className="flex items-center gap-2 group cursor-default">
+      <Icon size={14} className="text-zinc-300 group-hover:text-blue-500 transition-colors" />
+      <span className="text-sm text-zinc-500 group-hover:text-zinc-900 transition-colors">{label}</span>
+    </div>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} target={href.startsWith('http') ? "_blank" : undefined} rel={href.startsWith('http') ? "noopener noreferrer" : undefined}>
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }

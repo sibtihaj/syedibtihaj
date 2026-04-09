@@ -1,30 +1,44 @@
 import { BlogLayout } from "@/components/BlogLayout";
 
 export const meta = {
-  date: "2024-08-15",
-  title: "Optimizing EKS Clusters for High-Severity Workloads",
+  date: "2025-12-03",
+  title: "Container ptfe_base_startup Failed: Timeout Waiting for Startup Sequencing (Phase 1)",
   description:
-    "Strategies for managing high-severity escalations and performing deep technical investigations within AWS container platforms.",
+    "A troubleshooting path for Terraform Enterprise upgrade failures where ptfe_base_startup times out during startup phase 1.",
   image:
     "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2332&q=80",
-  tags: ["aws", "eks", "kubernetes", "containers"],
+  category: "Terraform Enterprise Support",
+  tags: ["terraform-enterprise", "upgrade", "postgresql", "troubleshooting"],
 };
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-Amazon EKS provides a powerful platform for running containerized applications, but managing high-concurrency workloads requires a deep understanding of cluster architecture and security.
+During some Terraform Enterprise upgrades, the application can remain in startup transition and eventually fail with:
 
-## Managing Escalations
+`Container [ptfe_base_startup/tfe_base_startup] failed: Timeout waiting for event startup sequencing - phase 1`
 
-Handling high-severity incidents in production EKS environments demands a systematic approach to troubleshooting. From complex networking issues to IAM permission bottlenecks, the key is thorough investigative work and proactive monitoring.
+This pattern usually requires quick differentiation between generic startup delay and a specific dependency authentication failure.
 
-## Architectural Guidance
+## Diagnostic Pattern to Confirm
 
-When architecting for global enterprise workloads, consider:
-- **Networking**: Optimizing VPC and CNI configurations for performance.
-- **Security**: Implementing fine-grained access control with IAM and IRSA.
-- **Observability**: Integrating with native AWS tools like CloudWatch and Managed Prometheus.
+Start with targeted container logs from the host and verify whether repeated authentication failures are present during bootstrap. A common signal set includes:
 
-## Conclusion
+- startup sequencing timeout in `ptfe_base_startup` (or `tfe_base_startup`)
+- repeated PostgreSQL auth failures for the internal `hashicorp` user
+- corresponding migration container log failures in relevant versions
 
-By following AWS best practices and maintaining a rigorous approach to system performance tuning, organizations can ensure their EKS clusters are resilient, scalable, and secure.
+## Root Cause Pattern
+
+When these indicators align, the failure path often points to an incorrect internal PostgreSQL password during upgrade startup sequence. The application remains blocked because core dependencies do not reach healthy readiness in order.
+
+## Recommended Recovery Direction
+
+Use the mounted-disk recovery process for PostgreSQL credentials and then re-attempt startup with validated dependency readiness. The key is to resolve credential mismatch before broader rollback or infrastructure rework.
+
+## Support Links
+
+HashiCorp Support article: [Container ptfe_base_startup failed: Timeout waiting for event startup sequencing - phase 1](https://support.hashicorp.com/hc/en-us/articles/44027916694419-Container-ptfe-base-startup-failed-Timeout-waiting-for-event-startup-sequencing-phase-1)
+
+IBM Support article: [Container ptfe_base_startup failed: Timeout waiting for event startup sequencing - phase 1](https://www.ibm.com/support/pages/container-ptfebasestartup-failed-timeout-waiting-event-startup-sequencing-phase-1)
+
+> HashiCorp Support content migrated to IBM Support on April 1, 2026. The IBM link is included as the current support platform reference.

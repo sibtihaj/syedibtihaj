@@ -26,6 +26,10 @@ export default function About() {
       image: "/badges/HashiCorp%20Certified%20Terraform%20Associate%20Badge.png",
     },
     {
+      title: "HashiCorp Certified Consul Associate",
+      image: "/badges/HashiCorp%20Certified%20Consul%20Associate%20Badge.png",
+    },
+    {
       title: "Amazon EKS Training",
       image: "/badges/Amazon%20EKS%20Training%20Badge.png",
     },

@@ -20,7 +20,7 @@ const defaultFormState = {
 export const Contact = () => {
   const [formData, setFormData] = useState(defaultFormState);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Write your submit logic here
     console.log(formData);
@@ -52,7 +52,7 @@ export const Contact = () => {
           <label className="text-[10px] uppercase tracking-widest font-normal text-zinc-400 mb-2 block ml-1 group-focus-within:text-blue-600 transition-colors">Email Address</label>
           <input
             type="email"
-            placeholder="syed@example.com"
+            placeholder="you@company.com"
             className="w-full bg-zinc-50/50 backdrop-blur-sm border border-zinc-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 text-zinc-900 placeholder:text-zinc-400 transition-all duration-300"
             value={formData.email.value}
             onChange={(e) =>

@@ -1,30 +1,51 @@
 import { BlogLayout } from "@/components/BlogLayout";
 
 export const meta = {
-  date: "2024-11-20",
-  title: "Terraform Enterprise: Best Practices for Multi-Cloud Observability",
+  date: "2025-11-06",
+  title: "Terraform Enterprise Limits and Quotas: What to Size Before You Scale",
   description:
-    "Implementing robust observability and incident response frameworks for Terraform Enterprise across AWS, Azure, and GCP.",
+    "A practical guide to Terraform Enterprise defaults, configurable ceilings, and the limits that most often affect reliability at scale.",
   image:
     "https://images.unsplash.com/photo-1667372333374-0d27473a2c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2332&q=80",
-  tags: ["terraform", "observability", "infrastructure", "devops"],
+  category: "Terraform Enterprise Support",
+  tags: ["terraform-enterprise", "capacity-planning", "limits", "operations"],
 };
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-Managing Terraform Enterprise at scale requires more than just infrastructure as code—it requires deep visibility into the deployment lifecycle and system health. In this article, we explore the core pillars of multi-cloud observability.
+Terraform Enterprise is flexible, but that flexibility is easiest to use when teams understand where defaults become bottlenecks. Many support escalations are not caused by a hard platform failure; they come from limit assumptions that were never revisited as usage grew.
 
-## The Importance of Visibility
+## Limits vs. Configurable Capacity
 
-When operating across diverse cloud environments like AWS, Azure, and GCP, maintaining a unified view of your infrastructure state is critical. Without proper monitoring, troubleshooting PostgreSQL, Redis, and S3 backends becomes a significant challenge.
+One key planning principle: not every value is a strict quota. Several controls are administrator-configurable and should be aligned to infrastructure capacity, workload profile, and organization growth.
 
-## Key Observability Metrics
+Important examples include:
 
-Effective observability frameworks focus on:
-- **System Health**: Monitoring the core components of Terraform Enterprise.
-- **Audit Logs**: Tracking who changed what and when.
-- **Performance**: Ensuring deployment pipelines are optimized for speed and reliability.
+- API rate limits (default per-user request rate)
+- Concurrent runs per node
+- Memory allocation per run
+- Plan and apply timeout windows
+- Workspace and organization-level operational constraints
 
-## Leveraging Datadog and Grafana
+## Where Teams Usually Feel Pressure First
 
-By integrating modern observability tools, teams can build proactive monitoring solutions. Automated dashboards provide real-time insights into system performance, enabling faster incident response and root-cause analysis.
+In practical environments, the first pain points typically show up in run concurrency, API behavior during automation bursts, and workspace governance. Variable constraints and VCS integration ceilings also become relevant as platform adoption broadens across teams.
+
+## Operational Guidance
+
+Treat limits review as a routine platform exercise, not a one-time setup task:
+
+- baseline defaults before onboarding new business units
+- validate run memory and timeout settings against real pipeline behavior
+- document non-configurable constraints early to avoid design surprises
+- review API consumption patterns from internal tooling and CI integrations
+
+The goal is predictable throughput with fewer reactive escalations.
+
+## Support Links
+
+HashiCorp Support article: [Terraform Enterprise Limits and Quotas](https://support.hashicorp.com/hc/en-us/articles/43153290742547-Terraform-Enterprise-Limits-and-Quotas)
+
+IBM Support article: [Terraform Enterprise Limits and Quotas](https://www.ibm.com/support/pages/terraform-enterprise-limits-and-quotas)
+
+> HashiCorp Support content migrated to IBM Support on April 1, 2026. The IBM link is included as the current support platform reference.

@@ -11,12 +11,12 @@ export const socials = [
     icon: IconBrandGithub,
   },
   {
-    href: "#",
+    href: "https://www.linkedin.com/in/ib-02",
     label: "LinkedIn",
     icon: IconBrandLinkedin,
   },
   {
-    href: "mailto:syed@example.com",
+    href: "mailto:syedibtihaj12@gmail.com",
     label: "Email",
     icon: IconMail,
   },
