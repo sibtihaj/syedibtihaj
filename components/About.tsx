@@ -66,21 +66,28 @@ export default function About() {
           className="flex flex-col justify-end"
         >
           <Paragraph className="mb-6 text-zinc-500">
-            Over the last two years, Webifex Labs has been where I prove I can own the full story, not only tickets but boundaries, integrations, and observability. Two portfolio builds make that concrete:{" "}
+            Over the last two years, Webifex Labs has been my place to practice end-to-end ownership beyond day-to-day
+            support work: drawing boundaries between services, wiring integrations, and making systems observable enough
+            to operate. Two projects illustrate that:{" "}
             <Link
               href="/projects/ai-incident-assistant"
               className="text-emerald-700 underline-offset-4 hover:underline font-medium"
             >
               AI Incident Assistant
             </Link>
-            {" "}(authenticated incident playground, MCP-backed tools, gateway-routed models, Supabase sessions and quotas, framed as one coherent system rather than a single-feature demo) and{" "}
+            {" "}
+            (an authenticated incident playground with MCP-backed tools, gateway-routed models, and Supabase-backed
+            sessions and quotas, treated as one coherent system rather than a single-feature demo) and{" "}
             <Link
               href="/projects/ib-scheduling"
               className="text-emerald-700 underline-offset-4 hover:underline font-medium"
             >
               IB Scheduling
             </Link>
-            {" "}(Next.js and a Go API on Railway with Supabase Auth and Postgres, OIDC-verified JWTs, race-safe booking, and Prometheus/Grafana telemetry, the sort of split you end up explaining to stakeholders when you justify cost, security, and operability).
+            {" "}
+            (a Next.js UI with a Go API on Railway, Supabase Auth and Postgres, OIDC-verified JWTs, race-safe booking,
+            and Prometheus/Grafana telemetry—the kind of split you often have to explain when discussing cost, security,
+            and day-to-day operations).
           </Paragraph>
           <Paragraph className="mb-6 text-zinc-500">
             Alongside dozens of other client deliveries, I&apos;m pushing more of this work to GitHub and keeping this site current so the narrative matches what I ship.
