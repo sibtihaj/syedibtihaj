@@ -81,7 +81,7 @@ export default function ResumePage() {
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="/Syed-Resume-New.pdf"
+              href="/ibtihaj-resume.pdf"
               target="_blank"
               className="group flex items-center gap-3 rounded-2xl bg-zinc-900 px-6 py-3 text-xs font-normal uppercase tracking-[0.2em] text-white transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200"
             >
@@ -91,7 +91,7 @@ export default function ResumePage() {
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="/Syed-Resume-New.pdf"
+              href="/ibtihaj-resume.pdf"
               download
               className="group flex items-center gap-3 rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-xs font-normal uppercase tracking-[0.2em] text-zinc-600 transition-all hover:border-blue-500/30 hover:text-zinc-900 shadow-sm"
             >

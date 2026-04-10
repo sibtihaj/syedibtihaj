@@ -29,4 +29,3 @@
 - The portfolio features an "AI Incident Assistant" case study with MCP-backed tools and gateway-routed models.
 - LinkedIn URL is `https://www.linkedin.com/in/ib-02` and primary email is `syedibtihaj12@gmail.com`.
 - Contact page messaging focuses on opportunities/projects with phone `0470 465 820` and Melbourne, VIC location.
-
