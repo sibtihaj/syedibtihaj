@@ -26,7 +26,7 @@ export default async function BlogPage() {
         <p>
           I have written many more articles that were only published for customers inside support and internal
           knowledge bases. This page is limited to pieces that also appear on the public HashiCorp and IBM support
-          sites, drawn from real Terraform Enterprise cases.
+          sites, and they draw on real Terraform Enterprise scenarios from my work at HashiCorp (now IBM).
         </p>
         <p className="text-base text-ink-muted">
           HashiCorp Support content moved to IBM Support on April 1, 2026, so each article links to both.

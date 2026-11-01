@@ -19,7 +19,7 @@ const caseFile = [
   {
     term: "Before",
     title: "Amazon Web Services",
-    detail: "Cloud Support Engineer on Amazon EKS and ECS escalations. 2022 to 2024.",
+    detail: "Associate, then Cloud Support Engineer, on Amazon EKS and ECS. 2022 to 2024.",
   },
   {
     term: "Alongside",
@@ -60,8 +60,8 @@ export default async function Home() {
               escalations at AWS.
             </p>
             <p>
-              Since 2022 I have also built and shipped web products for clients through Webifex Labs. Two of those
-              builds are written up below.
+              Since 2022 I have also built web products for clients through Webifex Labs. The two builds written up
+              below are my own projects, where I practise the same end-to-end ownership.
             </p>
           </div>
           <div className="rise mt-9 flex flex-wrap gap-3" style={delay(260)}>
