@@ -49,9 +49,7 @@ const DesktopRail = () => {
         <Avatar size={80} />
         <p className="mt-5 font-heading text-[1.35rem] leading-tight text-ink">Syed Ibtihaj</p>
         <p className="mt-1.5 text-sm leading-snug text-ink-body">
-          Product support engineering
-          <br />
-          at CodeRabbit
+          Product support engineering at CodeRabbit
         </p>
       </Link>
 
