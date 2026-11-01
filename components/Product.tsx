@@ -70,9 +70,26 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         </dl>
       ) : null}
 
-      <div className="rise mt-10" style={{ ["--rise-delay" as string]: "320ms" }}>
-        <ProjectGallery images={product.images} title={product.title} />
-      </div>
+      {product.Cover ? (
+        <>
+          <figure className="rise mt-10" style={{ ["--rise-delay" as string]: "320ms" }}>
+            <div className="overflow-hidden rounded-2xl border border-ink/10 bg-paper shadow-[0_30px_60px_-36px_rgba(13,27,62,0.5)]">
+              <product.Cover className="block h-auto w-full" />
+            </div>
+          </figure>
+          <section aria-labelledby="screenshots" className="mt-16">
+            <h2 id="screenshots" className="text-[1.5rem]">
+              The live app
+            </h2>
+            <p className="mb-6 mt-2 text-ink-muted">Screenshots from the running build.</p>
+            <ProjectGallery images={product.images} title={product.title} />
+          </section>
+        </>
+      ) : (
+        <div className="rise mt-10" style={{ ["--rise-delay" as string]: "320ms" }}>
+          <ProjectGallery images={product.images} title={product.title} />
+        </div>
+      )}
 
       <div className="case-study prose max-w-none mt-16 md:mt-20">{product.content}</div>
     </article>

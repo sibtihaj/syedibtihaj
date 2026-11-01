@@ -33,21 +33,30 @@ export const ProjectList = ({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3
               aria-hidden
               className={cn("group block md:col-span-7", flipped && "md:order-2")}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-ink/10 bg-white shadow-[0_24px_50px_-30px_rgba(13,27,62,0.45)]">
-                <Image
-                  src={product.thumbnail}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 560px, (min-width: 768px) 58vw, 100vw"
-                  className="object-cover object-top transition-transform duration-700 ease-ink group-hover:scale-[1.025]"
-                />
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-ink/10 bg-paper shadow-[0_24px_50px_-30px_rgba(13,27,62,0.45)]">
+                {product.Cover ? (
+                  <product.Cover
+                    decorative
+                    className="absolute inset-0 h-full w-full transition-transform duration-700 ease-ink group-hover:scale-[1.02]"
+                  />
+                ) : (
+                  <Image
+                    src={product.thumbnail}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 560px, (min-width: 768px) 58vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 ease-ink group-hover:scale-[1.025]"
+                  />
+                )}
               </div>
             </Link>
 
             <div className={cn("md:col-span-5", flipped && "md:order-1")}>
-              <p className="font-heading text-lg italic text-cobalt">
-                No. {String(idx + 1).padStart(2, "0")}
-              </p>
+              {product.Cover ? null : (
+                <p className="font-heading text-lg italic text-cobalt">
+                  No. {String(idx + 1).padStart(2, "0")}
+                </p>
+              )}
               <Title className="mt-2 text-[1.5rem] leading-snug md:text-[1.65rem]">
                 <Link href={detailHref} className="transition-colors hover:text-cobalt">
                   {product.title}
