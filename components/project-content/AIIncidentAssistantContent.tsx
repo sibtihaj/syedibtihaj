@@ -1,167 +1,11 @@
 import React from "react";
-import { MermaidBlock } from "@/components/MermaidBlock";
+import {
+  AIIncidentPipelineDiagram,
+  AIIncidentRetentionDiagram,
+  AIIncidentRuntimeDiagram,
+} from "@/components/diagrams/AIIncidentDiagrams";
 import { Heading } from "@/components/Heading";
 import { Paragraph } from "@/components/Paragraph";
-
-const MERMAID_THEME = `
-%%{init: {
-  'theme': 'base',
-  'themeVariables': {
-    'primaryColor': '#ffffff',
-    'primaryTextColor': '#1e293b',
-    'primaryBorderColor': '#e2e8f0',
-    'lineColor': '#cbd5e1',
-    'secondaryColor': '#f8fafc',
-    'tertiaryColor': '#ffffff',
-    'mainBkg': '#ffffff',
-    'nodeBorder': '#cbd5e1',
-    'clusterBkg': '#f8fafc',
-    'clusterBorder': '#e2e8f0',
-    'fontSize': '13px',
-    'fontFamily': 'ui-sans-serif, system-ui, sans-serif',
-    'textColor': '#475569',
-    'nodeTextColor': '#1e293b',
-    'edgeLabelBackground': '#ffffff'
-  }
-}}%%
-`;
-
-const DIAGRAMS = {
-  pipeline: `${MERMAID_THEME}
-flowchart TD
-  userClient(["User Client"])
-  routeApi[["Chat Route API"]]
-  
-  subgraph supabase ["Supabase Backend"]
-    sbAuth["Auth / JWT"]
-    sbQuota[("user_chat_usage")]
-    sbSessions[("chat_sessions JSON envelope + RLS")]
-  end
-
-  subgraph orchestration ["Orchestration Layer"]
-    promptEngine["Prompt Engine"]
-    trimStep["Trim History (token budget)"]
-    memInject["Inject persisted memory into system"]
-    decisionGate{{"Decision Gate"}}
-  end
-
-  subgraph execution ["Execution Paths"]
-    modelOnly["Model Only"]
-    toolPath["Tool Enabled"]
-    mcpToolset[/"MCP Toolset"/]
-  end
-
-  userClient ==> routeApi
-  routeApi --> sbAuth
-  routeApi --> sbQuota
-  userClient -. "list / save" .-> sbSessions
-  sbSessions -. "summary + key facts" .-> memInject
-  routeApi --> promptEngine & trimStep & memInject
-  promptEngine & trimStep --> memInject
-  memInject --> decisionGate
-  
-  decisionGate -- "Conversational" --> modelOnly
-  decisionGate -- "Actionable" --> toolPath
-  toolPath ==> mcpToolset
-  
-  modelOnly & mcpToolset --> responsePayload(["Response Payload"])
-
-  style decisionGate fill:#f0f9ff,stroke:#38bdf8,color:#0369a1,stroke-width:2px
-  style toolPath fill:#f0f9ff,stroke:#38bdf8,color:#0369a1
-  style memInject fill:#fdf4ff,stroke:#fbbf24,color:#854d0e
-  style sbQuota fill:#f8fafc,stroke:#94a3b8,color:#475569
-  style sbSessions fill:#f8fafc,stroke:#94a3b8,color:#475569
-`,
-  runtime: `${MERMAID_THEME}
-sequenceDiagram
-    autonumber
-    participant U as User
-    participant C as Client
-    participant S as Supabase
-    participant R as API Route
-    participant P as Prompt Engine
-    participant M as AI Gateway
-    participant T as MCP Server
-
-    U->>C: Submit Prompt
-    C->>R: POST /api/chat
-    R->>S: Validate JWT session
-    S-->>R: authenticated user
-    opt conversationId present
-        R->>S: SELECT chat_sessions.messages
-        S-->>R: prior memory + stored messages
-    end
-    Note over R: CAN-style requests may return early if facts missing
-    R->>S: increment_and_check_chat_quota RPC
-    S-->>R: allowed / remaining
-    Note over R: Intent & Entity Detection
-    R->>P: Assemble Thin System Prompt
-    R->>R: Trim History (LangChain)
-    opt conversationId present
-        R->>S: UPDATE envelope.memory
-    end
-    Note over R: Append memory block to system string
-    
-    alt isConversational
-        R->>M: generateText
-        M-->>R: Response
-    else isActionable
-        R->>T: List & Register Tools
-        R->>M: generateText (with Tools)
-        loop Tool Loop
-            M->>T: Call Tool
-            T-->>M: Tool Result
-        end
-        M-->>R: Final Response
-    end
-    
-    R-->>C: JSON + Metadata
-    C->>S: Debounced save chat_sessions (RLS)
-    C-->>U: Render Response
-`,
-  retention: `${MERMAID_THEME}
-flowchart TB
-  subgraph client ["Browser"]
-    ui(["Chat UI"])
-    hist["Recent message history + conversationId"]
-  end
-
-  subgraph api ["POST /api/chat"]
-    load["Load JSON envelope from chat_sessions"]
-    merge["Update incident summary + structured key facts"]
-    can{{"CAN-style report?"}}
-    needFacts["Require missing fields before LLM"]
-    dedupe["Skip duplicate last user turn"]
-    trim["LangChain trim to token budget"]
-    sys["System prompt + memory block"]
-    llm{{"AI Gateway"}}
-  end
-
-  subgraph store ["Supabase Postgres"]
-    row[("chat_sessions row under RLS")]
-  end
-
-  ui --> hist
-  hist --> load
-  row -. "read JSON envelope" .-> load
-  load --> merge
-  merge --> can
-  can -- "yes, incomplete facts" --> needFacts
-  needFacts --> ui
-  can -- "ok or not CAN" --> dedupe
-  dedupe --> trim
-  merge --> sys
-  trim --> llm
-  sys --> llm
-  merge -. "persist memory fields" .-> row
-  llm --> ui
-
-  style needFacts fill:#fef9c3,stroke:#ca8a04,color:#854d0e
-  style merge fill:#f0f9ff,stroke:#38bdf8,color:#0369a1
-  style row fill:#f8fafc,stroke:#94a3b8,color:#475569
-  style sys fill:#f0fdf4,stroke:#22c55e,color:#166534
-`
-};
 
 export function AIIncidentAssistantContent() {
   return (
@@ -272,9 +116,7 @@ export function AIIncidentAssistantContent() {
                   Thin system prompt, LangChain-trimmed history, persisted session memory folded into the system string, then branch into model-only or tool-enabled execution.
                 </Paragraph>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm ring-1 ring-black/5">
-                <MermaidBlock chart={DIAGRAMS.pipeline} />
-              </div>
+              <AIIncidentPipelineDiagram />
             </div>
           </div>
 
@@ -291,9 +133,7 @@ export function AIIncidentAssistantContent() {
                   From the browser through load/merge of the envelope, optional CAN guardrails, token trimming, and generation, with memory written back under the same row the user already owns via RLS.
                 </Paragraph>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm ring-1 ring-black/5">
-                <MermaidBlock chart={DIAGRAMS.retention} />
-              </div>
+              <AIIncidentRetentionDiagram />
             </div>
           </div>
 
@@ -310,9 +150,7 @@ export function AIIncidentAssistantContent() {
                   Request execution from user submit through API orchestration, decision gates, optional MCP calls, and response delivery.
                 </Paragraph>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm ring-1 ring-black/5">
-                <MermaidBlock chart={DIAGRAMS.runtime} />
-              </div>
+              <AIIncidentRuntimeDiagram />
             </div>
           </div>
         </div>
