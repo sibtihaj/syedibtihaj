@@ -22,7 +22,7 @@ export const ProjectGallery = ({ images, title }: { images: ProductImage[]; titl
           fill
           priority={active === 0}
           sizes="(min-width: 1024px) 880px, 100vw"
-          className="object-cover object-top"
+          className="object-cover object-left-top"
         />
       </div>
 
@@ -42,7 +42,7 @@ export const ProjectGallery = ({ images, title }: { images: ProductImage[]; titl
                     : "border-ink/10 opacity-70 hover:opacity-100"
                 )}
               >
-                <Image src={image} alt="" fill sizes="128px" className="object-cover object-top" />
+                <Image src={image} alt="" fill sizes="128px" className="object-cover object-left-top" />
               </button>
             </li>
           ))}
