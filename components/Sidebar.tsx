@@ -70,8 +70,16 @@ const DesktopRail = () => {
                   <span
                     aria-hidden
                     className={cn(
-                      "mr-3 h-px bg-[image:var(--ink-gradient)] transition-all duration-300 ease-ink",
-                      active ? "w-6" : "w-2 opacity-40 group-hover:w-4 group-hover:opacity-100"
+                      "pointer-events-none absolute -left-5 top-1/2 h-px w-3.5 origin-right bg-[image:var(--ink-gradient)] transition-transform duration-300 ease-ink motion-reduce:transition-none",
+                      active ? "scale-x-100" : "scale-x-0"
+                    )}
+                  />
+                  <link.icon
+                    aria-hidden
+                    strokeWidth={1.5}
+                    className={cn(
+                      "mr-3 size-[18px] shrink-0 transition-colors duration-200",
+                      active ? "text-cobalt" : "text-ink-muted group-hover:text-ink"
                     )}
                   />
                   {link.label}
@@ -196,11 +204,18 @@ const MobileBar = () => {
                       buttonRef.current?.focus();
                     }}
                     className={cn(
-                      "flex items-baseline justify-between py-4 font-heading text-[1.75rem] leading-none",
+                      "flex items-center justify-between py-4 font-heading text-[1.75rem] leading-none",
                       active ? "text-cobalt" : "text-ink"
                     )}
                   >
-                    {link.label}
+                    <span className="flex items-center gap-4">
+                      <link.icon
+                        aria-hidden
+                        strokeWidth={1.5}
+                        className={cn("size-6 shrink-0", active ? "text-cobalt" : "text-ink-muted")}
+                      />
+                      {link.label}
+                    </span>
                     {active ? <span className="font-sans text-sm text-ink-muted">You are here</span> : null}
                   </Link>
                 </li>
