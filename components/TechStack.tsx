@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import type { SimpleIcon } from "simple-icons";
 import {
@@ -9,307 +10,189 @@ import {
   siClaude,
   siConsul,
   siDatadog,
-  siDocker,
-  siGit,
-  siGithubactions,
+  siFastapi,
   siGo,
   siGooglecloud,
   siGrafana,
+  siHashicorp,
+  siHelm,
+  siHuggingface,
   siKubernetes,
   siLangchain,
   siLanggraph,
   siModelcontextprotocol,
   siNextdotjs,
   siNomad,
-  siNodedotjs,
+  siOllama,
+  siOpentelemetry,
   siPostgresql,
+  siPosthog,
   siPrometheus,
   siPython,
-  siRailway,
   siRedis,
+  siRender,
+  siSqlite,
   siSupabase,
-  siTailwindcss,
   siTerraform,
   siTypescript,
   siVercel,
 } from "simple-icons";
-import { IconBinaryTree2, IconFlame } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { Heading } from "./Heading";
 import { TechStackBrandIcon } from "./TechStackBrandIcon";
 
-type StackCategory = "Platform" | "Delivery" | "Observability" | "AI";
-
-type StackCard =
-  | {
-      key: string;
-      title: string;
-      blurb: string;
-      category: StackCategory;
-      kind: "simple";
-      icon: SimpleIcon;
-    }
-  | {
-      key: string;
-      title: string;
-      blurb: string;
-      category: StackCategory;
-      kind: "image";
-      src: string;
-      alt: string;
-    }
-  | {
-      key: string;
-      title: string;
-      blurb: string;
-      category: StackCategory;
-      kind: "glyph";
-      Glyph: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
-      glyphClassName: string;
-    };
-
-const stackCards: StackCard[] = [
-  {
-    key: "argo",
-    title: "Argo CD",
-    blurb: "GitOps delivery and sync for Kubernetes workloads.",
-    category: "Platform",
-    kind: "simple",
-    icon: siArgo,
-  },
-  {
-    key: "tfe",
-    title: "Terraform Enterprise",
-    blurb: "Day to day support, upgrades, and automation at enterprise scale.",
-    category: "Platform",
-    kind: "simple",
-    icon: siTerraform,
-  },
-  {
-    key: "consul",
-    title: "HashiCorp Consul",
-    blurb: "Service discovery, mesh, and connectivity patterns.",
-    category: "Platform",
-    kind: "simple",
-    icon: siConsul,
-  },
-  {
-    key: "nomad",
-    title: "HashiCorp Nomad",
-    blurb: "Scheduling and orchestration alongside the rest of the stack.",
-    category: "Platform",
-    kind: "simple",
-    icon: siNomad,
-  },
-  {
-    key: "k8s",
-    title: "Kubernetes",
-    blurb: "CKA level operations, EKS style troubleshooting, workload design.",
-    category: "Platform",
-    kind: "simple",
-    icon: siKubernetes,
-  },
-  {
-    key: "go",
-    title: "Go",
-    blurb: "APIs and services where typed concurrency and small binaries matter.",
-    category: "Platform",
-    kind: "simple",
-    icon: siGo,
-  },
-  {
-    key: "next",
-    title: "Next.js",
-    blurb: "App Router, SSR, and production frontends.",
-    category: "Delivery",
-    kind: "simple",
-    icon: siNextdotjs,
-  },
-  {
-    key: "ts",
-    title: "TypeScript",
-    blurb: "End to end typing for UI, APIs, and tooling.",
-    category: "Delivery",
-    kind: "simple",
-    icon: siTypescript,
-  },
-  {
-    key: "vercel",
-    title: "Vercel",
-    blurb: "Deploy previews, edge routing, and AI Gateway for production traffic.",
-    category: "Delivery",
-    kind: "simple",
-    icon: siVercel,
-  },
-  {
-    key: "grafana",
-    title: "Grafana",
-    blurb: "Dashboards, TFE telemetry samples, and on call visibility.",
-    category: "Observability",
-    kind: "simple",
-    icon: siGrafana,
-  },
-  {
-    key: "prometheus",
-    title: "Prometheus",
-    blurb: "Metrics collection and alerting in customer and lab environments.",
-    category: "Observability",
-    kind: "simple",
-    icon: siPrometheus,
-  },
-  {
-    key: "langchain",
-    title: "LangChain",
-    blurb: "Agents, tools, and structured flows around LLMs.",
-    category: "AI",
-    kind: "simple",
-    icon: siLangchain,
-  },
-  {
-    key: "langfuse",
-    title: "Langfuse",
-    blurb: "Tracing and eval hooks for LLM apps in production.",
-    category: "AI",
-    kind: "glyph",
-    Glyph: IconFlame,
-    glyphClassName: "h-8 w-8 text-teal-600",
-  },
-  {
-    key: "langsmith",
-    title: "LangSmith",
-    blurb: "Datasets, regression checks, and observability for chains.",
-    category: "AI",
-    kind: "glyph",
-    Glyph: IconBinaryTree2,
-    glyphClassName: "h-8 w-8 text-violet-600",
-  },
-  {
-    key: "claude",
-    title: "Claude",
-    blurb: "Anthropic models for assistants, drafting, and careful reasoning.",
-    category: "AI",
-    kind: "simple",
-    icon: siClaude,
-  },
-  {
-    key: "mcp",
-    title: "Model Context Protocol",
-    blurb: "Tool surfaces and context for agents, including incident style demos.",
-    category: "AI",
-    kind: "simple",
-    icon: siModelcontextprotocol,
-  },
-];
-
-type SupplementaryChip =
+type ToolboxItem =
   | { label: string; kind: "icon"; icon: SimpleIcon }
   | { label: string; kind: "image"; src: string; alt: string }
   | { label: string; kind: "text" };
 
-/** Also used regularly: from resume and shipped projects */
-const supplementaryChips: SupplementaryChip[] = [
+/**
+ * Advanced surfaces from HashiCorp/AWS day work plus Cruvio and Studifex builds.
+ * Intentionally omits commodity labels (Git, Tailwind, generic Node).
+ */
+const toolboxItems: ToolboxItem[] = [
+  // Enterprise platform
+  { label: "Terraform", kind: "icon", icon: siTerraform },
+  { label: "HashiCorp", kind: "icon", icon: siHashicorp },
+  { label: "Kubernetes", kind: "icon", icon: siKubernetes },
+  { label: "Helm", kind: "icon", icon: siHelm },
+  { label: "Consul", kind: "icon", icon: siConsul },
+  { label: "Nomad", kind: "icon", icon: siNomad },
+  { label: "Argo CD", kind: "icon", icon: siArgo },
   { label: "AWS", kind: "image", src: "/images/logos/aws.webp", alt: "AWS" },
   { label: "Google Cloud", kind: "icon", icon: siGooglecloud },
-  { label: "PostgreSQL", kind: "icon", icon: siPostgresql },
-  { label: "Redis", kind: "icon", icon: siRedis },
-  { label: "Docker", kind: "icon", icon: siDocker },
-  { label: "Supabase", kind: "icon", icon: siSupabase },
-  { label: "Tailwind CSS", kind: "icon", icon: siTailwindcss },
-  { label: "GitHub Actions", kind: "icon", icon: siGithubactions },
-  { label: "Git", kind: "icon", icon: siGit },
-  { label: "OpenAI", kind: "text" },
-  { label: "LangGraph", kind: "icon", icon: siLanggraph },
-  { label: "Anthropic", kind: "icon", icon: siAnthropic },
+  { label: "Azure", kind: "text" },
+  // Cruvio / Studifex systems
+  { label: "Go", kind: "icon", icon: siGo },
   { label: "Python", kind: "icon", icon: siPython },
-  { label: "Node.js", kind: "icon", icon: siNodedotjs },
-  { label: "Railway", kind: "icon", icon: siRailway },
+  { label: "FastAPI", kind: "icon", icon: siFastapi },
+  { label: "PostgreSQL", kind: "icon", icon: siPostgresql },
+  { label: "Supabase", kind: "icon", icon: siSupabase },
+  { label: "Redis", kind: "icon", icon: siRedis },
+  { label: "SQLite", kind: "icon", icon: siSqlite },
+  { label: "River", kind: "text" },
+  { label: "Render", kind: "icon", icon: siRender },
+  { label: "Vercel", kind: "icon", icon: siVercel },
+  // AI / RAG / agents
+  { label: "LangGraph", kind: "icon", icon: siLanggraph },
+  { label: "LangChain", kind: "icon", icon: siLangchain },
+  { label: "MCP", kind: "icon", icon: siModelcontextprotocol },
+  { label: "Pinecone", kind: "text" },
+  { label: "Ollama", kind: "icon", icon: siOllama },
+  { label: "Hugging Face", kind: "icon", icon: siHuggingface },
+  { label: "Anthropic", kind: "icon", icon: siAnthropic },
+  { label: "Claude", kind: "icon", icon: siClaude },
+  // Observability
+  { label: "Prometheus", kind: "icon", icon: siPrometheus },
+  { label: "Grafana", kind: "icon", icon: siGrafana },
+  { label: "OpenTelemetry", kind: "icon", icon: siOpentelemetry },
   { label: "Datadog", kind: "icon", icon: siDatadog },
+  { label: "PostHog", kind: "icon", icon: siPosthog },
+  // Product surfaces (kept sparse)
+  { label: "Next.js", kind: "icon", icon: siNextdotjs },
+  { label: "TypeScript", kind: "icon", icon: siTypescript },
 ];
 
-function StackCardView({ card, idx }: { card: StackCard; idx: number }) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, delay: idx * 0.03 }}
-      className="group relative flex gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-stone-50/90 p-5 shadow-sm transition-all duration-300 hover:border-emerald-800/20 hover:shadow-[inset_0_2px_24px_rgba(45,90,67,0.07),inset_0_0_0_1px_rgba(45,90,67,0.08)] md:gap-5 md:p-6"
-    >
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-stone-100 bg-stone-50/90 shadow-inner shadow-stone-200/40 transition-colors group-hover:border-emerald-100 group-hover:bg-emerald-50/40 md:h-16 md:w-16">
-        {card.kind === "simple" ? (
-          <TechStackBrandIcon icon={card.icon} className="h-8 w-8 md:h-9 md:w-9" />
-        ) : card.kind === "image" ? (
-          <Image
-            src={card.src}
-            alt={card.alt}
-            width={40}
-            height={40}
-            className="h-9 w-9 object-contain md:h-10 md:w-10"
-            unoptimized
-          />
-        ) : (
-          <card.Glyph className={card.glyphClassName} aria-hidden />
-        )}
-      </div>
-      <div className="min-w-0 flex-1">
-        <p className="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-emerald-800/75">
-          {card.category}
-        </p>
-        <h3 className="font-heading text-base font-normal leading-snug text-stone-900 md:text-lg">
-          {card.title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-stone-500">{card.blurb}</p>
-      </div>
-    </motion.article>
-  );
-}
+const focusAreas = [
+  {
+    title: "Terraform Enterprise",
+    body: "Day-to-day work inside enterprise control planes: upgrades, auth and VCS wiring, workspaces and modules under real customer pressure, not lab demos.",
+  },
+  {
+    title: "Product systems",
+    body: "Cruvio and Studifex are where the harder build work shows up: Go governance APIs, River workers, FastAPI RAG sidecars, Pinecone retrieval, Supabase RLS, and AWS-backed object storage.",
+  },
+  {
+    title: "How systems fail",
+    body: "The useful skill is diagnosing the gap between intended architecture and what still runs after credentials rotate, data dependencies shift, and on-call starts.",
+  },
+];
 
 export const TechStack = () => {
   return (
     <div className="pt-20">
-      <Heading as="h2" className="mb-3 text-xl font-normal md:text-2xl lg:text-3xl">
-        Tools <span className="text-stone-400 font-light">& tech I ship with</span>
-      </Heading>
-      <p className="mb-10 max-w-2xl text-sm leading-relaxed text-stone-500 md:text-base">
-        A practical map of what shows up in Terraform Enterprise support work, portfolio builds, and AI side
-        projects. Brand marks are for recognition only.
-      </p>
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <p className="mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.35em] text-emerald-800/70">
+          Where the work lives
+        </p>
+        <Heading as="h2" className="mb-4 text-xl font-normal md:text-2xl lg:text-3xl">
+          Platform depth{" "}
+          <span className="font-light text-stone-400">before tool lists</span>
+        </Heading>
+        <p className="mb-12 max-w-2xl text-base leading-relaxed text-stone-600 md:text-lg">
+          Most of my week is HashiCorp Terraform Enterprise across AWS, Azure, and GCP. The harder product
+          engineering shows up in Cruvio (governance APIs, connectors, document pipelines) and Studifex (RAG,
+          grading graphs, vector retrieval). The names below are the surfaces those systems actually touch — not a
+          beginner checklist. Detail lives in{" "}
+          <Link
+            href="/projects"
+            className="font-medium text-emerald-700 underline-offset-4 hover:underline"
+          >
+            selected projects
+          </Link>{" "}
+          and the{" "}
+          <Link
+            href="/resume"
+            className="font-medium text-emerald-700 underline-offset-4 hover:underline"
+          >
+            resume
+          </Link>
+          .
+        </p>
+      </motion.div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:gap-6">
-        {stackCards.map((card, idx) => (
-          <StackCardView key={card.key} card={card} idx={idx} />
+      <div className="mb-16 grid grid-cols-1 gap-10 border-t border-stone-200/80 pt-10 md:grid-cols-3 md:gap-8">
+        {focusAreas.map((area, idx) => (
+          <motion.div
+            key={area.title}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: idx * 0.06 }}
+          >
+            <h3 className="font-heading text-base font-normal text-stone-900 md:text-lg">
+              {area.title}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-stone-500">{area.body}</p>
+          </motion.div>
         ))}
       </div>
 
-      <div className="mt-14 border-t border-stone-100 pt-10">
-        <p className="mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.35em] text-stone-400">
-          Also in the toolbox
+      <div className="border-t border-stone-100 pt-10">
+        <p className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.35em] text-stone-400">
+          Systems I build and operate with
         </p>
-        <p className="mb-5 max-w-2xl text-sm text-stone-500">
-          The rest of what shows up on my CV and in shipped work: multi cloud, data stores, CI, observability, and
-          everyday runtime glue.
+        <p className="mb-6 max-w-xl text-sm text-stone-500">
+          From enterprise platform support and from shipping Cruvio and Studifex — not every logo is a specialty, but
+          none of these are filler.
         </p>
+
         <ul className="flex flex-wrap gap-2.5">
-          {supplementaryChips.map((chip) => (
+          {toolboxItems.map((item) => (
             <li
-              key={chip.label}
-              className="inline-flex items-center gap-2 rounded-full border border-stone-200/90 bg-white px-3 py-1.5 text-xs font-normal text-stone-600 shadow-sm"
+              key={item.label}
+              className="inline-flex items-center gap-2 rounded-full border border-stone-200/80 bg-[#FAF9F6]/80 px-3.5 py-2 text-sm font-normal text-stone-700"
             >
-              {chip.kind === "icon" ? (
-                <TechStackBrandIcon icon={chip.icon} className="h-4 w-4 shrink-0" />
-              ) : chip.kind === "image" ? (
+              {item.kind === "icon" ? (
+                <TechStackBrandIcon icon={item.icon} className="h-5 w-5 shrink-0" />
+              ) : item.kind === "image" ? (
                 <Image
-                  src={chip.src}
-                  alt={chip.alt}
-                  width={16}
-                  height={16}
-                  className="h-4 w-4 shrink-0 object-contain"
+                  src={item.src}
+                  alt={item.alt}
+                  width={20}
+                  height={20}
+                  className="h-5 w-5 shrink-0 object-contain"
                   unoptimized
                 />
               ) : (
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600/70" aria-hidden />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" aria-hidden />
               )}
-              {chip.label}
+              {item.label}
             </li>
           ))}
         </ul>

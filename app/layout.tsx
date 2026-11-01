@@ -91,8 +91,8 @@ export default function RootLayout({
           />
         </div>
 
-        {/* Main Noise Overlay */}
-        <div className="fixed inset-0 pointer-events-none opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50 mix-blend-multiply"></div>
+        {/* Subtle grain overlay */}
+        <div className="fixed inset-0 pointer-events-none opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50 mix-blend-multiply" />
 
         <div className="flex flex-col lg:flex-row min-h-screen relative">
           <aside className="lg:sticky lg:top-0 lg:h-screen z-[100]">
