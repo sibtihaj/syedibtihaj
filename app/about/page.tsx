@@ -29,12 +29,12 @@ export default function AboutPage() {
 
       <section className="grid gap-12 md:grid-cols-[15rem_minmax(0,1fr)] md:gap-14">
         <figure className="rise self-start" style={{ ["--rise-delay" as string]: "200ms" }}>
-          <div className="relative aspect-[4/5] w-48 overflow-hidden rounded-2xl border border-ink/10 bg-ink md:w-full">
+          <div className="relative aspect-[4/5] w-40 overflow-hidden rounded-2xl border border-ink/10 bg-ink md:w-full">
             <Image
               src="/images/headshot.jpeg"
               alt="Syed Ibtihaj"
               fill
-              sizes="(min-width: 768px) 240px, 192px"
+              sizes="(min-width: 768px) 240px, 160px"
               className="object-cover object-[50%_30%]"
             />
           </div>
