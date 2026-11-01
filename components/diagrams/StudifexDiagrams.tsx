@@ -146,7 +146,7 @@ function MarkingNarrow() {
         {
           group: "Mark it",
           nodes: [
-            { label: "Held for review", dashedIn: true, inLabel: "no model marked it" },
+            { label: "Held for review", dashedIn: true, inLabel: "not marked" },
             { label: "Confidence", kind: "decision", sub: ["how sure is it?"], strongIn: true },
           ],
         },

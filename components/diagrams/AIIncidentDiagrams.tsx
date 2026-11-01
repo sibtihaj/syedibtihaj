@@ -107,7 +107,7 @@ function RetentionWide() {
       <Edge id={id} d="M284 176 H302" strong />
       <Edge id={id} d="M432 176 H450" strong />
       <Edge id={id} d="M580 176 H598" strong />
-      <Edge id={id} d="M728 176 H740" />
+      <Edge id={id} d="M728 176 H756" />
       <Edge id={id} d="M666 202 V265" strong />
       <Edge id={id} d="M604 300 H586" strong />
       <Edge id={id} d="M456 300 H438" strong />
@@ -124,7 +124,7 @@ function RetentionWide() {
       <Node x={308} y={147} w={124} h={58} label="Load envelope" sub={["JSON from the row"]} />
       <Node x={456} y={147} w={124} h={58} focal label="Update memory" sub={["summary, key facts"]} />
       <Node x={604} y={150} w={124} h={52} kind="decision" label="CAN report?" />
-      <Node x={746} y={139} w={124} h={74} label="Ask for facts" sub={["missing fields,", "back to the chat"]} />
+      <Node x={762} y={139} w={112} h={74} label="Ask for facts" sub={["missing fields,", "back to the chat"]} />
 
       <Node x={160} y={271} w={124} h={58} label="System prompt" sub={["plus memory block"]} />
       <Node x={308} y={274} w={124} h={52} kind="decision" label="AI Gateway" />

@@ -12,34 +12,34 @@ function SystemWide() {
     <DiagramSvg id={id} width={880} height={380} title={SYS_TITLE} description={SYS_DESC}>
       <Group x={8} y={138} w={170} h={82} label="Client" />
       <Group x={8} y={282} w={170} h={82} label="Edge, SSR" />
-      <Group x={318} y={132} w={196} h={232} label="Go backend" />
+      <Group x={318} y={132} w={184} h={232} label="Go backend" />
       <Group x={590} y={40} w={282} h={186} label="Supabase" />
-      <Group x={548} y={282} w={324} h={82} label="Observability" />
+      <Group x={560} y={282} w={312} h={82} label="Observability" />
 
       <Edge id={id} d="M93 150 V22 H731 V52" />
       <Edge id={id} d="M93 208 V288" />
       <Edge id={id} d="M170 179 H324" strong />
-      <Edge id={id} d="M416 150 V87 H600" />
-      <Edge id={id} d="M502 179 H600" strong />
-      <Edge id={id} d="M416 208 V288" />
-      <Edge id={id} d="M502 323 H554" />
-      <Edge id={id} d="M700 323 H710" />
+      <Edge id={id} d="M410 150 V87 H600" />
+      <Edge id={id} d="M490 179 H600" strong />
+      <Edge id={id} d="M410 208 V288" />
+      <Edge id={id} d="M490 323 H566" />
+      <Edge id={id} d="M700 323 H734" />
 
       <Node x={16} y={150} w={154} h={58} label="Browser" sub={["Next.js App Router"]} />
       <Node x={16} y={294} w={154} h={58} label="Middleware, SSR" sub={["session cookies"]} />
-      <Node x={330} y={150} w={172} h={58} focal label="Go API" sub={["chi · go-oidc · pgx"]} />
-      <Node x={330} y={294} w={172} h={58} label="/metrics" sub={["Prometheus format"]} />
+      <Node x={330} y={150} w={160} h={58} focal label="Go API" sub={["chi · go-oidc · pgx"]} />
+      <Node x={330} y={294} w={160} h={58} label="/metrics" sub={["Prometheus format"]} />
       <Node x={606} y={58} w={250} h={58} label="Auth" sub={["OIDC issuer, JWKS"]} />
       <Node x={606} y={150} w={250} h={58} kind="store" label="Postgres" sub={["slots and reservations"]} />
-      <Node x={560} y={294} w={140} h={58} label="Prometheus" sub={["scrape and store"]} />
-      <Node x={716} y={294} w={144} h={58} label="Grafana" sub={["PromQL dashboards"]} />
+      <Node x={572} y={294} w={128} h={58} label="Prometheus" sub={["scrape and store"]} />
+      <Node x={740} y={294} w={124} h={58} label="Grafana" sub={["PromQL dashboards"]} />
 
       <EdgeLabel x={412} y={15}>supabase-js session refresh</EdgeLabel>
       <EdgeLabel x={247} y={170}>Bearer JWT</EdgeLabel>
       <EdgeLabel x={508} y={79}>go-oidc validate</EdgeLabel>
-      <EdgeLabel x={551} y={170}>pgx SQL</EdgeLabel>
-      <EdgeLabel x={424} y={252} anchor="start">exports</EdgeLabel>
-      <EdgeLabel x={528} y={314}>scrapes</EdgeLabel>
+      <EdgeLabel x={546} y={170}>pgx SQL</EdgeLabel>
+      <EdgeLabel x={418} y={252} anchor="start">exports</EdgeLabel>
+      <EdgeLabel x={531} y={314}>scrapes</EdgeLabel>
     </DiagramSvg>
   );
 }
@@ -93,42 +93,42 @@ function DeploymentWide() {
   const id = "dg-ibs-dep-w";
   return (
     <DiagramSvg id={id} width={880} height={420} title={DEP_TITLE} description={DEP_DESC}>
-      <Group x={150} y={76} w={206} h={276} label="Vercel" />
-      <Group x={402} y={76} w={244} h={326} label="Railway" />
-      <Group x={680} y={76} w={192} h={194} label="Supabase Cloud" />
+      <Group x={150} y={76} w={190} h={276} label="Vercel" />
+      <Group x={410} y={76} w={236} h={326} label="Railway" />
+      <Group x={688} y={76} w={184} h={194} label="Supabase Cloud" />
 
       <Edge id={id} d="M71 186 V125 H160" strong />
       <Edge id={id} d="M71 232 V299 H160" />
-      <Edge id={id} d="M252 154 V256" />
-      <Edge id={id} d="M338 125 H414" strong />
-      <Edge id={id} d="M252 96 V40 H776 V90" />
-      <Edge id={id} d="M630 125 H690" />
-      <Edge id={id} d="M630 140 H660 V225 H690" strong />
+      <Edge id={id} d="M246 154 V256" />
+      <Edge id={id} d="M326 125 H414" strong />
+      <Edge id={id} d="M246 96 V40 H820 V90" />
+      <Edge id={id} d="M630 125 H694" />
+      <Edge id={id} d="M630 140 H652 V225 H694" strong />
       <Edge id={id} d="M525 154 V176" />
       <Edge id={id} d="M525 228 V256" />
       <Edge id={id} d="M525 308 V334" />
-      <Edge id={id} d="M338 285 H414" />
-      <Edge id={id} d="M338 318 H372 V363 H414" />
+      <Edge id={id} d="M326 285 H414" />
+      <Edge id={id} d="M326 318 H360 V363 H414" />
 
       <Node x={16} y={186} w={110} h={46} kind="actor" label="Users" />
-      <Node x={166} y={96} w={172} h={58} label="Next.js frontend" sub={["App Router"]} />
-      <Node x={166} y={262} w={172} h={74} label="Rewrites" sub={["/grafana-dashboard", "/prometheus-dashboard"]} />
+      <Node x={166} y={96} w={160} h={58} label="Next.js frontend" sub={["App Router"]} />
+      <Node x={166} y={262} w={160} h={74} label="Rewrites" sub={["/grafana-dashboard", "/prometheus-dashboard"]} />
       <Node x={420} y={96} w={210} h={58} focal label="Go API" sub={["chi · pgx · go-oidc"]} />
       <Node x={420} y={182} w={210} h={46} label="/metrics" />
       <Node x={420} y={262} w={210} h={46} label="Prometheus" />
       <Node x={420} y={340} w={210} h={46} label="Grafana" />
-      <Node x={696} y={96} w={160} h={58} label="Auth" sub={["OIDC, JWKS"]} />
-      <Node x={696} y={196} w={160} h={58} kind="store" label="Postgres" sub={["slots, reservations"]} />
+      <Node x={700} y={96} w={156} h={58} label="Auth" sub={["OIDC, JWKS"]} />
+      <Node x={700} y={196} w={156} h={58} kind="store" label="Postgres" sub={["slots, reservations"]} />
 
       <EdgeLabel x={79} y={162} anchor="start">HTTPS</EdgeLabel>
       <EdgeLabel x={79} y={272} anchor="start">dashboards</EdgeLabel>
-      <EdgeLabel x={379} y={116}>Bearer JWT</EdgeLabel>
+      <EdgeLabel x={375} y={116}>Bearer JWT</EdgeLabel>
       <EdgeLabel x={514} y={34}>supabase-js auth</EdgeLabel>
-      <EdgeLabel x={660} y={116}>JWKS</EdgeLabel>
-      <EdgeLabel x={664} y={204} anchor="end">pgx</EdgeLabel>
+      <EdgeLabel x={667} y={116}>JWKS</EdgeLabel>
+      <EdgeLabel x={672} y={217}>pgx</EdgeLabel>
       <EdgeLabel x={533} y={248} anchor="start">scrapes</EdgeLabel>
-      <EdgeLabel x={376} y={277}>proxy</EdgeLabel>
-      <EdgeLabel x={380} y={355} anchor="start">proxy</EdgeLabel>
+      <EdgeLabel x={370} y={277}>proxy</EdgeLabel>
+      <EdgeLabel x={366} y={355} anchor="start">proxy</EdgeLabel>
     </DiagramSvg>
   );
 }
