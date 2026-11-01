@@ -1,11 +1,11 @@
 import type { Product } from "@/types/products";
 import { AIIncidentAssistantContent } from "@/components/project-content/AIIncidentAssistantContent";
 import { IBSchedulingContent } from "@/components/project-content/IBSchedulingContent";
-import { StudifexContent } from "@/components/project-content/StudifexContent";
+import { AIMarkingContent } from "@/components/project-content/AIMarkingContent";
 import {
   AIIncidentBanner,
   IBSchedulingBanner,
-  StudifexBanner,
+  AIMarkingBanner,
 } from "@/components/banners/ProjectBanners";
 const ibSchedulingHome = "/images/ib-scheduling-home.png";
 const ibSchedulingArch = "/images/ib-scheduling-architecture.png";
@@ -18,10 +18,10 @@ export const products: Product[] = [
   {
     // Not publicly launched, so there is no live link and no screenshots.
     href: "",
-    title: "Studifex: AI Marking for Handwritten VCE Maths",
+    title: "EdTech AI Platform: AI Marking for Handwritten VCE Maths",
     description:
       "A study platform for VCE students that reads photos of handwritten maths working, retrieves the official marking guide and marks it step by step. I built the Next.js portals, the Python marking service and the AWS infrastructure behind it.",
-    Banner: StudifexBanner,
+    Banner: AIMarkingBanner,
     images: [],
     stack: [
       "Next.js",
@@ -35,8 +35,8 @@ export const products: Product[] = [
       "AWS EC2",
       "Terraform",
     ],
-    slug: "studifex",
-    content: <StudifexContent />,
+    slug: "ai-marking",
+    content: <AIMarkingContent />,
   },
   {
     href: "https://ai-incident-assistant.vercel.app/",

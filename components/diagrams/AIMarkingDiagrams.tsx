@@ -2,12 +2,12 @@ import { DiagramFigure, DiagramSvg, Edge, EdgeLabel, Group, Node, StackedFlow } 
 
 /* ------------------------------------------------------------ architecture */
 
-const ARCH_TITLE = "Studifex architecture";
+const ARCH_TITLE = "EdTech AI platform architecture";
 const ARCH_DESC =
   "The browser talks only to the Next.js app on Vercel, which serves the marketing site and the student and admin portals and reads Supabase under row level security. The Next.js app calls the Python service, built with FastAPI and LangGraph and running on AWS EC2 in Sydney, with a service token. The Python service uses Supabase and Pinecone for data, calls Mathpix, Bedrock Claude and Fireworks, and sends logs, traces and errors to Axiom, Langfuse and Sentry.";
 
 function ArchitectureWide() {
-  const id = "dg-stx-arch-w";
+  const id = "dg-aim-arch-w";
   return (
     <DiagramSvg id={id} width={880} height={480} title={ARCH_TITLE} description={ARCH_DESC}>
       <Group x={664} y={40} w={204} h={158} label="Data" />
@@ -41,7 +41,7 @@ function ArchitectureWide() {
 function ArchitectureNarrow() {
   return (
     <StackedFlow
-      id="dg-stx-arch-n"
+      id="dg-aim-arch-n"
       title={ARCH_TITLE}
       description={ARCH_DESC}
       rows={[
@@ -78,7 +78,7 @@ function ArchitectureNarrow() {
   );
 }
 
-export function StudifexArchitectureDiagram() {
+export function AIMarkingArchitectureDiagram() {
   return (
     <DiagramFigure
       wide={<ArchitectureWide />}
@@ -95,7 +95,7 @@ const MARK_DESC =
   "A photo of handwritten working passes a quality gate, Mathpix reads the handwriting into LaTeX, the LaTeX is cleaned up, and the working is split into parts and steps. The marking guide is then retrieved, Bedrock Claude marks each criterion against it, a confidence check runs, and the marks and audit trail are saved. If no model could mark the answer, it is held for review instead.";
 
 function MarkingWide() {
-  const id = "dg-stx-mark-w";
+  const id = "dg-aim-mark-w";
   const row1 = [194, 364, 534, 704];
   return (
     <DiagramSvg id={id} width={880} height={400} title={MARK_TITLE} description={MARK_DESC}>
@@ -132,7 +132,7 @@ function MarkingWide() {
 function MarkingNarrow() {
   return (
     <StackedFlow
-      id="dg-stx-mark-n"
+      id="dg-aim-mark-n"
       title={MARK_TITLE}
       description={MARK_DESC}
       rows={[
@@ -156,7 +156,7 @@ function MarkingNarrow() {
   );
 }
 
-export function StudifexMarkingDiagram() {
+export function AIMarkingFlowDiagram() {
   return (
     <DiagramFigure
       wide={<MarkingWide />}
@@ -173,7 +173,7 @@ const RET_DESC =
   "The question and the student's steps are filtered to this question's certified rubric and solution content. Dense and sparse searches run in parallel and are merged with reciprocal rank fusion, reranked, and hydrated with full text from Supabase by chunk id. A separate SQL lookup adds every rubric criterion for the question, and both feed the context for the judge.";
 
 function RetrievalWide() {
-  const id = "dg-stx-ret-w";
+  const id = "dg-aim-ret-w";
   return (
     <DiagramSvg id={id} width={880} height={300} title={RET_TITLE} description={RET_DESC}>
       <Edge id={id} d="M152 110 H170" strong />
@@ -204,7 +204,7 @@ function RetrievalWide() {
 function RetrievalNarrow() {
   return (
     <StackedFlow
-      id="dg-stx-ret-n"
+      id="dg-aim-ret-n"
       title={RET_TITLE}
       description={RET_DESC}
       rows={[
@@ -230,7 +230,7 @@ function RetrievalNarrow() {
   );
 }
 
-export function StudifexRetrievalDiagram() {
+export function AIMarkingRetrievalDiagram() {
   return (
     <DiagramFigure
       wide={<RetrievalWide />}

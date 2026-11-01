@@ -66,7 +66,7 @@ export default async function Home() {
             </p>
             <p>
               Alongside those roles I founded Webifex Labs and have delivered 20+ production applications through it.
-              Three builds are written up below: Studifex, which I built through Webifex Labs, and two of my own
+              Three builds are written up below: an EdTech AI platform, which I built through Webifex Labs, and two of my own
               projects.
             </p>
           </div>

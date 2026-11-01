@@ -1,22 +1,22 @@
 import React from "react";
 import {
-  StudifexArchitectureDiagram,
-  StudifexMarkingDiagram,
-  StudifexRetrievalDiagram,
-} from "@/components/diagrams/StudifexDiagrams";
+  AIMarkingArchitectureDiagram,
+  AIMarkingFlowDiagram,
+  AIMarkingRetrievalDiagram,
+} from "@/components/diagrams/AIMarkingDiagrams";
 import { DataTable } from "@/components/data/DataTable";
-import { StudifexTimeoutChart } from "@/components/data/StudifexCharts";
+import { AIMarkingTimeoutChart } from "@/components/data/AIMarkingCharts";
 
 /**
- * Case study: Studifex (AI marking for handwritten VCE maths).
+ * Case study: EdTech AI platform (AI marking for handwritten VCE maths).
  */
-export function StudifexContent() {
+export function AIMarkingContent() {
   return (
     <div className="space-y-8 md:space-y-10">
       <section>
         <h2>What it is</h2>
         <p>
-          Studifex is a study platform for Victorian VCE students. It has a question bank built from past exam papers,
+          The platform is built for Victorian VCE students. It has a question bank built from past exam papers,
           practice and timed exam modes, and marking for short and structured answers. For maths, a student photographs
           their handwritten working; the system reads it, compares it step by step with the official marking guide, and
           returns marks with feedback. A coach then explains where marks were lost.
@@ -50,7 +50,7 @@ export function StudifexContent() {
             configuration change rather than a rewrite. That mattered, because both changed more than once.
           </li>
         </ul>
-        <StudifexArchitectureDiagram />
+        <AIMarkingArchitectureDiagram />
         <DataTable
           caption="The stack, layer by layer"
           stackBelow="sm"
@@ -105,7 +105,7 @@ export function StudifexContent() {
           the next one, and every call to an outside service inside it has a time limit. The judge marks against specific criteria retrieved from the official
           marking guide, so every mark can be traced back to the line of the guide it came from.
         </p>
-        <StudifexMarkingDiagram />
+        <AIMarkingFlowDiagram />
         <p>
           The judge is Claude on AWS Bedrock and runs on every grounded mark: Sonnet first, Haiku if that fails, and a
           stronger escalation pass when the result looks inconsistent or the question is hard. It returns its answer
@@ -128,7 +128,7 @@ export function StudifexContent() {
           falling back to Cohere Rerank 3.5), and loads the full text from Supabase by chunk id. A separate SQL lookup
           then adds every rubric criterion for that question, so nothing the examiners would check is left out.
         </p>
-        <StudifexRetrievalDiagram />
+        <AIMarkingRetrievalDiagram />
         <p>
           I looked at Bedrock Knowledge Bases as a managed alternative when the judge moved to Bedrock. It is built for
           general document Q&amp;A, it cannot express the &quot;every criterion for this question&quot; lookup, and
@@ -284,7 +284,7 @@ export function StudifexContent() {
         <h3>Serverless models now, self-hosting later</h3>
         <p>
           After the OCR incident it was tempting to self-host a model on Modal or Baseten. I wrote up the numbers: at
-          Studifex&apos;s volume, serverless model APIs were far cheaper than keeping a GPU warm, and scaling a GPU to
+          the platform&apos;s volume, serverless model APIs were far cheaper than keeping a GPU warm, and scaling a GPU to
           zero brings back the cold starts that caused the incident. Self-hosting is deferred until volume justifies
           it. Any future fine-tuning is limited to answers a human has verified, because training on the model&apos;s
           own past marks would teach it to repeat its mistakes.
@@ -311,7 +311,7 @@ export function StudifexContent() {
           inside it. A slow OCR provider now fails inside its own 35 seconds and leaves the outer layers time to
           report what happened.
         </p>
-        <StudifexTimeoutChart />
+        <AIMarkingTimeoutChart />
         <p>
           Tests assert that order and that a hanging provider fails fast instead of eating the budget. OCR now logs
           each sub-stage, so a hang is visible even when the request times out, and error messages show a reference id

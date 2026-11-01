@@ -68,7 +68,7 @@ function BannerFrame({
   );
 }
 
-/* ---------- Studifex: lines of handwritten working, read and marked ---------- */
+/* ---------- AI marking: lines of handwritten working, read and marked ---------- */
 
 const WORK_ROWS = 9;
 const WORK_Y0 = 156;
@@ -119,13 +119,13 @@ const WORK_LINES = Array.from({ length: WORK_ROWS }, (_, row) => {
 });
 
 /**
- * Studifex banner: ruled paper with lines of handwritten working, a margin rule,
+ * AI marking banner: ruled paper with lines of handwritten working, a margin rule,
  * and ticks in the margin where lines have been read and marked. The line being
  * read is cobalt.
  */
-export function StudifexBanner({ className }: { className?: string }) {
+export function AIMarkingBanner({ className }: { className?: string }) {
   return (
-    <BannerFrame id="banner-stx" numeral="No. 01" tintAt={{ cx: "0.2", cy: "0.85" }} className={className}>
+    <BannerFrame id="banner-aim" numeral="No. 01" tintAt={{ cx: "0.2", cy: "0.85" }} className={className}>
       <g fill="none" strokeLinecap="round" strokeLinejoin="round">
         {WORK_LINES.map((line) => (
           <line

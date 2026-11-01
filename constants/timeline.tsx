@@ -73,7 +73,7 @@ export const timeline: TimelineEntry[] = [
     title: "Founder & Lead Engineer (Part-time / Freelance)",
     date: "Aug 2022 - Present",
     description:
-      "Client web applications and AI features, built with a development team alongside full-time roles, plus the Studifex EdTech product.",
+      "Client web applications and AI features, built with a development team alongside full-time roles, plus an EdTech AI platform.",
     responsibilities: [
       "Led a development team delivering 20+ production web applications for clients in pharmaceutical, education and non-profit sectors, owning architecture, client scoping and delivery using Next.js, TypeScript and React.",
       "Built full-stack e-commerce platforms with Stripe/PayPal integrations, authentication systems and PostgreSQL/MongoDB backends supporting real-time inventory management.",
@@ -81,8 +81,8 @@ export const timeline: TimelineEntry[] = [
     ],
     subsections: [
       {
-        title: "Studifex EdTech SaaS",
-        href: "/projects/studifex",
+        title: "EdTech AI Platform",
+        href: "/projects/ai-marking",
         date: "Mar 2026 - Jun 2026",
         note: "Built through Webifex Labs",
         items: [

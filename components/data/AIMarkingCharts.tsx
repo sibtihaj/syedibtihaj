@@ -49,10 +49,10 @@ const DESCRIPTION =
   "had a limit of its own. After the fix, each layer fits inside the next: the primary OCR call 35 seconds, the " +
   "fallback chain 40, the OCR step 60, the service 100, Vercel 120 and the browser 130.";
 
-export function StudifexTimeoutChart() {
+export function AIMarkingTimeoutChart() {
   return (
     <BarChartFigure
-      id="ch-stx-timeouts"
+      id="ch-aim-timeouts"
       title="Timeout limits on the photo marking path, before and after the fix"
       description={DESCRIPTION}
       max={130}

@@ -62,10 +62,10 @@ export default function AboutPage() {
             Webifex Labs is where I practise end-to-end ownership beyond day-to-day support: drawing boundaries
             between services, wiring integrations, and making systems observable enough to operate. Most recently I
             built{" "}
-            <Link href="/projects/studifex" className="ink-link">
-              Studifex
+            <Link href="/projects/ai-marking" className="ink-link">
+              an EdTech AI platform
             </Link>{" "}
-            there, an EdTech product that marks students&apos; handwritten maths
+            there, which marks students&apos; handwritten maths
             working against the official marking guide.{" "}
             <Link href="/projects/ai-incident-assistant" className="ink-link">
               AI Incident Assistant

@@ -43,7 +43,7 @@ type ToolboxItem =
   | { label: string; kind: "text" };
 
 /**
- * Advanced surfaces from HashiCorp/AWS day work plus Cruvio and Studifex builds.
+ * Advanced surfaces from HashiCorp/AWS day work plus the Cruvio and EdTech AI platform builds.
  * Intentionally omits commodity labels (Git, Tailwind, generic Node).
  */
 const toolboxGroups: { name: string; items: ToolboxItem[] }[] = [
@@ -63,7 +63,7 @@ const toolboxGroups: { name: string; items: ToolboxItem[] }[] = [
     ],
   },
   {
-    name: "Cruvio and Studifex systems",
+    name: "Cruvio and EdTech AI platform systems",
     items: [
       { label: "Go", kind: "icon", icon: siGo },
       { label: "Python", kind: "icon", icon: siPython },
@@ -116,7 +116,7 @@ const focusAreas = [
   },
   {
     title: "Product systems",
-    body: "Cruvio and Studifex are where the harder build work shows up: Go governance APIs, River workers, FastAPI RAG sidecars, Pinecone retrieval, Supabase RLS, and AWS-backed object storage.",
+    body: "Cruvio and the EdTech AI platform are where the harder build work shows up: Go governance APIs, River workers, FastAPI RAG sidecars, Pinecone retrieval, Supabase RLS, and AWS-backed object storage.",
   },
   {
     title: "How systems fail",
@@ -151,7 +151,7 @@ export const TechStack = () => {
       <p className="max-w-measure text-[1.0625rem] leading-relaxed text-ink-body">
         At HashiCorp most of my week was self-managed Terraform Enterprise, Consul and Nomad across AWS, Azure and
         GCP; at CodeRabbit it is AI code review and enterprise self-hosted installs. The harder product engineering
-        shows up in Cruvio (governance APIs, connectors, document pipelines) and Studifex (RAG, grading
+        shows up in Cruvio (governance APIs, connectors, document pipelines) and the EdTech AI platform (RAG, grading
         graphs, vector retrieval). The names below are the surfaces those systems actually touch, not a beginner
         checklist. Detail lives in{" "}
         <Link href="/projects" className="ink-link">
@@ -176,7 +176,7 @@ export const TechStack = () => {
       <div className="mt-16">
         <h3 className="text-[1.2rem]">Systems I build and operate with</h3>
         <p className="mt-2 max-w-measure text-[0.95rem] text-ink-muted">
-          From enterprise platform support and from shipping Cruvio and Studifex. Not every logo is a specialty, but
+          From enterprise platform support and from shipping Cruvio and the EdTech AI platform. Not every logo is a specialty, but
           none of these are filler.
         </p>
         <dl className="mt-6 divide-y divide-rule border-y border-rule">
