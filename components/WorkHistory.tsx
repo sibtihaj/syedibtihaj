@@ -1,5 +1,16 @@
 import { timeline } from "@/constants/timeline";
 
+const Bullets = ({ items }: { items: string[] }) => (
+  <ul className="mt-5 max-w-[46rem] space-y-3">
+    {items.map((item) => (
+      <li key={item} className="relative pl-5 text-[0.95rem] leading-relaxed text-ink-body">
+        <span aria-hidden className="absolute left-0 top-[0.7em] h-px w-2.5 bg-cobalt" />
+        {item}
+      </li>
+    ))}
+  </ul>
+);
+
 /** Experience section of the resume, read straight from constants/timeline.tsx. */
 export const WorkHistory = () => {
   return (
@@ -13,15 +24,17 @@ export const WorkHistory = () => {
           <div>
             <h3 className="text-[1.35rem] leading-snug">{item.company}</h3>
             <p className="mt-1 text-[0.95rem] text-cobalt">{item.title}</p>
-            <p className="mt-4 max-w-measure leading-relaxed text-ink-body">{item.description}</p>
-            <ul className="mt-5 max-w-[46rem] space-y-3">
-              {item.responsibilities.map((resp) => (
-                <li key={resp} className="relative pl-5 text-[0.95rem] leading-relaxed text-ink-body">
-                  <span aria-hidden className="absolute left-0 top-[0.7em] h-px w-2.5 bg-cobalt" />
-                  {resp}
-                </li>
-              ))}
-            </ul>
+            <Bullets items={item.responsibilities} />
+            {item.subsections?.map((sub) => (
+              <div key={sub.title} className="mt-8 border-l border-cobalt/30 pl-5">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                  <h4 className="font-heading text-[1.1rem] text-ink">{sub.title}</h4>
+                  {sub.date ? <p className="text-sm tabular-nums text-ink-muted">{sub.date}</p> : null}
+                </div>
+                {sub.note ? <p className="mt-1 text-sm italic text-ink-muted">{sub.note}</p> : null}
+                <Bullets items={sub.items} />
+              </div>
+            ))}
           </div>
         </li>
       ))}
