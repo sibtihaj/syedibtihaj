@@ -167,15 +167,15 @@ export function AIIncidentAssistantContent() {
   return (
     <div className="space-y-16">
       <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">What it is</Heading>
+        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">What it is</Heading>
         <div className="space-y-4">
-          <Paragraph className="text-lg leading-relaxed text-zinc-600">
+          <Paragraph className="text-lg leading-relaxed text-ink-body">
             AI Incident Assistant is a production-style incident response
             playground. Operators sign in, chat with an LLM, create/update Sev1
             incidents, load templates (CAN, Sev1 canvas, RCA), and generate
             document outputs from structured incident data.
           </Paragraph>
-          <Paragraph className="text-lg leading-relaxed text-zinc-600">
+          <Paragraph className="text-lg leading-relaxed text-ink-body">
             The build demonstrates gateway-routed models, MCP-backed tools,
             Supabase-backed auth/sessions, rolling per-user chat quotas, and
             hybrid observability (gateway-level metrics plus trace-level tooling).
@@ -184,36 +184,36 @@ export function AIIncidentAssistantContent() {
       </section>
 
       <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">Capability Matrix</Heading>
-        <div className="overflow-hidden rounded-2xl border border-blue-100 bg-white/50 shadow-sm backdrop-blur-sm">
-          <table className="min-w-full divide-y divide-blue-50 text-sm">
-            <thead className="bg-gradient-to-r from-blue-50/50 to-sky-50/50 text-left text-blue-900">
+        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">Capability Matrix</Heading>
+        <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm">
+          <table className="min-w-full divide-y divide-rule text-sm">
+            <thead className="bg-cobalt-wash/70 text-left text-ink">
               <tr>
-                <th className="px-6 py-4 font-medium uppercase tracking-widest text-[11px]">Area</th>
-                <th className="px-6 py-4 font-medium uppercase tracking-widest text-[11px]">Behavior</th>
+                <th className="px-6 py-4 font-normal text-[0.8125rem]">Area</th>
+                <th className="px-6 py-4 font-normal text-[0.8125rem]">Behavior</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100 text-zinc-600">
-              <tr className="hover:bg-blue-50/20 transition-colors">
-                <td className="px-6 py-4 font-medium text-zinc-900">Chat Orchestration</td>
+            <tbody className="divide-y divide-rule text-ink-body">
+              <tr className="hover:bg-cobalt-wash/30 transition-colors">
+                <td className="px-6 py-4 font-medium text-ink">Chat Orchestration</td>
                 <td className="px-6 py-4 leading-relaxed">
                   Route handler manages model selection, tool binding, token trimming, and persistent session synchronization.
                 </td>
               </tr>
-              <tr className="hover:bg-blue-50/20 transition-colors">
-                <td className="px-6 py-4 font-medium text-zinc-900">Authentication</td>
+              <tr className="hover:bg-cobalt-wash/30 transition-colors">
+                <td className="px-6 py-4 font-medium text-ink">Authentication</td>
                 <td className="px-6 py-4 leading-relaxed">
                   Supabase Auth + middleware edge guards, fronted by Cloudflare Turnstile protection.
                 </td>
               </tr>
-              <tr className="hover:bg-blue-50/20 transition-colors">
-                <td className="px-6 py-4 font-medium text-zinc-900">Session Memory</td>
+              <tr className="hover:bg-cobalt-wash/30 transition-colors">
+                <td className="px-6 py-4 font-medium text-ink">Session Memory</td>
                 <td className="px-6 py-4 leading-relaxed">
                   Postgres JSONB envelope stores raw messages alongside a structured memory summary and key facts, re-injected on every turn.
                 </td>
               </tr>
-              <tr className="hover:bg-blue-50/20 transition-colors">
-                <td className="px-6 py-4 font-medium text-zinc-900">Abuse Controls</td>
+              <tr className="hover:bg-cobalt-wash/30 transition-colors">
+                <td className="px-6 py-4 font-medium text-ink">Abuse Controls</td>
                 <td className="px-6 py-4 leading-relaxed">
                   Rolling per-user window via Supabase RPC directly enforced on the chat API.
                 </td>
@@ -224,7 +224,7 @@ export function AIIncidentAssistantContent() {
       </section>
 
       <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">MCP Tool Surface</Heading>
+        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">MCP Tool Surface</Heading>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { title: 'Incident', items: ['create_incident', 'get_incident', 'update_incident', 'list_incidents'] },
@@ -232,85 +232,85 @@ export function AIIncidentAssistantContent() {
             { title: 'Documents', items: ['generate_can_document', 'generate_rca_document'] },
             { title: 'Meta', items: ['list_tools'] }
           ].map((group) => (
-            <div key={group.title} className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm hover:border-blue-200 hover:shadow-md transition-all">
-              <div className="mb-4 text-xs font-medium uppercase tracking-widest text-blue-600">{group.title}</div>
+            <div key={group.title} className="rounded-2xl border border-rule bg-white p-6 shadow-sm hover:border-cobalt/30 hover:shadow-md transition-all">
+              <div className="mb-4 font-heading text-base italic text-cobalt">{group.title}</div>
               <ul className="space-y-2">
                 {group.items.map((item) => (
-                  <li key={item} className="font-mono text-[11px] text-zinc-600 bg-zinc-50 px-2 py-1 rounded inline-block">{item}</li>
+                  <li key={item} className="font-mono text-[11px] text-ink-body bg-paper-deep/60 px-2 py-1 rounded inline-block">{item}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <Paragraph className="text-sm text-zinc-500 italic">
+        <Paragraph className="text-sm text-ink-muted italic">
           Incident/template storage is local JSON in the MCP server data directory with validation, safer writes, and bounded runtime.
         </Paragraph>
       </section>
 
-      <div className="my-24 h-px w-full bg-gradient-to-r from-transparent via-zinc-200 to-transparent" />
+      <div className="my-24 h-px w-full bg-gradient-to-r from-transparent via-rule to-transparent" />
 
       {/* Architecture Diagrams Section */}
       <section className="space-y-16">
         <div className="space-y-4 text-center max-w-2xl mx-auto">
-          <Heading as="h2" className="text-2xl md:text-3xl font-normal text-zinc-900 tracking-tight">Architecture & Flow</Heading>
-          <Paragraph className="text-lg text-zinc-500">
+          <Heading as="h2" className="text-2xl md:text-3xl font-normal text-ink tracking-tight">Architecture & Flow</Heading>
+          <Paragraph className="text-lg text-ink-muted">
             A high-fidelity breakdown of how the AI Incident Assistant orchestrates UI, model generation, and tool execution.
           </Paragraph>
         </div>
 
         <div className="space-y-24">
           <div className="group relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-blue-50/50 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-cobalt-wash/60 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
             <div className="relative space-y-6">
               <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-blue-600" />
-                <h3 className="font-mono text-xs uppercase tracking-widest text-blue-600">01 / Pipeline</h3>
+                <div className="h-px w-8 bg-cobalt" />
+                <h3 className="font-heading text-base italic text-cobalt">01 / Pipeline</h3>
               </div>
               <div className="space-y-2">
-                <Heading as="h3" className="text-2xl font-normal text-zinc-900">Optimized Request Pipeline</Heading>
-                <Paragraph className="text-zinc-500 max-w-3xl">
+                <Heading as="h3" className="text-2xl font-normal text-ink">Optimized Request Pipeline</Heading>
+                <Paragraph className="text-ink-muted max-w-3xl">
                   Thin system prompt, LangChain-trimmed history, persisted session memory folded into the system string, then branch into model-only or tool-enabled execution.
                 </Paragraph>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 backdrop-blur-xl shadow-sm ring-1 ring-black/5">
+              <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm ring-1 ring-black/5">
                 <MermaidBlock chart={DIAGRAMS.pipeline} />
               </div>
             </div>
           </div>
 
           <div className="group relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-sky-50/50 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-cobalt-wash/60 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
             <div className="relative space-y-6">
               <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-sky-600" />
-                <h3 className="font-mono text-xs uppercase tracking-widest text-sky-600">02 / Retention</h3>
+                <div className="h-px w-8 bg-cobalt" />
+                <h3 className="font-heading text-base italic text-cobalt">02 / Retention</h3>
               </div>
               <div className="space-y-2">
-                <Heading as="h3" className="text-2xl font-normal text-zinc-900">Context Retention Flow</Heading>
-                <Paragraph className="text-zinc-500 max-w-3xl">
+                <Heading as="h3" className="text-2xl font-normal text-ink">Context Retention Flow</Heading>
+                <Paragraph className="text-ink-muted max-w-3xl">
                   From the browser through load/merge of the envelope, optional CAN guardrails, token trimming, and generation, with memory written back under the same row the user already owns via RLS.
                 </Paragraph>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 backdrop-blur-xl shadow-sm ring-1 ring-black/5">
+              <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm ring-1 ring-black/5">
                 <MermaidBlock chart={DIAGRAMS.retention} />
               </div>
             </div>
           </div>
 
           <div className="group relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-indigo-50/50 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-cobalt-wash/60 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
             <div className="relative space-y-6">
               <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-indigo-600" />
-                <h3 className="font-mono text-xs uppercase tracking-widest text-indigo-600">03 / Execution</h3>
+                <div className="h-px w-8 bg-cobalt" />
+                <h3 className="font-heading text-base italic text-cobalt">03 / Execution</h3>
               </div>
               <div className="space-y-2">
-                <Heading as="h3" className="text-2xl font-normal text-zinc-900">End-to-End Runtime</Heading>
-                <Paragraph className="text-zinc-500 max-w-3xl">
+                <Heading as="h3" className="text-2xl font-normal text-ink">End-to-End Runtime</Heading>
+                <Paragraph className="text-ink-muted max-w-3xl">
                   Request execution from user submit through API orchestration, decision gates, optional MCP calls, and response delivery.
                 </Paragraph>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 backdrop-blur-xl shadow-sm ring-1 ring-black/5">
+              <div className="overflow-hidden rounded-2xl border border-rule bg-white/50 shadow-sm ring-1 ring-black/5">
                 <MermaidBlock chart={DIAGRAMS.runtime} />
               </div>
             </div>
@@ -318,26 +318,26 @@ export function AIIncidentAssistantContent() {
         </div>
       </section>
 
-      <div className="my-24 h-px w-full bg-gradient-to-r from-transparent via-zinc-200 to-transparent" />
+      <div className="my-24 h-px w-full bg-gradient-to-r from-transparent via-rule to-transparent" />
 
       <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-zinc-900 tracking-tight">Environment Controls</Heading>
-        <div className="grid gap-2 text-sm text-zinc-600">
-          <div className="flex items-center gap-4 rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3">
-            <span className="w-24 font-medium text-zinc-900">Models</span>
-            <code className="font-mono text-xs text-blue-600">AI_GATEWAY_MODEL, AI_GATEWAY_BASE_URL</code>
+        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">Environment Controls</Heading>
+        <div className="grid gap-2 text-sm text-ink-body">
+          <div className="flex items-center gap-4 rounded-xl border border-rule bg-paper-deep/60 px-4 py-3">
+            <span className="w-24 font-medium text-ink">Models</span>
+            <code className="font-mono text-xs text-cobalt">AI_GATEWAY_MODEL, AI_GATEWAY_BASE_URL</code>
           </div>
-          <div className="flex items-center gap-4 rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3">
-            <span className="w-24 font-medium text-zinc-900">Supabase</span>
-            <code className="font-mono text-xs text-blue-600">NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
+          <div className="flex items-center gap-4 rounded-xl border border-rule bg-paper-deep/60 px-4 py-3">
+            <span className="w-24 font-medium text-ink">Supabase</span>
+            <code className="font-mono text-xs text-cobalt">NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
           </div>
-          <div className="flex items-center gap-4 rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3">
-            <span className="w-24 font-medium text-zinc-900">Quota</span>
-            <code className="font-mono text-xs text-blue-600">CHAT_QUOTA_MAX, CHAT_QUOTA_WINDOW_HOURS</code>
+          <div className="flex items-center gap-4 rounded-xl border border-rule bg-paper-deep/60 px-4 py-3">
+            <span className="w-24 font-medium text-ink">Quota</span>
+            <code className="font-mono text-xs text-cobalt">CHAT_QUOTA_MAX, CHAT_QUOTA_WINDOW_HOURS</code>
           </div>
-          <div className="flex items-center gap-4 rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3">
-            <span className="w-24 font-medium text-zinc-900">Security</span>
-            <code className="font-mono text-xs text-blue-600">TURNSTILE_SECRET_KEY, CAPTCHA_COOKIE_SECRET</code>
+          <div className="flex items-center gap-4 rounded-xl border border-rule bg-paper-deep/60 px-4 py-3">
+            <span className="w-24 font-medium text-ink">Security</span>
+            <code className="font-mono text-xs text-cobalt">TURNSTILE_SECRET_KEY, CAPTCHA_COOKIE_SECRET</code>
           </div>
         </div>
       </section>

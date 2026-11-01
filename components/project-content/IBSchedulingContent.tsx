@@ -154,10 +154,10 @@ export function IBSchedulingContent() {
       </section>
 
       <section className="not-prose">
-        <h2 className="mb-4 text-xl font-normal text-zinc-900">
+        <h2 className="mb-4 text-xl font-normal text-ink">
           System diagram
         </h2>
-        <p className="mb-4 text-base leading-relaxed text-zinc-600">
+        <p className="mb-4 text-base leading-relaxed text-ink-body">
           How the browser, Next.js, Supabase (Auth + Postgres), and the Go API
           exchange requests. Observability shows metrics scrape/query
           (Prometheus/Grafana), not centralized logs.
@@ -169,10 +169,10 @@ export function IBSchedulingContent() {
       </section>
 
       <section className="not-prose">
-        <h2 className="mb-4 text-xl font-normal text-zinc-900">
+        <h2 className="mb-4 text-xl font-normal text-ink">
           Deployment diagram
         </h2>
-        <p className="mb-4 text-base leading-relaxed text-zinc-600">
+        <p className="mb-4 text-base leading-relaxed text-ink-body">
           How Supabase, Vercel, and Railway services connect in production.
         </p>
         <MermaidBlock
@@ -195,7 +195,7 @@ export function IBSchedulingContent() {
               href="https://grafana-production-53f7.up.railway.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Grafana (Railway)
             </a>{" "}
@@ -206,7 +206,7 @@ export function IBSchedulingContent() {
               href="https://railway-prometheus-production-07f7.up.railway.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Prometheus (Railway)
             </a>{" "}
@@ -217,7 +217,7 @@ export function IBSchedulingContent() {
               href="https://go-booking-api-production.up.railway.app/metrics"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Go API /metrics
             </a>{" "}
@@ -253,10 +253,10 @@ export function IBSchedulingContent() {
         </aside>
 
         <figure className="not-prose mt-8">
-          <h3 className="mb-3 text-lg font-normal text-zinc-900">
+          <h3 className="mb-3 text-lg font-normal text-ink">
             Go booking API dashboard (Grafana)
           </h3>
-          <div className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-rule bg-paper-deep/60 shadow-sm">
             <Image
               src="/images/grafana.png"
               alt="Grafana dashboard showing Go booking API metrics including goroutines and runtime signals"
@@ -267,13 +267,13 @@ export function IBSchedulingContent() {
               priority={false}
             />
           </div>
-          <figcaption className="mt-3 text-sm text-zinc-500">
+          <figcaption className="mt-3 text-sm text-ink-muted">
             Snapshot of the live{" "}
             <a
               href={GRAFANA_DASHBOARD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Go booking API
             </a>{" "}
@@ -290,16 +290,16 @@ export function IBSchedulingContent() {
           <code>apps/api/cmd/server/main.go</code>. Protected handlers expect{" "}
           <code>Authorization: Bearer &lt;supabase access_token&gt;</code>.
         </p>
-        <div className="not-prose my-4 overflow-x-auto rounded-xl border border-zinc-200">
-          <table className="w-full min-w-[32rem] text-left text-sm text-zinc-700">
-            <thead className="bg-zinc-50 text-xs uppercase tracking-wide text-zinc-500">
+        <div className="not-prose my-4 overflow-x-auto rounded-xl border border-rule">
+          <table className="w-full min-w-[32rem] text-left text-sm text-ink-body">
+            <thead className="bg-paper-deep/60 text-[0.8125rem] text-ink-muted">
               <tr>
                 <th className="px-3 py-2 font-normal">Method</th>
                 <th className="px-3 py-2 font-normal">Path</th>
                 <th className="px-3 py-2 font-normal">Auth</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100">
+            <tbody className="divide-y divide-rule">
               <tr>
                 <td className="px-3 py-2 font-mono text-xs">GET</td>
                 <td className="px-3 py-2 font-mono text-xs">/health</td>
@@ -410,7 +410,7 @@ export function IBSchedulingContent() {
             href="https://github.com/sibtihaj/go-booking-system"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline-offset-4 hover:underline"
+            className="text-cobalt underline-offset-4 hover:underline"
           >
             sibtihaj/go-booking-system
           </a>
@@ -419,7 +419,7 @@ export function IBSchedulingContent() {
             href="https://go-booking-system.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline-offset-4 hover:underline"
+            className="text-cobalt underline-offset-4 hover:underline"
           >
             go-booking-system.vercel.app
           </a>{" "}
