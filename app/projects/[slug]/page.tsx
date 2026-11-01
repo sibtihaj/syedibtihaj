@@ -1,8 +1,6 @@
 import { Container } from "@/components/Container";
-import { ProjectDetailToolbar } from "@/components/ProjectDetailToolbar";
 import { SingleProduct } from "@/components/Product";
 import { products } from "@/constants/products";
-import type { Product } from "@/types/products";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -10,9 +8,13 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export function generateStaticParams() {
+  return products.filter((p) => p.slug).map((p) => ({ slug: p.slug as string }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug) as Product | undefined;
+  const product = products.find((p) => p.slug === slug);
   if (product) {
     return {
       title: product.title,
@@ -20,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
   return {
-    title: "Projects | Syed Ibtihaj",
+    title: "Projects",
     description: "Projects and case studies by Syed Ibtihaj.",
   };
 }
@@ -34,7 +36,6 @@ export default async function SingleProjectPage({ params }: Props) {
   }
   return (
     <Container>
-      <ProjectDetailToolbar projectTitle={product.title} />
       <SingleProduct product={product} />
     </Container>
   );

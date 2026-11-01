@@ -1,48 +1,35 @@
-"use client";
-import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Paragraph } from "@/components/Paragraph";
-import { Products } from "@/components/Products";
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { Container } from "@/components/Container";
+import { PageIntro } from "@/components/PageIntro";
+import { ProjectList } from "@/components/ProjectList";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Case studies of web products Syed Ibtihaj built and shipped through Webifex Labs.",
+};
 
 export default function Projects() {
   return (
-    <Container className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 h-[500px] w-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative pt-6 lg:pt-14"
+    <Container>
+      <PageIntro
+        label="Projects"
+        title={
+          <>
+            Two builds, written up as <span className="ink-text italic">case studies</span>.
+          </>
+        }
       >
-        <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-8 bg-blue-500/30" />
-          <span className="text-emerald-700 font-mono text-[10px] tracking-[0.3em] uppercase font-medium">
-            Curated Work
-          </span>
-        </div>
-        
-        <Heading className="text-2xl md:text-3xl lg:text-4xl mb-12 font-normal leading-[1.15]">
-          Some of my <span className="text-brand-gradient italic">Projects</span>
-        </Heading>
-
-        <Paragraph className="max-w-2xl text-zinc-500 mb-12 text-base leading-relaxed">
-          I&apos;ve started publishing more builds on{" "}
-          <Link
-            href="https://github.com/sibtihaj"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-700 underline-offset-4 hover:underline"
-          >
+        <p>
+          Each write-up walks through the architecture and how the pieces fit together. I am publishing more of
+          the code on{" "}
+          <Link href="https://github.com/sibtihaj" target="_blank" rel="noopener noreferrer" className="ink-link">
             GitHub
           </Link>{" "}
-          and using this page as the narrative layer. Expect this section (and the repos behind it) to stay current as I keep the portfolio maintained.
-        </Paragraph>
-
-        <Products />
-      </motion.section>
+          and keep this page current as new builds ship.
+        </p>
+      </PageIntro>
+      <ProjectList headingLevel="h2" />
     </Container>
   );
 }
