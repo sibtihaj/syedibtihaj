@@ -18,6 +18,13 @@ function validate(values: Record<Field, string>): Errors {
   return errors;
 }
 
+const ErrorText = ({ id, message }: { id: string; message?: string }) =>
+  message ? (
+    <p id={id} className="mt-2 text-sm text-destructive">
+      {message}
+    </p>
+  ) : null;
+
 const inputClass =
   "w-full rounded-xl border bg-white/80 px-4 text-base text-ink placeholder:text-ink-muted/80 transition-colors focus:border-cobalt focus:outline-none focus:ring-2 focus:ring-cobalt/20";
 
@@ -61,13 +68,6 @@ export const Contact = () => {
     "aria-describedby": errors[field] ? `${id}-${field}-error` : undefined,
   });
 
-  const ErrorText = ({ field }: { field: Field }) =>
-    errors[field] ? (
-      <p id={`${id}-${field}-error`} className="mt-2 text-sm text-destructive">
-        {errors[field]}
-      </p>
-    ) : null;
-
   return (
     <form noValidate onSubmit={handleSubmit} className="space-y-6">
       <div>
@@ -80,7 +80,7 @@ export const Contact = () => {
           className={cn(inputClass, "h-12", errors.name ? "border-destructive" : "border-ink/15")}
           {...fieldProps("name")}
         />
-        <ErrorText field="name" />
+        <ErrorText id={`${id}-name-error`} message={errors.name} />
       </div>
 
       <div>
@@ -95,7 +95,7 @@ export const Contact = () => {
           className={cn(inputClass, "h-12", errors.email ? "border-destructive" : "border-ink/15")}
           {...fieldProps("email")}
         />
-        <ErrorText field="email" />
+        <ErrorText id={`${id}-email-error`} message={errors.email} />
       </div>
 
       <div>
@@ -107,7 +107,7 @@ export const Contact = () => {
           className={cn(inputClass, "resize-y py-3", errors.message ? "border-destructive" : "border-ink/15")}
           {...fieldProps("message")}
         />
-        <ErrorText field="message" />
+        <ErrorText id={`${id}-message-error`} message={errors.message} />
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">

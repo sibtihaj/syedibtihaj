@@ -103,15 +103,13 @@ const DesktopRail = () => {
 
 const MobileBar = () => {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  // The menu belongs to the page it was opened on, so a route change closes it.
+  const [openOnPath, setOpenOnPath] = useState<string | null>(null);
+  const open = openOnPath === pathname;
+  const setOpen = (next: boolean) => setOpenOnPath(next ? pathname : null);
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-
-  // Close the menu whenever the route changes.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -121,12 +119,12 @@ const MobileBar = () => {
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setOpen(false);
+        setOpenOnPath(null);
         buttonRef.current?.focus();
       }
     };
     const closeOnDesktop = window.matchMedia("(min-width: 1024px)");
-    const onResize = () => closeOnDesktop.matches && setOpen(false);
+    const onResize = () => closeOnDesktop.matches && setOpenOnPath(null);
 
     window.addEventListener("keydown", onKey);
     closeOnDesktop.addEventListener("change", onResize);
@@ -154,7 +152,7 @@ const MobileBar = () => {
           type="button"
           aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen(!open)}
           className="flex h-11 min-w-[44px] items-center gap-2 rounded-full border border-ink/15 px-4 text-sm text-ink transition-colors hover:border-ink/30"
         >
           <span>{open ? "Close" : "Menu"}</span>
