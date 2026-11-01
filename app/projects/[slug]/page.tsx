@@ -2,11 +2,13 @@ import { Container } from "@/components/Container";
 import { SingleProduct } from "@/components/Product";
 import { products } from "@/constants/products";
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return products.filter((p) => p.slug).map((p) => ({ slug: p.slug as string }));
@@ -32,7 +34,7 @@ export default async function SingleProjectPage({ params }: Props) {
   const product = products.find((p) => p.slug === slug);
 
   if (!product) {
-    redirect("/projects");
+    notFound();
   }
   return (
     <Container>
