@@ -20,8 +20,8 @@
   --cobalt-wash: theme("colors.cobalt.wash");
   --rule: theme("colors.rule");
 
-  /* Blue-forward brand gradient: navy ink into cobalt. The light end stays above 4:1 on paper. */
-  --ink-gradient: linear-gradient(100deg, #0b2a6f 0%, #1e4fd6 55%, #2f6fe0 100%);
+  /* Blue-forward brand gradient: navy ink into cobalt. The light end is 5.5:1 on paper, so gradient text passes AA at any size. */
+  --ink-gradient: linear-gradient(100deg, #0b2a6f 0%, #1e4fd6 55%, #2557e0 100%);
 
   --ease-ink: cubic-bezier(0.22, 1, 0.36, 1);
 

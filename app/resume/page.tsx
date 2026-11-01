@@ -45,6 +45,7 @@ export default function ResumePage() {
                     className="inline-flex min-h-[44px] items-center text-ink-body transition-colors hover:text-cobalt"
                   >
                     {c.label}
+                    {c.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
                   </a>
                 ) : (
                   <span className="inline-flex min-h-[44px] items-center text-ink-muted">{c.label}</span>

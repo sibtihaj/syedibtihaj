@@ -48,7 +48,7 @@ const DesktopRail = () => {
       <Link href="/" className="group block rounded-lg" aria-label="Syed Ibtihaj, home">
         <Avatar size={80} />
         <p className="mt-5 font-heading text-[1.35rem] leading-tight text-ink">Syed Ibtihaj</p>
-        <p className="mt-1.5 text-sm leading-snug text-ink-muted">
+        <p className="mt-1.5 text-sm leading-snug text-ink-body">
           Product support engineering,
           <br />
           Terraform Enterprise
@@ -66,7 +66,7 @@ const DesktopRail = () => {
                   aria-current={active ? "page" : undefined}
                   className={cn(
                     "group relative flex items-center py-2 text-[0.95rem] transition-colors duration-200",
-                    active ? "text-ink" : "text-ink-muted hover:text-ink"
+                    active ? "text-ink" : "text-ink-body hover:text-ink"
                   )}
                 >
                   <span
@@ -90,12 +90,13 @@ const DesktopRail = () => {
             key={s.label}
             href={s.href}
             {...(s.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="block py-1 text-ink-muted transition-colors hover:text-cobalt"
+            className="block py-1 text-ink-body transition-colors hover:text-cobalt"
           >
             {s.label}
+            {s.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
           </a>
         ))}
-        <p className="pt-3 text-ink-muted">Melbourne, VIC</p>
+        <p className="pt-3 text-ink-body">Melbourne, VIC</p>
       </div>
     </div>
   );
@@ -115,6 +116,9 @@ const MobileBar = () => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // The panel covers the page: keep focus and screen readers inside it.
+    const main = document.getElementById("main");
+    if (main) main.inert = true;
     firstLinkRef.current?.focus();
 
     const onKey = (e: KeyboardEvent) => {
@@ -130,6 +134,7 @@ const MobileBar = () => {
     closeOnDesktop.addEventListener("change", onResize);
     return () => {
       document.body.style.overflow = previousOverflow;
+      if (main) main.inert = false;
       window.removeEventListener("keydown", onKey);
       closeOnDesktop.removeEventListener("change", onResize);
     };
@@ -188,7 +193,10 @@ const MobileBar = () => {
                     ref={i === 0 ? firstLinkRef : undefined}
                     href={link.href}
                     aria-current={active ? "page" : undefined}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      buttonRef.current?.focus();
+                    }}
                     className={cn(
                       "flex items-baseline justify-between py-4 font-heading text-[1.75rem] leading-none",
                       active ? "text-cobalt" : "text-ink"
@@ -208,9 +216,10 @@ const MobileBar = () => {
               key={s.label}
               href={s.href}
               {...(s.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="flex min-h-[44px] items-center text-ink-muted hover:text-cobalt"
+              className="flex min-h-[44px] items-center text-ink-body hover:text-cobalt"
             >
               {s.label}
+              {s.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
             </a>
           ))}
         </div>

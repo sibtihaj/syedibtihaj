@@ -44,6 +44,7 @@ const details: { term: string; value: React.ReactNode }[] = [
     value: (
       <a href="https://www.linkedin.com/in/ib-02" target="_blank" rel="noopener noreferrer" className="ink-link">
         linkedin.com/in/ib-02
+        <span className="sr-only"> (opens in a new tab)</span>
       </a>
     ),
   },
@@ -52,6 +53,7 @@ const details: { term: string; value: React.ReactNode }[] = [
     value: (
       <a href="https://github.com/sibtihaj" target="_blank" rel="noopener noreferrer" className="ink-link">
         github.com/sibtihaj
+        <span className="sr-only"> (opens in a new tab)</span>
       </a>
     ),
   },

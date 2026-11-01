@@ -24,7 +24,7 @@ export const InkUnderline = ({
           <linearGradient id="ink-underline" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0" stopColor="#0b2a6f" />
             <stop offset="0.55" stopColor="#1e4fd6" />
-            <stop offset="1" stopColor="#2f6fe0" />
+            <stop offset="1" stopColor="#2557e0" />
           </linearGradient>
         </defs>
         <path

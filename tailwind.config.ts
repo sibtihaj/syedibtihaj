@@ -40,7 +40,7 @@ const config: Config = {
         cobalt: {
           DEFAULT: "#1e4fd6",
           deep: "#0b2a6f",
-          bright: "#2f6fe0",
+          bright: "#2557e0",
           wash: "#e9eef8",
         },
         rule: "#dcdbd4",

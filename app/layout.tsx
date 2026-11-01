@@ -88,7 +88,7 @@ export default function RootLayout({
         <div className="relative min-h-screen lg:flex">
           <Sidebar />
 
-          <main id="main" className="min-w-0 flex-1 lg:py-3 lg:pr-3">
+          <main id="main" tabIndex={-1} className="outline-none min-w-0 flex-1 lg:py-3 lg:pr-3">
             <div className="flex min-h-[calc(100vh-4rem)] flex-col bg-paper/[0.92] lg:min-h-[calc(100vh-1.5rem)] lg:rounded-[1.75rem] lg:border lg:border-white/70 lg:shadow-[0_1px_2px_rgba(13,27,62,0.04),0_40px_80px_-48px_rgba(13,27,62,0.35)]">
               <div className="flex-1">{children}</div>
               <Footer />

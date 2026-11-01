@@ -26,7 +26,7 @@ const ErrorText = ({ id, message }: { id: string; message?: string }) =>
   ) : null;
 
 const inputClass =
-  "w-full rounded-xl border bg-white/80 px-4 text-base text-ink placeholder:text-ink-muted/80 transition-colors focus:border-cobalt focus:outline-none focus:ring-2 focus:ring-cobalt/20";
+  "w-full rounded-xl border bg-white/80 px-4 text-base text-ink placeholder:text-ink-muted/80 transition-colors focus:border-cobalt focus:outline-none focus:ring-2 focus:ring-cobalt/50";
 
 /**
  * Contact form with no backend: it validates, then opens the visitor's own
@@ -77,7 +77,7 @@ export const Contact = () => {
         <input
           type="text"
           autoComplete="name"
-          className={cn(inputClass, "h-12", errors.name ? "border-destructive" : "border-ink/15")}
+          className={cn(inputClass, "h-12", errors.name ? "border-destructive" : "border-ink/50")}
           {...fieldProps("name")}
         />
         <ErrorText id={`${id}-name-error`} message={errors.name} />
@@ -92,7 +92,7 @@ export const Contact = () => {
           autoComplete="email"
           inputMode="email"
           placeholder="you@company.com"
-          className={cn(inputClass, "h-12", errors.email ? "border-destructive" : "border-ink/15")}
+          className={cn(inputClass, "h-12", errors.email ? "border-destructive" : "border-ink/50")}
           {...fieldProps("email")}
         />
         <ErrorText id={`${id}-email-error`} message={errors.email} />
@@ -104,7 +104,7 @@ export const Contact = () => {
         </label>
         <textarea
           rows={6}
-          className={cn(inputClass, "resize-y py-3", errors.message ? "border-destructive" : "border-ink/15")}
+          className={cn(inputClass, "resize-y py-3", errors.message ? "border-destructive" : "border-ink/50")}
           {...fieldProps("message")}
         />
         <ErrorText id={`${id}-message-error`} message={errors.message} />
