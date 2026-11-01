@@ -151,6 +151,8 @@
   .prose :where(code):not(:where(pre *)) {
     @apply rounded bg-cobalt-wash px-1.5 py-0.5 font-normal;
     overflow-wrap: anywhere;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
   .prose :where(code):not(:where(pre *))::before,
   .prose :where(code):not(:where(pre *))::after {
