@@ -4,31 +4,31 @@ Personal portfolio website showcasing my background in cloud infrastructure, sup
 
 ## About Me
 
-I am a Senior Product Support Engineer focused on infrastructure and cloud systems, currently working with Terraform Enterprise and observability-driven incident response.
+I am a Senior Product Support Engineer at CodeRabbit, working on AI developer tooling and support for enterprise self-hosted deployments.
+Before that I supported self-managed Terraform Enterprise, Consul and Nomad at HashiCorp (IBM), and handled Amazon EKS escalations at AWS.
 
-Alongside my support engineering career, I have been building and shipping freelance products since 2022 through Webifex Labs, delivering production web applications and AI-powered workflows for clients.
+Alongside these roles I founded Webifex Labs in 2022 and have delivered 20+ production applications through it.
 
-- Location: Australia (remote-capable)
-- Current focus: Cloud reliability, incident tooling, and product engineering
-- Availability: Open to freelance projects
+- Location: Melbourne, VIC
 
 ## Professional Background
 
-- **HashiCorp - IBM** (`Nov 2024 - Present`)  
-  Senior Product Support Engineer (Infrastructure), focused on Terraform Enterprise support, observability, and incident response.
-- **Amazon Web Services** (`Dec 2022 - Aug 2024`)  
-  Cloud Support Engineer handling high-severity escalations across EKS, ECS, Fargate, IAM, and VPC.
-- **Amazon Web Services** (`Jan 2022 - Dec 2022`)  
-  Associate Cloud Support Engineer supporting enterprise container workloads.
+- **CodeRabbit** (`Aug 2026 - Present`)  
+  Senior Product Support Engineer, supporting the AI code review platform and enterprise self-hosted deployments.
+- **HashiCorp (IBM)** (`Nov 2024 - Jul 2026`)  
+  Senior Product Support Engineer (Enterprise & On-Premises), supporting self-managed Terraform Enterprise, Consul Enterprise and Nomad Enterprise.
 - **Webifex Labs** (`Aug 2022 - Present`)  
-  Founding Engineer delivering full-stack products and AI automation systems.
+  Founder & Lead Engineer (Part-time / Freelance), delivering client web applications and AI features.
+- **Amazon Web Services** (`Dec 2022 - Aug 2024`)  
+  Cloud Support Engineer handling high-severity Amazon EKS escalations.
+- **Amazon Web Services** (`Jan 2022 - Dec 2022`)  
+  Associate Cloud Support Engineer, mainly on EKS and ECS.
 
 ## Portfolio Highlights
 
 - Delivered 20+ production applications using Next.js, React, and TypeScript
 - Built e-commerce solutions with Stripe and PayPal integrations
 - Integrated AI workflows using OpenAI APIs and Ollama-hosted models
-- Maintained multiple active projects while working full-time in cloud support roles
 
 ## Core Skills
 
@@ -43,13 +43,13 @@ Alongside my support engineering career, I have been building and shipping freel
 
 ## Certifications
 
-- AWS Certified (Container & Networking Services)
+- AWS Certified Solutions Architect - Associate
 - Certified Kubernetes Administrator (CKA)
-- HashiCorp Terraform Associate
+- HashiCorp Certified Terraform Associate
+- HashiCorp Certified Consul Associate
 
 ## Built With
 
 - Next.js
 - Tailwind CSS
-- Framer Motion
 - MDX
