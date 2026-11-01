@@ -1,121 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { MermaidBlock } from "@/components/MermaidBlock";
+import { IBSchedulingDeploymentDiagram, IBSchedulingSystemDiagram } from "@/components/diagrams/IBSchedulingDiagrams";
 
 const GRAFANA_DASHBOARD_URL =
   "https://grafana-production-53f7.up.railway.app/d/booking-api/go-booking-api?from=now-15m&to=now&timezone=browser";
-
-/** Zoned system-architecture style: client → edge → Supabase → Go → observability (matches go-booking-system app diagram). */
-const SYSTEM_DIAGRAM = `flowchart TB
-  subgraph ZONE_CLIENT["Client layer"]
-    direction TB
-    BR["Browser UI - Next.js App Router"]
-  end
-
-  subgraph ZONE_EDGE["Edge / SSR"]
-    direction TB
-    MW["Middleware and SSR - session cookies"]
-  end
-
-  subgraph ZONE_SUPA["Supabase platform"]
-    direction TB
-    AUTH["Supabase Auth - OIDC JWKS"]
-    PG["Postgres - slots and reservations"]
-  end
-
-  subgraph ZONE_GO["Go backend"]
-    direction TB
-    API["Go API - chi, go-oidc, pgx"]
-    METRICS["Go /metrics - Prometheus exposition"]
-  end
-
-  subgraph ZONE_OBS["Observability"]
-    direction TB
-    PROM["Prometheus - scrape and store"]
-    GRAF["Grafana - PromQL dashboards"]
-  end
-
-  BR --> MW
-  BR -->|"supabase-js refresh session"| AUTH
-  BR -->|"Bearer JWT"| API
-  API -->|"go-oidc validate"| AUTH
-  API -->|"pgx SQL"| PG
-  API -->|"exports counters / gauges"| METRICS
-  METRICS -->|"scrapes /metrics"| PROM
-  PROM -->|"PromQL queries"| GRAF
-
-  style ZONE_CLIENT fill:#ecfdf5,stroke:#059669,stroke-width:2px
-  style ZONE_EDGE fill:#f0fdf4,stroke:#10b981,stroke-width:2px
-  style ZONE_SUPA fill:#ede9fe,stroke:#7c3aed,stroke-width:2px
-  style ZONE_GO fill:#ffedd5,stroke:#ea580c,stroke-width:2px
-  style ZONE_OBS fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
-
-  classDef zoneClient fill:#fff,stroke:#059669,stroke-width:1px,color:#064e3b
-  classDef zoneEdge fill:#fff,stroke:#10b981,stroke-width:1px,color:#14532d
-  classDef zoneSupa fill:#fff,stroke:#7c3aed,stroke-width:1px,color:#4c1d95
-  classDef zoneGo fill:#fff,stroke:#ea580c,stroke-width:1px,color:#9a3412
-  classDef zoneObs fill:#fff,stroke:#0284c7,stroke-width:1px,color:#0c4a6e
-
-  class BR zoneClient
-  class MW zoneEdge
-  class AUTH,PG zoneSupa
-  class API,METRICS zoneGo
-  class PROM,GRAF zoneObs`;
-
-/** Production deployment: Users → Vercel → Supabase Cloud + Railway (matches deployment-architecture diagram). */
-const DEPLOYMENT_DIAGRAM = `flowchart LR
-  subgraph USERS["Users / Browsers"]
-    direction TB
-    U[Users]
-  end
-
-  subgraph VERCEL["VERCEL"]
-    direction TB
-    FE["Next.js Frontend"]
-    RW["Vercel rewrites - /grafana-dashboard - /prometheus-dashboard"]
-  end
-
-  subgraph SUPA["SUPABASE CLOUD"]
-    direction TB
-    SAUTH["Supabase Auth"]
-    SPG["Supabase Postgres"]
-  end
-
-  subgraph RAIL["RAILWAY"]
-    direction TB
-    GOAPI["Go API Service"]
-    GMET["Go /metrics endpoint"]
-    PROM["Prometheus Container"]
-    GRAF["Grafana Container"]
-  end
-
-  U -->|"HTTPS"| FE
-  FE -->|"supabase-js auth/session"| SAUTH
-  FE -->|"Bearer JWT + API calls"| GOAPI
-  GOAPI -->|"OIDC/JWKS verification"| SAUTH
-  GOAPI -->|"SQL over pgx"| SPG
-  GOAPI -->|"exports Prometheus counters/gauges"| GMET
-  GMET -->|"scrapes /metrics"| PROM
-  PROM -->|"PromQL dashboards"| GRAF
-  FE --> RW
-  U -->|"open observability via app domain"| RW
-  RW -->|"proxy to Railway Grafana"| GRAF
-  RW -->|"proxy to Railway Prometheus"| PROM
-
-  style USERS fill:#f4f4f5,stroke:#71717a,stroke-width:2px
-  style VERCEL fill:#ecfdf5,stroke:#059669,stroke-width:2px
-  style SUPA fill:#ede9fe,stroke:#7c3aed,stroke-width:2px
-  style RAIL fill:#ffedd5,stroke:#ea580c,stroke-width:2px
-
-  classDef cUsers fill:#fff,stroke:#71717a,stroke-width:1px,color:#18181b
-  classDef cVercel fill:#fff,stroke:#059669,stroke-width:1px,color:#064e3b
-  classDef cSupa fill:#fff,stroke:#7c3aed,stroke-width:1px,color:#4c1d95
-  classDef cRail fill:#fff,stroke:#ea580c,stroke-width:1px,color:#9a3412
-
-  class U cUsers
-  class FE,RW cVercel
-  class SAUTH,SPG cSupa
-  class GOAPI,GMET,PROM,GRAF cRail`;
 
 /**
  * Case study: IB Scheduling (Go booking system) - portfolio project detail.
@@ -162,10 +50,7 @@ export function IBSchedulingContent() {
           exchange requests. Observability shows metrics scrape/query
           (Prometheus/Grafana), not centralized logs.
         </p>
-        <MermaidBlock
-          chart={SYSTEM_DIAGRAM}
-          caption="Zoned like the live app: client → edge → Supabase → Go → observability, with labeled flows (JWT, pgx, scrape, PromQL)."
-        />
+        <IBSchedulingSystemDiagram />
       </section>
 
       <section className="not-prose">
@@ -175,10 +60,7 @@ export function IBSchedulingContent() {
         <p className="mb-4 text-base leading-relaxed text-ink-body">
           How Supabase, Vercel, and Railway services connect in production.
         </p>
-        <MermaidBlock
-          chart={DEPLOYMENT_DIAGRAM}
-          caption="Production shape: Users → Vercel (Next + rewrites) ↔ Supabase Auth/Postgres; Railway runs Go API, /metrics, Prometheus, and Grafana (same layout as go-booking-system deployment diagram)."
-        />
+        <IBSchedulingDeploymentDiagram />
       </section>
 
       <section>
