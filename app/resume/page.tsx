@@ -31,9 +31,9 @@ export default function ResumePage() {
           <h1 className="rise mt-5 text-[2.2rem] leading-[1.08] sm:text-[2.6rem] lg:text-[2.9rem]" style={delay(80)}>
             Syed Ibtihaj
           </h1>
-          <p className="rise mt-3 text-lg text-ink-body" style={delay(140)}>
-            Senior Product Support Engineer, Terraform Enterprise, at{" "}
-            <span className="ink-text whitespace-nowrap font-heading text-[1.15em] italic">HashiCorp (now IBM)</span>
+          <p className="rise mt-3 text-lg leading-snug text-ink-body" style={delay(140)}>
+            Senior Product Support Engineer, Terraform Enterprise
+            <span className="ink-text mt-1 block font-heading text-[1.15em] italic">HashiCorp (now IBM)</span>
           </p>
           <ul className="rise mt-6 flex flex-wrap gap-x-6 gap-y-1 text-[0.95rem]" style={delay(200)}>
             {contacts.map((c) => (
