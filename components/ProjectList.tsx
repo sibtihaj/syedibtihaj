@@ -34,11 +34,8 @@ export const ProjectList = ({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3
               className={cn("group block md:col-span-7", flipped && "md:order-2")}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-ink/10 bg-paper shadow-[0_24px_50px_-30px_rgba(13,27,62,0.45)]">
-                {product.Cover ? (
-                  <product.Cover
-                    decorative
-                    className="absolute inset-0 h-full w-full transition-transform duration-700 ease-ink group-hover:scale-[1.02]"
-                  />
+                {product.Banner ? (
+                  <product.Banner className="absolute inset-0 h-full transition-transform duration-700 ease-ink group-hover:scale-[1.02]" />
                 ) : (
                   <Image
                     src={product.thumbnail}
@@ -52,7 +49,7 @@ export const ProjectList = ({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3
             </Link>
 
             <div className={cn("md:col-span-5", flipped && "md:order-1")}>
-              {product.Cover ? null : (
+              {product.Banner ? null : (
                 <p className="font-heading text-lg italic text-cobalt">
                   No. {String(idx + 1).padStart(2, "0")}
                 </p>

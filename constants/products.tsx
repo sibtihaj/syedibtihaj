@@ -1,7 +1,7 @@
 import type { Product } from "@/types/products";
 import { AIIncidentAssistantContent } from "@/components/project-content/AIIncidentAssistantContent";
 import { IBSchedulingContent } from "@/components/project-content/IBSchedulingContent";
-import { AIIncidentCover, IBSchedulingCover } from "@/components/covers/ProjectCovers";
+import { AIIncidentBanner, IBSchedulingBanner } from "@/components/banners/ProjectBanners";
 const ibSchedulingHome = "/images/ib-scheduling-home.png";
 const ibSchedulingArch = "/images/ib-scheduling-architecture.png";
 const ibSchedulingGrafana = "/images/grafana.png";
@@ -16,7 +16,7 @@ export const products: Product[] = [
     description:
       "Production-style incident response playground: authenticated chat, MCP incident tools, template-driven CAN/RCA generation, Supabase sessions + quotas, and gateway-routed model orchestration.",
     thumbnail: aiIncidentHome,
-    Cover: AIIncidentCover,
+    Banner: AIIncidentBanner,
     images: [aiIncidentHome, aiIncidentLogin, aiIncidentFlow],
     stack: [
       "Next.js",
@@ -37,7 +37,7 @@ export const products: Product[] = [
     description:
       "Portfolio booking engine: Supabase Auth + Postgres, Go API (chi, pgx, OIDC JWT) on Railway, Next.js on Vercel, Prometheus/Grafana for metrics - race-safe reservations and full telemetry.",
     thumbnail: ibSchedulingHome,
-    Cover: IBSchedulingCover,
+    Banner: IBSchedulingBanner,
     images: [ibSchedulingHome, ibSchedulingArch, ibSchedulingGrafana],
     stack: [
       "Next.js",

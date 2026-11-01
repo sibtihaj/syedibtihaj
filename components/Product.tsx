@@ -70,13 +70,14 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         </dl>
       ) : null}
 
-      {product.Cover ? (
+      {product.Banner ? (
         <>
-          <figure className="rise mt-10" style={{ ["--rise-delay" as string]: "320ms" }}>
-            <div className="overflow-hidden rounded-2xl border border-ink/10 bg-paper shadow-[0_30px_60px_-36px_rgba(13,27,62,0.5)]">
-              <product.Cover className="block h-auto w-full" />
-            </div>
-          </figure>
+          <div
+            className="rise mt-10 overflow-hidden rounded-2xl border border-ink/10 bg-paper shadow-[0_30px_60px_-36px_rgba(13,27,62,0.5)]"
+            style={{ ["--rise-delay" as string]: "320ms" }}
+          >
+            <product.Banner />
+          </div>
           <section aria-labelledby="screenshots" className="mt-16">
             <h2 id="screenshots" className="text-[1.5rem]">
               The live app
