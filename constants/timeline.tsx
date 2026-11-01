@@ -1,8 +1,8 @@
 export const timeline = [
   {
-    company: "HashiCorp – IBM",
-    title: "Senior Product Support Engineer – Cloud Infrastructure",
-    date: "Nov 2024 – Present",
+    company: "HashiCorp (now IBM)",
+    title: "Senior Product Support Engineer - Cloud Infrastructure",
+    date: "Nov 2024 - Present",
     description:
       "Terraform Enterprise infrastructure support, observability, incident response, and customer-facing technical leadership.",
     responsibilities: [
@@ -20,7 +20,7 @@ export const timeline = [
   {
     company: "Webifex Labs",
     title: "Founding Engineer (Part-time / Freelance)",
-    date: "Aug 2022 – Present",
+    date: "Aug 2022 - Present",
     description:
       "Client-facing full-stack delivery and AI-enabled product features alongside primary employment.",
     responsibilities: [
@@ -33,7 +33,7 @@ export const timeline = [
   {
     company: "Amazon Web Services",
     title: "Cloud Support Engineer",
-    date: "Dec 2022 – Aug 2024",
+    date: "Dec 2022 - Aug 2024",
     description:
       "Escalation support for Amazon EKS and related container services in enterprise environments.",
     responsibilities: [
@@ -49,7 +49,7 @@ export const timeline = [
   {
     company: "Amazon Web Services",
     title: "Associate Cloud Support Engineer",
-    date: "Jan 2022 – Dec 2022",
+    date: "Jan 2022 - Dec 2022",
     description:
       "Enterprise, business, and developer support with focus on Kubernetes and container services.",
     responsibilities: [
@@ -62,14 +62,14 @@ export const timeline = [
   {
     company: "Various Organizations",
     title: "Early Career Support & Administration Roles",
-    date: "Sep 2017 – Jan 2022",
+    date: "Sep 2017 - Jan 2022",
     description:
       "Support, administration, and operations roles across higher education, nonprofit, retail IT, and government (dates span individual roles below).",
     responsibilities: [
-      "Salesforce & Website Administrator (Summer Foundation, Jan 2019 – Dec 2019): Administered and maintained Salesforce Cloud and \"The Housing Hub\" platform, implemented complex workflow logic and APIs, provided technical support to 24 remote-working individuals across Australia for Mac OS, iOS, and app support.",
-      "Service Desk Analyst (Officeworks, Jan 2021 – Jul 2021): First point of contact for IT support across store network, logged and prioritized incidents, troubleshot hardware/software issues, escalated complex cases, and monitored resolution to minimize business impact.",
-      "Product Support Officer (Dept of Justice & Community Safety, Aug 2021 – Jan 2022): Logged incidents and service requests, coordinated between customer needs and vendors, analyzed and resolved application/software/hardware issues, participated in 24/7 after-hours support for business-critical systems.",
-      "Examinations Officer (RMIT University, Sep 2017 – Dec 2018): Coordinated digitally lodged theses and projects, maintained administrative processes in line with university policy, monitored examination workflow, and provided advisory services on higher degree administration.",
+      "Salesforce & Website Administrator (Summer Foundation, Jan 2019 - Dec 2019): Administered and maintained Salesforce Cloud and \"The Housing Hub\" platform, implemented complex workflow logic and APIs, provided technical support to 24 remote-working individuals across Australia for Mac OS, iOS, and app support.",
+      "Service Desk Analyst (Officeworks, Jan 2021 - Jul 2021): First point of contact for IT support across store network, logged and prioritized incidents, troubleshot hardware/software issues, escalated complex cases, and monitored resolution to minimize business impact.",
+      "Product Support Officer (Dept of Justice & Community Safety, Aug 2021 - Jan 2022): Logged incidents and service requests, coordinated between customer needs and vendors, analyzed and resolved application/software/hardware issues, participated in 24/7 after-hours support for business-critical systems.",
+      "Examinations Officer (RMIT University, Sep 2017 - Dec 2018): Coordinated digitally lodged theses and projects, maintained administrative processes in line with university policy, monitored examination workflow, and provided advisory services on higher degree administration.",
       "Gap Year 2020: Completed final degree requirements during COVID-19 pandemic.",
     ],
   },

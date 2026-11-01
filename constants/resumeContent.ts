@@ -16,7 +16,7 @@ export const education = [
   {
     institution: "Monash University",
     credential: "Bachelor of Information Technology (Cybersecurity)",
-    period: "Jul 2018 – Jul 2021",
+    period: "Jul 2018 - Jul 2021",
   },
   {
     institution: "Coursera (Deep Learning AI)",
@@ -27,7 +27,7 @@ export const education = [
 
 export const certificationsDetailed = [
   {
-    title: "AWS Certified Solutions Architect – Associate",
+    title: "AWS Certified Solutions Architect - Associate",
     description:
       "Strengthened my ability to design secure, scalable, and cost-effective AWS architectures, with practical knowledge across core compute, networking, storage, identity, containerization and high-availability services.",
   },

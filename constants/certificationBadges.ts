@@ -2,7 +2,7 @@
  * Local certification badge assets under public/badges/.
  * width/height must match the actual PNG pixel dimensions so Next/Image does not
  * upscale low-res sources (which caused blur on the About cards).
- * Replace files with higher-resolution exports (e.g. 512–800px squares) when available.
+ * Replace files with higher-resolution exports (e.g. 512 to 800px squares) when available.
  */
 export const certificationBadges = [
   {
