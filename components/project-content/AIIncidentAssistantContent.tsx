@@ -5,27 +5,23 @@ import {
   AIIncidentRuntimeDiagram,
 } from "@/components/diagrams/AIIncidentDiagrams";
 import { DataTable } from "@/components/data/DataTable";
-import { Heading } from "@/components/Heading";
-import { Paragraph } from "@/components/Paragraph";
 
 export function AIIncidentAssistantContent() {
   return (
-    <div className="space-y-16">
-      <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">What it is</Heading>
-        <div className="space-y-4">
-          <Paragraph className="text-lg leading-relaxed text-ink-body">
-            AI Incident Assistant is a production-style incident response
-            playground. Operators sign in, chat with an LLM, create/update Sev1
-            incidents, load templates (CAN, Sev1 canvas, RCA), and generate
-            document outputs from structured incident data.
-          </Paragraph>
-          <Paragraph className="text-lg leading-relaxed text-ink-body">
-            The build demonstrates gateway-routed models, MCP-backed tools,
-            Supabase-backed auth/sessions, rolling per-user chat quotas, and
-            hybrid observability (gateway-level metrics plus trace-level tooling).
-          </Paragraph>
-        </div>
+    <div className="space-y-8 md:space-y-10">
+      <section>
+        <h2>What it is</h2>
+        <p>
+          AI Incident Assistant is a production-style incident response
+          playground. Operators sign in, chat with an LLM, create and update Sev1
+          incidents, load templates (CAN, Sev1 canvas, RCA), and generate
+          documents from structured incident data.
+        </p>
+        <p>
+          It shows gateway-routed models, MCP-backed tools, Supabase-backed
+          auth and sessions, rolling per-user chat quotas, and two layers of
+          observability: gateway-level metrics plus trace-level tooling.
+        </p>
         <DataTable
           caption="The stack, layer by layer"
           stackBelow="sm"
@@ -50,8 +46,8 @@ export function AIIncidentAssistantContent() {
         />
       </section>
 
-      <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">Capability matrix</Heading>
+      <section>
+        <h2>What each area does</h2>
         <DataTable
           caption="Capability matrix: what each area does"
           hideCaption
@@ -91,8 +87,8 @@ export function AIIncidentAssistantContent() {
         />
       </section>
 
-      <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">MCP tool surface</Heading>
+      <section>
+        <h2>MCP tools</h2>
         <DataTable
           caption="MCP tools by group"
           hideCaption
@@ -121,80 +117,46 @@ export function AIIncidentAssistantContent() {
             ],
           }))}
         />
-        <Paragraph className="text-sm text-ink-muted italic">
-          Incident/template storage is local JSON in the MCP server data directory with validation, safer writes, and bounded runtime.
-        </Paragraph>
+        <p>
+          Incident and template storage is local JSON in the MCP server&apos;s
+          data directory, with validation, safer writes and bounded runtime.
+        </p>
       </section>
 
-      <div className="my-24 h-px w-full bg-gradient-to-r from-transparent via-rule to-transparent" />
+      <section>
+        <h2>How a request flows</h2>
+        <p>
+          Three views of one chat turn: how the prompt is built, how memory is
+          kept between turns, and the order of calls from submit to response.
+        </p>
 
-      {/* Architecture Diagrams Section */}
-      <section className="space-y-16">
-        <div className="space-y-4 text-center max-w-2xl mx-auto">
-          <Heading as="h2" className="text-2xl md:text-3xl font-normal text-ink tracking-tight">Architecture & Flow</Heading>
-          <Paragraph className="text-lg text-ink-muted">
-            A high-fidelity breakdown of how the AI Incident Assistant orchestrates UI, model generation, and tool execution.
-          </Paragraph>
-        </div>
+        <h3>Request pipeline</h3>
+        <p>
+          The system prompt is thin, the history is trimmed with LangChain, and
+          the saved session memory is folded into the system string. The request
+          then branches into a model-only path or a tool-enabled one.
+        </p>
+        <AIIncidentPipelineDiagram />
 
-        <div className="space-y-24">
-          <div className="group relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-cobalt-wash/60 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-            <div className="relative space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-cobalt" />
-                <h3 className="font-heading text-base italic text-cobalt">01 / Pipeline</h3>
-              </div>
-              <div className="space-y-2">
-                <Heading as="h3" className="text-2xl font-normal text-ink">Optimized Request Pipeline</Heading>
-                <Paragraph className="text-ink-muted max-w-3xl">
-                  Thin system prompt, LangChain-trimmed history, persisted session memory folded into the system string, then branch into model-only or tool-enabled execution.
-                </Paragraph>
-              </div>
-              <AIIncidentPipelineDiagram />
-            </div>
-          </div>
+        <h3>Context retention</h3>
+        <p>
+          From the browser, the envelope is loaded and merged, optional CAN
+          guardrails apply, the history is trimmed to a token budget and the
+          model generates. Memory is written back to the same row the user
+          already owns under RLS.
+        </p>
+        <AIIncidentRetentionDiagram />
 
-          <div className="group relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-cobalt-wash/60 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-            <div className="relative space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-cobalt" />
-                <h3 className="font-heading text-base italic text-cobalt">02 / Retention</h3>
-              </div>
-              <div className="space-y-2">
-                <Heading as="h3" className="text-2xl font-normal text-ink">Context Retention Flow</Heading>
-                <Paragraph className="text-ink-muted max-w-3xl">
-                  From the browser through load/merge of the envelope, optional CAN guardrails, token trimming, and generation, with memory written back under the same row the user already owns via RLS.
-                </Paragraph>
-              </div>
-              <AIIncidentRetentionDiagram />
-            </div>
-          </div>
-
-          <div className="group relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-cobalt-wash/60 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-            <div className="relative space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-cobalt" />
-                <h3 className="font-heading text-base italic text-cobalt">03 / Execution</h3>
-              </div>
-              <div className="space-y-2">
-                <Heading as="h3" className="text-2xl font-normal text-ink">End-to-End Runtime</Heading>
-                <Paragraph className="text-ink-muted max-w-3xl">
-                  Request execution from user submit through API orchestration, decision gates, optional MCP calls, and response delivery.
-                </Paragraph>
-              </div>
-              <AIIncidentRuntimeDiagram />
-            </div>
-          </div>
-        </div>
+        <h3>End-to-end runtime</h3>
+        <p>
+          The request runs from the user&apos;s submit through API orchestration
+          and the decision gates to optional MCP calls, then the response.
+        </p>
+        <AIIncidentRuntimeDiagram />
       </section>
 
-      <div className="my-24 h-px w-full bg-gradient-to-r from-transparent via-rule to-transparent" />
-
-      <section className="space-y-6">
-        <Heading as="h2" className="text-2xl font-normal text-ink tracking-tight">Environment controls</Heading>
+      <section>
+        <h2>Environment controls</h2>
         <DataTable
           caption="Environment variables by area"
           hideCaption
