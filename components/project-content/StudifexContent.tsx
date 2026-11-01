@@ -4,6 +4,8 @@ import {
   StudifexMarkingDiagram,
   StudifexRetrievalDiagram,
 } from "@/components/diagrams/StudifexDiagrams";
+import { DataTable } from "@/components/data/DataTable";
+import { StudifexTimeoutChart } from "@/components/data/StudifexCharts";
 
 /**
  * Case study: Studifex (AI marking for handwritten VCE maths).
@@ -49,6 +51,51 @@ export function StudifexContent() {
           </li>
         </ul>
         <StudifexArchitectureDiagram />
+        <DataTable
+          caption="The stack, layer by layer"
+          stackBelow="sm"
+          columns={[{ label: "Layer", width: "26%" }, { label: "What runs there" }]}
+          rows={[
+            {
+              key: "web",
+              cells: ["Web app", "Next.js 16, React 19, TypeScript, Tailwind CSS and KaTeX for maths, hosted on Vercel"],
+            },
+            {
+              key: "service",
+              cells: ["Marking service", "Python 3.12, FastAPI, Pydantic and LangGraph, packaged with uv and Docker"],
+            },
+            {
+              key: "ingest",
+              cells: ["Document ingest", "Docling for exam papers, python-docx for marking guides, PyMuPDF"],
+            },
+            {
+              key: "data",
+              cells: [
+                "Data",
+                "Supabase (Postgres with row level security, Auth, Storage, Realtime) and Pinecone dense and sparse indexes with hosted reranking",
+              ],
+            },
+            {
+              key: "models",
+              cells: [
+                "Models",
+                "Mathpix for handwriting, Claude on AWS Bedrock as judge and coach, Kimi on Fireworks for LaTeX clean-up and structuring",
+              ],
+            },
+            {
+              key: "infra",
+              cells: ["Infrastructure", "AWS EC2 with an IAM instance role, ECR, SSM Parameter Store, Terraform"],
+            },
+            {
+              key: "delivery",
+              cells: ["Delivery", "GitHub Actions with OIDC to AWS for the service, Vercel's Git integration for the web app"],
+            },
+            {
+              key: "observability",
+              cells: ["Observability", "OpenTelemetry, Axiom, Langfuse, Sentry and PostHog"],
+            },
+          ]}
+        />
       </section>
 
       <section>
@@ -92,17 +139,127 @@ export function StudifexContent() {
 
       <section>
         <h2>Decisions that changed under real traffic</h2>
+        <p>
+          Several of the big choices were made twice: once on paper, and again once real handwriting and real failures
+          showed where the first answer was wrong. The table is the short version; the reasoning for the ones that
+          moved most follows it.
+        </p>
+        <DataTable
+          caption="Key decisions and what they cost"
+          stackBelow="lg"
+          columns={[
+            { label: "Decision", width: "22%" },
+            { label: "Options considered", width: "24%" },
+            { label: "Why", width: "30%" },
+            { label: "Trade-off" },
+          ]}
+          rows={[
+            {
+              key: "retrieval",
+              cells: [
+                "Hybrid retrieval on Pinecone plus a SQL rubric lookup",
+                "Bedrock Knowledge Bases",
+                "Marking needs every criterion for the question, which does not fit a similarity-search knowledge base",
+                "I own and maintain the retrieval code",
+              ],
+            },
+            {
+              key: "judge",
+              cells: [
+                "Claude on AWS Bedrock as the judge",
+                "Llama on Together AI, staying on Fireworks, Gemini on Vertex AI",
+                "Best feedback quality, forced tool output for valid JSON, and prompt caching",
+                "Model access is tied to AWS, which is why the service moved there too",
+              ],
+            },
+            {
+              key: "host",
+              cells: [
+                "One EC2 instance with an IAM role",
+                "Staying on a DigitalOcean droplet with static keys",
+                "Bedrock access without long-lived AWS keys on the host",
+                "Costs more each month than the droplet",
+              ],
+            },
+            {
+              key: "hold",
+              cells: [
+                "Hold an attempt for review when no judge ran",
+                "Fall back quietly to a rule-based scorer",
+                "A confident wrong mark is worse for a student than \"under review\"",
+                "Some attempts wait for review instead of getting a mark",
+              ],
+            },
+            {
+              key: "ocr",
+              cells: [
+                "Mathpix as the only OCR for marking",
+                "Gemini on Vertex AI, Kimi on Fireworks, a fallback chain",
+                "Fast and accurate on handwriting, and a clear failure beats a silent switch to a weaker model",
+                "Mathpix has a monthly page cap, so a search for a bulk provider continued",
+              ],
+            },
+            {
+              key: "serverless",
+              cells: [
+                "Serverless model APIs",
+                "Self-hosting on Modal or Baseten",
+                "Far cheaper at this volume, and scaling a GPU to zero brings back cold starts",
+                "Revisit once volume makes a warm GPU worth paying for",
+              ],
+            },
+          ]}
+        />
 
         <h3>Which OCR reads the handwriting</h3>
         <p>
-          The first policy used Google&apos;s Gemini Flash on Vertex AI as the primary, with a second provider as a
-          fallback and Mathpix switched off, to keep the critical path with one vendor until real usage showed how often the
-          fallbacks were needed. Production changed that. Gemini caused the incident below, so a Fireworks vision
-          model became the primary. On real student handwriting it often took 38 to 90 seconds or more per page,
-          against a 35 second budget. Mathpix, a dedicated maths OCR, was fast and accurate enough, so it became the
-          only provider for marking, with a clear &quot;try again&quot; error instead of a slow fallback that usually
-          failed anyway. Mathpix is configured not to keep student images.
+          The OCR provider changed three times in four days once real student handwriting reached it. Mathpix, a
+          dedicated maths OCR, ended up as the only provider for marking, and it is configured not to keep student
+          images.
         </p>
+        <DataTable
+          caption="OCR provider for marking, over time"
+          stackBelow="md"
+          columns={[
+            { label: "When", width: "18%" },
+            { label: "OCR for marking", width: "34%" },
+            { label: "Why it changed" },
+          ]}
+          rows={[
+            {
+              key: "may",
+              cells: [
+                "May 2026",
+                "Gemini Flash on Vertex AI, Fireworks as fallback, Mathpix off by default",
+                "The first policy kept the critical path with one vendor until real usage showed how often a fallback was needed.",
+              ],
+            },
+            {
+              key: "jun19",
+              cells: [
+                "19 June",
+                "Kimi on Fireworks, Gemini as a bounded fallback",
+                "Gemini's token refresh hung the marking graph, which is the incident below.",
+              ],
+            },
+            {
+              key: "jun20",
+              cells: [
+                "20 June",
+                "Mathpix, Gemini as fallback",
+                "Kimi often took 38 to 90 seconds or more on real student handwriting, against a 35 second budget.",
+              ],
+            },
+            {
+              key: "jun22",
+              cells: [
+                "22 June",
+                "Mathpix only",
+                "The silent fallback to a weaker model was removed, so a failure now returns a clear \"try again\".",
+              ],
+            },
+          ]}
+        />
 
         <h3>Which model is the judge</h3>
         <p>
@@ -151,15 +308,10 @@ export function StudifexContent() {
         <p>
           <strong>Fix.</strong> The token refresh moved off the event loop with a hard timeout and a cache. Every
           external call on the marking path got a bound, and the limits were nested so each layer outlasts the one
-          inside it:
+          inside it. A slow OCR provider now fails inside its own 35 seconds and leaves the outer layers time to
+          report what happened.
         </p>
-        <ul>
-          <li>OCR primary call 35 seconds, and the whole OCR fallback chain 40 seconds</li>
-          <li>The OCR step of the graph 60 seconds</li>
-          <li>The service&apos;s request limit 100 seconds</li>
-          <li>Vercel&apos;s function limit 120 seconds</li>
-          <li>The browser gives up at 130 seconds</li>
-        </ul>
+        <StudifexTimeoutChart />
         <p>
           Tests assert that order and that a hanging provider fails fast instead of eating the budget. OCR now logs
           each sub-stage, so a hang is visible even when the request times out, and error messages show a reference id
@@ -169,29 +321,75 @@ export function StudifexContent() {
 
       <section>
         <h2>Other problems worth writing down</h2>
-        <ul>
-          <li>
-            <strong>Correct OCR, wrong marks.</strong> After the switch to Mathpix, the pipeline still expected the
-            previous provider&apos;s output shape, so a full page of working collapsed onto one line. That destroyed
-            the (a) and (b) structure that step splitting relies on, and the UI showed raw LaTeX. Reading Mathpix&apos;s
-            page Markdown and normalising it while keeping the maths delimiters fixed both.
-          </li>
-          <li>
-            <strong>A deleted deploy workflow that kept running.</strong> After moving to EC2, every CI run still
-            started the old DigitalOcean deploy, which then failed. GitHub Actions reads <code>workflow_run</code>{" "}
-            triggers from the default branch, and the workflow had only been removed from the working branch.
-          </li>
-          <li>
-            <strong>Log shipping that shipped nothing.</strong> The OpenTelemetry Collector sidecar was running, but
-            Axiom received no logs: the collector&apos;s default user could not read Docker&apos;s log files. Fixed,
-            documented, and confirmed by querying the logs and traces datasets.
-          </li>
-          <li>
-            <strong>Maths that rendered wrong.</strong> Some exam questions showed corrupted maths because the portal
-            was rendering the text normalised for embeddings. Display now always reads the original LaTeX, with tests
-            and a written rule so it stays that way.
-          </li>
-        </ul>
+        <DataTable
+          caption="Smaller incidents, in the order they turned up"
+          stackBelow="lg"
+          columns={[
+            { label: "Problem", width: "19%" },
+            { label: "Symptom", width: "24%" },
+            { label: "Cause", width: "30%" },
+            { label: "Fix" },
+          ]}
+          rows={[
+            {
+              key: "mathpix-shape",
+              cells: [
+                "Correct OCR, wrong marks",
+                "After the switch to Mathpix, marks were off and the UI showed raw LaTeX.",
+                "The pipeline still expected the previous provider's output, so a full page of working collapsed onto one line and lost the (a) and (b) structure that step splitting relies on.",
+                "Read Mathpix's page Markdown and normalise it while keeping the maths delimiters.",
+              ],
+            },
+            {
+              key: "deploy-workflow",
+              cells: [
+                "A deleted deploy workflow that kept running",
+                "Every CI run still started the old DigitalOcean deploy, which then failed.",
+                <>
+                  GitHub Actions reads <code>workflow_run</code> triggers from the default branch, and the workflow
+                  had only been removed from the working branch.
+                </>,
+                "Remove it from the default branch too, so only the EC2 deploy follows CI.",
+              ],
+            },
+            {
+              key: "log-shipping",
+              cells: [
+                "Log shipping that shipped nothing",
+                "The OpenTelemetry Collector sidecar was running, but Axiom received no logs.",
+                "The collector's default user could not read Docker's log files.",
+                "Give the collector read access, document the symptom, and confirm by querying the logs and traces datasets.",
+              ],
+            },
+            {
+              key: "schema-422",
+              cells: [
+                "Marking rejected by its own schema",
+                "Text gradings and the grading canary failed with HTTP 422.",
+                "Long judge explanations broke a length limit in the result schema.",
+                "Clamp the explanation before validation, with a regression test.",
+              ],
+            },
+            {
+              key: "maths-render",
+              cells: [
+                "Maths that rendered wrong",
+                "Some exam questions showed corrupted maths.",
+                "The portal was rendering the text normalised for embeddings.",
+                "Display always reads the original LaTeX, with tests and a written rule.",
+              ],
+            },
+            {
+              key: "tutor-500",
+              cells: [
+                "A tutor chat that could not be reached",
+                "The page loaded, but sending a message returned a 500.",
+                "A Next.js cache wrapper was put around a Supabase client that reads cookies, which cannot run inside a cache scope.",
+                "Remove the wrapper and add a CI check that blocks the pattern.",
+              ],
+            },
+          ]}
+        />
       </section>
 
       <section>
