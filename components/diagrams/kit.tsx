@@ -48,7 +48,8 @@ export function DiagramSvg({
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-labelledby={`${id}-title ${id}-desc`}
+      aria-labelledby={`${id}-title`}
+      aria-describedby={`${id}-desc`}
       className="block h-auto w-full"
       style={{ fontFamily: BODY }}
     >
@@ -83,8 +84,8 @@ export function DiagramFigure({
   return (
     <figure className="not-prose my-10">
       <div className="rounded-2xl border border-ink/10 bg-paper px-4 py-5 sm:px-6 sm:py-6">
-        <div className="hidden lg:block">{wide}</div>
-        <div className="mx-auto max-w-[420px] lg:hidden">{narrow}</div>
+        <div className="hidden xl:block">{wide}</div>
+        <div className="mx-auto max-w-[420px] xl:hidden">{narrow}</div>
       </div>
       {caption ? <figcaption className="mt-3 text-sm leading-relaxed text-ink-muted">{caption}</figcaption> : null}
     </figure>
@@ -237,7 +238,7 @@ export function EdgeLabel({
 export function Group({ x, y, w, h, label }: { x: number; y: number; w: number; h: number; label: string }) {
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} rx="14" fill="none" stroke={INK} strokeOpacity="0.3" strokeDasharray="3 5" />
+      <rect x={x} y={y} width={w} height={h} rx="14" fill="none" stroke={INK} strokeOpacity="0.5" strokeDasharray="3 5" />
       <text
         x={x + 12}
         y={y - 7}
