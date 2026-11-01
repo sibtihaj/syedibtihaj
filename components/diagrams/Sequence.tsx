@@ -15,6 +15,20 @@ export type SeqStep =
 
 type SequenceProps = { id: string; title: string; description: string; lanes: Lane[]; steps: SeqStep[] };
 
+/** A frame's operator (opt, alt, loop) in upright type, then its condition in italic. */
+function FrameLabel({ kind, label }: { kind?: string; label: string }) {
+  return (
+    <>
+      {kind ? (
+        <tspan fontFamily={BODY} fontStyle="normal" fontSize="11.5" fill={INK}>
+          {kind}
+        </tspan>
+      ) : null}
+      <tspan dx={kind ? 7 : 0}>{label}</tspan>
+    </>
+  );
+}
+
 /* ------------------------------------------------------------------ wide */
 
 const WIDE_W = 880;
@@ -120,13 +134,15 @@ export function SequenceWide({ id, title, description, lanes, steps }: SequenceP
       const inset = depth * 10;
       const fx = Math.min(...xs) - 54 + inset;
       const fw = Math.max(...xs) + 54 - inset - fx;
+      // Leave clear space under the previous arrow or note before the frame starts.
+      y += 12;
       const top = y - 22;
       y += 8;
       const dividers: React.ReactNode[] = [];
       step.sections.forEach((sec, i) => {
         if (i > 0) {
           dividers.push(
-            <line key={`d-${n}-${i}`} x1={fx} x2={fx + fw} y1={y - 22} y2={y - 22} stroke={INK} strokeOpacity="0.3" strokeDasharray="3 5" />
+            <line key={`d-${n}-${i}`} x1={fx} x2={fx + fw} y1={y - 22} y2={y - 22} stroke={INK} strokeOpacity="0.5" strokeDasharray="3 5" />
           );
         }
         dividers.push(
@@ -139,7 +155,7 @@ export function SequenceWide({ id, title, description, lanes, steps }: SequenceP
             fontSize="12.5"
             fill={MUTED}
           >
-            {i === 0 ? `${step.kind}  ${sec.label}` : sec.label}
+            <FrameLabel kind={i === 0 ? step.kind : undefined} label={sec.label} />
           </text>
         );
         y += 14;
@@ -149,7 +165,7 @@ export function SequenceWide({ id, title, description, lanes, steps }: SequenceP
       const bottom = y - 12;
       frames.push(
         <g key={`f-${n}`}>
-          <rect x={fx} y={top} width={fw} height={bottom - top} rx="8" fill="none" stroke={INK} strokeOpacity="0.35" strokeDasharray="3 5" />
+          <rect x={fx} y={top} width={fw} height={bottom - top} rx="8" fill="none" stroke={INK} strokeOpacity="0.5" strokeDasharray="3 5" />
           {dividers}
         </g>
       );
@@ -233,7 +249,7 @@ export function SequenceNarrow({ id, title, description, lanes, steps }: Sequenc
       step.sections.forEach((sec, i) => {
         parts.push(
           <text key={`s-${k}-${i}`} x={x + 12} y={y + 13} fontFamily={HEADING} fontStyle="italic" fontSize="13" fill={MUTED}>
-            {i === 0 ? `${step.kind}  ${sec.label}` : sec.label}
+            <FrameLabel kind={i === 0 ? step.kind : undefined} label={sec.label} />
           </text>
         );
         y += 24;
@@ -245,7 +261,7 @@ export function SequenceNarrow({ id, title, description, lanes, steps }: Sequenc
           d={`M${x + 8} ${top + 2} H${x + 3} V${y - 6} H${x + 8}`}
           fill="none"
           stroke={INK}
-          strokeOpacity="0.35"
+          strokeOpacity="0.5"
           strokeLinecap="round"
         />
       );
