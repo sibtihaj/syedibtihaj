@@ -6,6 +6,8 @@
 
 export type TimelineSubsection = {
   title: string;
+  /** Optional link to a case study on this site. */
+  href?: string;
   date?: string;
   note?: string;
   items: string[];
@@ -80,6 +82,7 @@ export const timeline: TimelineEntry[] = [
     subsections: [
       {
         title: "Studifex EdTech SaaS",
+        href: "/projects/studifex",
         date: "Mar 2026 - Jun 2026",
         note: "Built through Webifex Labs",
         items: [

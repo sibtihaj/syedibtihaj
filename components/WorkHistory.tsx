@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { timeline } from "@/constants/timeline";
 
 const Bullets = ({ items }: { items: string[] }) => (
@@ -28,7 +29,15 @@ export const WorkHistory = () => {
             {item.subsections?.map((sub) => (
               <div key={sub.title} className="mt-8 border-l border-cobalt/30 pl-5">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                  <h4 className="font-heading text-[1.1rem] text-ink">{sub.title}</h4>
+                  <h4 className="font-heading text-[1.1rem] text-ink">
+                    {sub.href ? (
+                      <Link href={sub.href} className="ink-link">
+                        {sub.title}
+                      </Link>
+                    ) : (
+                      sub.title
+                    )}
+                  </h4>
                   {sub.date ? <p className="text-sm tabular-nums text-ink-muted">{sub.date}</p> : null}
                 </div>
                 {sub.note ? <p className="mt-1 text-sm italic text-ink-muted">{sub.note}</p> : null}
