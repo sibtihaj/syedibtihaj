@@ -16,7 +16,7 @@ export default function Projects() {
         label="Projects"
         title={
           <>
-            Two builds, written up as <span className="ink-text italic">case studies</span>.
+            Three builds, written up as <span className="ink-text italic">case studies</span>.
           </>
         }
       >

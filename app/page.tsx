@@ -66,7 +66,8 @@ export default async function Home() {
             </p>
             <p>
               Alongside those roles I founded Webifex Labs and have delivered 20+ production applications through it.
-              The two builds written up below are my own projects.
+              Three builds are written up below: Studifex, which I built through Webifex Labs, and two of my own
+              projects.
             </p>
           </div>
           <div className="rise mt-9 flex flex-wrap gap-3" style={delay(260)}>
