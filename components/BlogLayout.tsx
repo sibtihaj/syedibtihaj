@@ -1,25 +1,9 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { formatDate } from "@/lib/formatDate";
 import { Prose } from "@/components/Prose";
 import { Container } from "./Container";
-import { Heading } from "./Heading";
-import Link from "next/link";
-import { Paragraph } from "./Paragraph";
-
-function ArrowLeftIcon(props: any) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="currentColor"
-      />
-    </svg>
-  );
-}
 
 export function BlogLayout({
   children,
@@ -30,61 +14,63 @@ export function BlogLayout({
     date: string;
     title: string;
     description?: string;
-    image: string;
+    image?: string;
     category?: string;
     tags?: string[];
   };
 }) {
   return (
     <Container>
-      <article className="max-w-4xl mx-auto">
-        <header className="flex flex-col mb-16">
-          <Link
-            href="/blog"
-            className="group self-start mt-4 md:mt-6 mb-8 inline-flex items-center justify-center rounded-xl bg-white border border-zinc-200 p-3 shadow-sm transition hover:border-blue-300 hover:text-blue-600"
+      <article className="mx-auto max-w-3xl">
+        <Link href="/blog" className="ink-link rise inline-flex min-h-[44px] items-center text-sm">
+          <span aria-hidden className="mr-2">
+            &larr;
+          </span>
+          All articles
+        </Link>
+
+        <header className="mt-6 border-b border-rule pb-10">
+          <p className="field-label rise" style={{ ["--rise-delay" as string]: "60ms" }}>
+            {meta.category ?? "Article"}
+          </p>
+          <h1
+            className="rise mt-4 text-[1.85rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.5rem]"
+            style={{ ["--rise-delay" as string]: "120ms" }}
           >
-            <ArrowLeftIcon className="h-4 w-4" />
-          </Link>
-
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-blue-600 font-mono text-[10px] uppercase tracking-widest font-normal px-3 py-1 rounded-full bg-blue-50 ring-1 ring-blue-100">
-              {meta.category || "Perspective"}
-            </span>
-            <span className="h-px w-8 bg-zinc-100" />
-            <time
-              dateTime={meta.date}
-              className="text-xs uppercase tracking-widest font-normal text-zinc-400"
-            >
-              {formatDate(meta.date)}
-            </time>
-          </div>
-
-          <Heading className="text-2xl md:text-3xl lg:text-4xl font-normal leading-tight mb-12">
             {meta.title}
-          </Heading>
-
-          <div className="relative aspect-video rounded-3xl overflow-hidden border border-zinc-100 shadow-2xl shadow-zinc-200/50">
-            <Image
-              src={meta.image}
-              alt={meta.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          </h1>
+          {meta.description ? (
+            <p
+              className="rise mt-5 text-[1.0625rem] leading-relaxed text-ink-body md:text-lg"
+              style={{ ["--rise-delay" as string]: "180ms" }}
+            >
+              {meta.description}
+            </p>
+          ) : null}
+          <p className="rise mt-6 text-sm text-ink-muted" style={{ ["--rise-delay" as string]: "220ms" }}>
+            Published <time dateTime={meta.date}>{formatDate(meta.date)}</time> by Syed Ibtihaj
+          </p>
         </header>
 
-        <Prose className="mt-8">{children ?? null}</Prose>
+        <Prose className="mt-10">{children ?? null}</Prose>
 
-        <footer className="mt-20 pt-20 border-t border-zinc-100">
-          <div className="flex flex-col items-center text-center max-w-lg mx-auto">
-            <div className="h-12 w-12 rounded-full overflow-hidden mb-4 ring-2 blue-500/20 shadow-lg">
-              <Image src="/images/headshot.jpeg" alt="Syed" width={48} height={48} />
-            </div>
-            <p className="text-xs font-normal uppercase tracking-[0.2em] text-zinc-900 mb-2">Syed Ibtihaj</p>
-            <Paragraph className="text-sm text-zinc-500">
-              Building the future of software, one pixel at a time. Follow my journey on LinkedIn or reach out for collaborations.
-            </Paragraph>
+        <footer className="mt-16 flex flex-col gap-5 border-t border-rule pt-10 sm:flex-row sm:items-center">
+          <Image
+            src="/images/headshot.jpeg"
+            alt=""
+            width={56}
+            height={56}
+            className="h-14 w-14 shrink-0 rounded-full object-cover ring-1 ring-ink/10"
+          />
+          <div className="text-[0.95rem] leading-relaxed text-ink-body">
+            <p className="font-heading text-lg text-ink">Syed Ibtihaj</p>
+            <p>
+              Senior Product Support Engineer on Terraform Enterprise at HashiCorp (now IBM). I wrote this for
+              HashiCorp Support; it also lives on IBM Support.{" "}
+              <Link href="/blog" className="ink-link">
+                More articles
+              </Link>
+            </p>
           </div>
         </footer>
       </article>
