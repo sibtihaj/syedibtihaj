@@ -71,7 +71,7 @@ export const timeline: TimelineEntry[] = [
     title: "Founder & Lead Engineer (Part-time / Freelance)",
     date: "Aug 2022 - Present",
     description:
-      "Client web applications and AI features, built with a development team alongside full-time roles, plus the Studifex EdTech partnership.",
+      "Client web applications and AI features, built with a development team alongside full-time roles, plus the Studifex EdTech product.",
     responsibilities: [
       "Led a development team delivering 20+ production web applications for clients in pharmaceutical, education and non-profit sectors, owning architecture, client scoping and delivery using Next.js, TypeScript and React.",
       "Built full-stack e-commerce platforms with Stripe/PayPal integrations, authentication systems and PostgreSQL/MongoDB backends supporting real-time inventory management.",
@@ -81,7 +81,7 @@ export const timeline: TimelineEntry[] = [
       {
         title: "Studifex EdTech SaaS",
         date: "Mar 2026 - Jun 2026",
-        note: "Developed through Webifex Labs as a 50-50 partnership",
+        note: "Built through Webifex Labs",
         items: [
           "Built a Python FastAPI RAG service (Python 3.12, managed with uv) that validates and chunks PDF and DOCX documents, generates embeddings and serves retrieval to the Next.js app through a typed client.",
           "Pinecone: dense and sparse indexes searched in parallel, merged with reciprocal rank fusion, reranked with Cohere Rerank 3.5, then source content hydrated from Supabase.",
