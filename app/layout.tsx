@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Syed Ibtihaj",
   },
   description:
-    "Syed Ibtihaj is a Senior Product Support Engineer at HashiCorp and the founder of Webifex Labs, a freelance studio shipping web products for clients.",
+    "Syed Ibtihaj is a Senior Product Support Engineer at CodeRabbit and the founder of Webifex Labs, which builds web applications for clients.",
   metadataBase: new URL(siteUrl),
   robots: {
     index: true,

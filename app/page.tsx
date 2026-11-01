@@ -13,18 +13,23 @@ import { getAllBlogMeta } from "@/lib/getAllBlogs";
 const caseFile = [
   {
     term: "Now",
-    title: "HashiCorp (now IBM)",
-    detail: "Senior Product Support Engineer, Terraform Enterprise. Since Nov 2024.",
+    title: "CodeRabbit",
+    detail: "Senior Product Support Engineer. Since Aug 2026.",
   },
   {
     term: "Before",
+    title: "HashiCorp (IBM)",
+    detail: "Senior Product Support Engineer on self-managed Terraform Enterprise, Consul and Nomad. Nov 2024 to Jul 2026.",
+  },
+  {
+    term: "Earlier",
     title: "Amazon Web Services",
     detail: "Associate, then Cloud Support Engineer, on Amazon EKS and ECS. 2022 to 2024.",
   },
   {
     term: "Alongside",
     title: "Webifex Labs",
-    detail: "Founding engineer, building web products for clients. Since 2022.",
+    detail: "Founder and lead engineer. Since 2022.",
   },
   {
     term: "Heading toward",
@@ -55,13 +60,13 @@ export default async function Home() {
             style={delay(180)}
           >
             <p>
-              Most of my week is Terraform Enterprise for large customers on AWS, Azure and GCP: upgrades,
-              credentials, data dependencies and real on-call pressure. Before HashiCorp I handled Amazon EKS
-              escalations at AWS.
+              I&apos;m a Senior Product Support Engineer at CodeRabbit, working on AI developer tooling and support
+              for enterprise self-hosted deployments. Before that I supported self-managed Terraform Enterprise,
+              Consul and Nomad at HashiCorp (IBM), and handled Amazon EKS escalations at AWS.
             </p>
             <p>
-              Since 2022 I have also built web products for clients through Webifex Labs. The two builds written up
-              below are my own projects, where I practise the same end-to-end ownership.
+              Alongside those roles I founded Webifex Labs and have delivered 20+ production applications through it.
+              The two builds written up below are my own projects.
             </p>
           </div>
           <div className="rise mt-9 flex flex-wrap gap-3" style={delay(260)}>

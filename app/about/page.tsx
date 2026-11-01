@@ -11,7 +11,7 @@ import { timeline } from "@/constants/timeline";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "How Syed Ibtihaj got from service desks to Terraform Enterprise support at HashiCorp, and why he is heading toward solutions architecture.",
+    "How Syed Ibtihaj got from service desks to product support at AWS, HashiCorp and CodeRabbit, and why he is heading toward solutions architecture.",
 };
 
 export default function AboutPage() {
@@ -43,8 +43,8 @@ export default function AboutPage() {
 
         <div className="max-w-measure space-y-5 text-[1.0625rem] leading-relaxed text-ink-body">
           <p className="text-lg text-ink">
-            I&apos;m a Senior Product Support Engineer at HashiCorp (now IBM) and the founder of Webifex Labs, a small
-            studio I started in 2022.
+            I&apos;m a Senior Product Support Engineer at CodeRabbit and the founder of Webifex Labs, which I started
+            in 2022.
           </p>
           <p>
             I&apos;m deliberately moving toward solutions architect work: customer-facing design conversations,
@@ -53,13 +53,16 @@ export default function AboutPage() {
           </p>
           <p>
             That direction comes from how I got here. Support and operations first (service desks, Salesforce admin,
-            higher-degree administration), then AWS as a Cloud Support Engineer on EKS, ECS and Fargate for global
-            enterprise customers, and now Terraform Enterprise at HashiCorp. I spend my days in the gap between what
-            people intend to deploy and what actually runs when data, auth and upgrades meet reality.
+            higher-degree administration), then Amazon EKS escalations at AWS, then self-managed Terraform
+            Enterprise, Consul and Nomad at HashiCorp (IBM), and now AI developer tooling and enterprise self-hosted
+            support at CodeRabbit. Most of that work sits in the gap between what people intend to deploy and what
+            actually runs when data, auth and upgrades meet reality.
           </p>
           <p>
             Webifex Labs is where I practise end-to-end ownership beyond day-to-day support: drawing boundaries
-            between services, wiring integrations, and making systems observable enough to operate.{" "}
+            between services, wiring integrations, and making systems observable enough to operate. Most recently I
+            built the Python RAG pipeline for Studifex, an EdTech product developed through Webifex Labs as a 50-50
+            partnership.{" "}
             <Link href="/projects/ai-incident-assistant" className="ink-link">
               AI Incident Assistant
             </Link>{" "}
@@ -67,7 +70,7 @@ export default function AboutPage() {
             <Link href="/projects/ib-scheduling" className="ink-link">
               IB Scheduling
             </Link>{" "}
-            are two examples. I&apos;m pushing more of this work to GitHub and keeping this site current so the
+            are two of my own projects. I&apos;m pushing more of this work to GitHub and keeping this site current so the
             story matches what I ship.
           </p>
         </div>

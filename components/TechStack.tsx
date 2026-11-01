@@ -111,8 +111,8 @@ const toolboxGroups: { name: string; items: ToolboxItem[] }[] = [
 
 const focusAreas = [
   {
-    title: "Terraform Enterprise",
-    body: "Day-to-day work inside enterprise control planes: upgrades, auth and VCS wiring, workspaces and modules under real customer pressure, not lab demos.",
+    title: "Self-managed platforms",
+    body: "Work inside customer-run control planes: Terraform Enterprise, Consul and Nomad at HashiCorp, and now enterprise self-hosted CodeRabbit installs. Upgrades, auth and VCS wiring under real customer pressure, not lab demos.",
   },
   {
     title: "Product systems",
@@ -149,8 +149,9 @@ export const TechStack = () => {
       <SectionHeading index="03" id="stack" title="Where the work lives" />
 
       <p className="max-w-measure text-[1.0625rem] leading-relaxed text-ink-body">
-        Most of my week is HashiCorp Terraform Enterprise across AWS, Azure, and GCP. The harder product
-        engineering shows up in Cruvio (governance APIs, connectors, document pipelines) and Studifex (RAG, grading
+        At HashiCorp most of my week was self-managed Terraform Enterprise, Consul and Nomad across AWS, Azure and
+        GCP; at CodeRabbit it is AI code review and enterprise self-hosted installs. The harder product engineering
+        shows up in Cruvio (governance APIs, connectors, document pipelines) and Studifex (RAG, grading
         graphs, vector retrieval). The names below are the surfaces those systems actually touch, not a beginner
         checklist. Detail lives in{" "}
         <Link href="/projects" className="ink-link">

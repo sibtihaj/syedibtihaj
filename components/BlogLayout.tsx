@@ -65,8 +65,8 @@ export function BlogLayout({
           <div className="text-[0.95rem] leading-relaxed text-ink-body">
             <p className="font-heading text-lg text-ink">Syed Ibtihaj</p>
             <p>
-              Senior Product Support Engineer on Terraform Enterprise at HashiCorp (now IBM). I wrote this for
-              HashiCorp Support; it also lives on IBM Support.{" "}
+              Senior Product Support Engineer at CodeRabbit. I wrote this while supporting Terraform Enterprise at
+              HashiCorp (IBM), for HashiCorp Support; it also lives on IBM Support.{" "}
               <Link href="/blog" className="ink-link">
                 More articles
               </Link>
