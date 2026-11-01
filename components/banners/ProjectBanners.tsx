@@ -68,6 +68,103 @@ function BannerFrame({
   );
 }
 
+/* ---------- Studifex: lines of handwritten working, read and marked ---------- */
+
+const WORK_ROWS = 9;
+const WORK_Y0 = 156;
+const WORK_DY = 36;
+const WORK_X0 = 84;
+const WORK_MARGIN = 628; // the ruled margin where marks are written
+const WORK_SIGNAL = 3; // the row being read, drawn in cobalt
+
+/** Small deterministic hash in [0, 1) so every row and word gets a stable shape. */
+function hash01(a: number, b: number) {
+  const h = Math.sin(a * 127.1 + b * 311.7) * 43758.5453;
+  return h - Math.floor(h);
+}
+
+/** One handwritten "word": a run of small cursive loops sitting on the baseline. */
+function wordPath(x0: number, base: number, length: number, height: number, slant: number) {
+  const a = 2.1; // forward travel per radian
+  const b = 3.4; // loop radius, larger than `a` so the stroke curls back on itself
+  const tMax = length / a;
+  const points: string[] = [];
+  for (let t = 0; t <= tMax; t += 0.32) {
+    const lift = (1 - Math.cos(t)) / 2;
+    const x = x0 + a * t - b * Math.sin(t) + slant * lift * height;
+    const y = base - 2 - lift * height;
+    points.push(`${round(x)} ${round(y)}`);
+  }
+  return `M${points.join(" L")}`;
+}
+
+const WORK_LINES = Array.from({ length: WORK_ROWS }, (_, row) => {
+  const base = WORK_Y0 + row * WORK_DY;
+  // Part labels start flush; the working under them is indented a little.
+  const indent = row === 0 || row === 5 ? 0 : 22;
+  const end = WORK_X0 + 300 + hash01(row, 0) * 200;
+  const words: string[] = [];
+  let x = WORK_X0 + indent;
+  let w = 0;
+  while (x < end) {
+    const length = 26 + hash01(row, w + 1) * 70;
+    const height = 9 + hash01(row, w + 7) * 7;
+    words.push(wordPath(x, base, Math.min(length, end - x + 10), height, 0.35));
+    x += length + 16 + hash01(row, w + 13) * 10;
+    w += 1;
+  }
+  // Most lines earn a tick in the margin; a couple are left unmarked.
+  const mark = row === 2 || row === 6 ? "none" : "tick";
+  return { row, base, words, mark, signal: row === WORK_SIGNAL };
+});
+
+/**
+ * Studifex banner: ruled paper with lines of handwritten working, a margin rule,
+ * and ticks in the margin where lines have been read and marked. The line being
+ * read is cobalt.
+ */
+export function StudifexBanner({ className }: { className?: string }) {
+  return (
+    <BannerFrame id="banner-stx" numeral="No. 01" tintAt={{ cx: "0.2", cy: "0.85" }} className={className}>
+      <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {WORK_LINES.map((line) => (
+          <line
+            key={`rule-${line.row}`}
+            x1="40"
+            x2={W - 40}
+            y1={line.base}
+            y2={line.base}
+            stroke={INK}
+            strokeOpacity="0.1"
+            strokeWidth="1"
+          />
+        ))}
+        <line x1={WORK_MARGIN} x2={WORK_MARGIN} y1="122" y2={H - 20} stroke={COBALT} strokeOpacity="0.35" strokeWidth="1.2" />
+        {WORK_LINES.map((line) =>
+          line.words.map((d, i) => (
+            <path
+              key={`w-${line.row}-${i}`}
+              d={d}
+              stroke={line.signal ? COBALT : INK}
+              strokeOpacity={line.signal ? 1 : 0.55}
+              strokeWidth={line.signal ? 1.6 : 1.1}
+            />
+          ))
+        )}
+        {WORK_LINES.filter((line) => line.mark === "tick").map((line) => (
+          <path
+            key={`t-${line.row}`}
+            d={`M${WORK_MARGIN + 40} ${line.base - 11} L${WORK_MARGIN + 48} ${line.base - 3} L${WORK_MARGIN + 66} ${line.base - 22}`}
+            stroke={line.signal ? COBALT : INK}
+            strokeOpacity={line.signal ? 1 : 0.6}
+            strokeWidth={line.signal ? 2.2 : 1.5}
+          />
+        ))}
+      </g>
+    </BannerFrame>
+  );
+}
+
 /* ---------- AI Incident Assistant: a disturbance in the signal, settling into calm ---------- */
 
 const RIPPLE_LINES = 15;
@@ -104,7 +201,7 @@ const RIPPLES = Array.from({ length: RIPPLE_LINES }, (_, k) => ({
  */
 export function AIIncidentBanner({ className }: { className?: string }) {
   return (
-    <BannerFrame id="banner-aia" numeral="No. 01" tintAt={{ cx: "0.15", cy: "0.6" }} className={className}>
+    <BannerFrame id="banner-aia" numeral="No. 02" tintAt={{ cx: "0.15", cy: "0.6" }} className={className}>
       <g fill="none" strokeLinecap="round" strokeLinejoin="round">
         {RIPPLES.filter((r) => !r.signal).map((r, i) => (
           <path key={i} d={r.d} stroke={INK} strokeOpacity={r.opacity} strokeWidth="1.2" />
@@ -154,7 +251,7 @@ const SLOTS = Array.from({ length: SLOT_COLS * SLOT_ROWS }, (_, n) => {
 export function IBSchedulingBanner({ className }: { className?: string }) {
   const id = "banner-ibs";
   return (
-    <BannerFrame id={id} numeral="No. 02" tintAt={{ cx: "0.85", cy: "0.2" }} className={className}>
+    <BannerFrame id={id} numeral="No. 03" tintAt={{ cx: "0.85", cy: "0.2" }} className={className}>
       <defs>
         <linearGradient id={`${id}-fade`} x1="0" x2="1" y1="0" y2="0">
           <stop offset="0.22" stopColor="#fff" stopOpacity="0" />
