@@ -1,104 +1,9 @@
 import React from "react";
-import { MermaidBlock } from "@/components/MermaidBlock";
-
-/** Light theme on the site palette, shared by the diagrams below. */
-const THEME = `%%{init: {
-  'theme': 'base',
-  'themeVariables': {
-    'primaryColor': '#ffffff',
-    'primaryTextColor': '#1e293b',
-    'primaryBorderColor': '#cbd5e1',
-    'lineColor': '#94a3b8',
-    'secondaryColor': '#f8fafc',
-    'tertiaryColor': '#ffffff',
-    'clusterBkg': '#f8fafc',
-    'clusterBorder': '#e2e8f0',
-    'fontSize': '13px',
-    'fontFamily': 'ui-sans-serif, system-ui, sans-serif',
-    'edgeLabelBackground': '#ffffff'
-  }
-}}%%`;
-
-const ARCHITECTURE = `${THEME}
-flowchart TB
-  browser(["Student or admin in the browser"])
-
-  subgraph web ["Vercel"]
-    next["Next.js app: marketing site, student portal, admin portal"]
-  end
-
-  subgraph svc ["AWS, Sydney"]
-    rag["Python service: FastAPI and LangGraph"]
-  end
-
-  subgraph data ["Data"]
-    supa[("Supabase: Postgres, Auth, Storage, Realtime")]
-    pine[("Pinecone: dense and sparse indexes")]
-  end
-
-  subgraph models ["Model APIs"]
-    ocr["Mathpix: handwriting to LaTeX"]
-    judge["Bedrock Claude: judge and coach"]
-    fire["Fireworks: LaTeX clean-up and document structuring"]
-  end
-
-  obs["Axiom, Langfuse, Sentry"]
-
-  browser --> next
-  next -- "auth and reads under RLS" --> supa
-  next -- "service token" --> rag
-  rag --> supa
-  rag --> pine
-  rag --> ocr
-  rag --> judge
-  rag --> fire
-  rag -. "logs, traces, errors" .-> obs
-
-  style rag fill:#eef3ff,stroke:#1e4fd6,color:#0d1b3e,stroke-width:1.5px
-`;
-
-const MARKING = `${THEME}
-flowchart TB
-  photo(["Photo of handwritten working"])
-  gate["Quality gate: is the image usable?"]
-  ocr["Read the handwriting into LaTeX"]
-  latex["Clean up the LaTeX"]
-  steps["Split into parts and steps"]
-  guide["Retrieve the marking guide"]
-  mark["Mark each criterion, citing the guide"]
-  conf{{"How confident is this result?"}}
-  save[("Save marks, feedback and audit trail")]
-  hold["Held for review"]
-
-  photo --> gate --> ocr --> latex --> steps --> guide --> mark --> conf --> save
-  mark -. "no model could mark it" .-> hold
-
-  style mark fill:#eef3ff,stroke:#1e4fd6,color:#0d1b3e,stroke-width:1.5px
-  style hold fill:#fff7ed,stroke:#c2410c,color:#7c2d12
-`;
-
-const RETRIEVAL = `${THEME}
-flowchart TB
-  ask(["The question and the student's steps"])
-  filter["Filter: this question, certified content, rubric and solution chunks"]
-  dense["Dense search"]
-  sparse["Sparse search"]
-  fuse["Reciprocal rank fusion"]
-  rerank["Rerank"]
-  hydrate["Load full text from Supabase by chunk id"]
-  every["Add every rubric criterion for the question"]
-  ctx(["Context for the judge"])
-
-  ask --> filter
-  filter --> dense
-  filter --> sparse
-  dense --> fuse
-  sparse --> fuse
-  fuse --> rerank --> hydrate --> ctx
-  filter --> every --> ctx
-
-  style fuse fill:#eef3ff,stroke:#1e4fd6,color:#0d1b3e,stroke-width:1.5px
-`;
+import {
+  StudifexArchitectureDiagram,
+  StudifexMarkingDiagram,
+  StudifexRetrievalDiagram,
+} from "@/components/diagrams/StudifexDiagrams";
 
 /**
  * Case study: Studifex (AI marking for handwritten VCE maths).
@@ -143,10 +48,7 @@ export function StudifexContent() {
             configuration change rather than a rewrite. That mattered, because both changed more than once.
           </li>
         </ul>
-        <MermaidBlock
-          chart={ARCHITECTURE}
-          caption="The Next.js app is the only thing the browser talks to. The Python service does the model work."
-        />
+        <StudifexArchitectureDiagram />
       </section>
 
       <section>
@@ -156,10 +58,7 @@ export function StudifexContent() {
           the next one, and every call to an outside service inside it has a time limit. The judge marks against specific criteria retrieved from the official
           marking guide, so every mark can be traced back to the line of the guide it came from.
         </p>
-        <MermaidBlock
-          chart={MARKING}
-          caption="If no model actually marked the answer, it is held for review instead of getting a guessed mark."
-        />
+        <StudifexMarkingDiagram />
         <p>
           The judge is Claude on AWS Bedrock and runs on every grounded mark: Sonnet first, Haiku if that fails, and a
           stronger escalation pass when the result looks inconsistent or the question is hard. It returns its answer
@@ -182,10 +81,7 @@ export function StudifexContent() {
           falling back to Cohere Rerank 3.5), and loads the full text from Supabase by chunk id. A separate SQL lookup
           then adds every rubric criterion for that question, so nothing the examiners would check is left out.
         </p>
-        <MermaidBlock
-          chart={RETRIEVAL}
-          caption="Similarity search finds the relevant solution steps; the SQL lookup guarantees the full rubric."
-        />
+        <StudifexRetrievalDiagram />
         <p>
           I looked at Bedrock Knowledge Bases as a managed alternative when the judge moved to Bedrock. It is built for
           general document Q&amp;A, it cannot express the &quot;every criterion for this question&quot; lookup, and
