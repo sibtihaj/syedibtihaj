@@ -10,7 +10,7 @@ function liveUrl(href: string | undefined) {
 
 /**
  * Editorial list of projects: screenshot and notes side by side, alternating
- * sides on wide screens so the two builds read as separate pieces of work.
+ * sides on wide screens so the builds read as separate pieces of work.
  */
 export const ProjectList = ({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3" }) => {
   const Title = headingLevel;
@@ -36,7 +36,7 @@ export const ProjectList = ({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-ink/10 bg-paper shadow-[0_24px_50px_-30px_rgba(13,27,62,0.45)]">
                 {product.Banner ? (
                   <product.Banner className="absolute inset-0 h-full transition-transform duration-700 ease-ink group-hover:scale-[1.02]" />
-                ) : (
+                ) : product.thumbnail ? (
                   <Image
                     src={product.thumbnail}
                     alt=""
@@ -44,7 +44,7 @@ export const ProjectList = ({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3
                     sizes="(min-width: 1024px) 560px, (min-width: 768px) 58vw, 100vw"
                     className="object-cover object-top transition-transform duration-700 ease-ink group-hover:scale-[1.025]"
                   />
-                )}
+                ) : null}
               </div>
             </Link>
 

@@ -21,6 +21,7 @@ function getExternalCta(href: string | undefined): { url: string; label: string 
 
 export const SingleProduct = ({ product }: { product: Product }) => {
   const externalCta = getExternalCta(product.href);
+  const hasScreenshots = product.images.length > 0;
 
   return (
     <article>
@@ -78,19 +79,21 @@ export const SingleProduct = ({ product }: { product: Product }) => {
           >
             <product.Banner />
           </div>
-          <section aria-labelledby="screenshots" className="mt-16">
-            <h2 id="screenshots" className="text-[1.5rem]">
-              The live app
-            </h2>
-            <p className="mb-6 mt-2 text-ink-muted">Screenshots from the running build.</p>
-            <ProjectGallery images={product.images} title={product.title} />
-          </section>
+          {hasScreenshots ? (
+            <section aria-labelledby="screenshots" className="mt-16">
+              <h2 id="screenshots" className="text-[1.5rem]">
+                {externalCta ? "The live app" : "Screenshots"}
+              </h2>
+              <p className="mb-6 mt-2 text-ink-muted">Screenshots from the running build.</p>
+              <ProjectGallery images={product.images} title={product.title} />
+            </section>
+          ) : null}
         </>
-      ) : (
+      ) : hasScreenshots ? (
         <div className="rise mt-10" style={{ ["--rise-delay" as string]: "320ms" }}>
           <ProjectGallery images={product.images} title={product.title} />
         </div>
-      )}
+      ) : null}
 
       <div className="case-study prose max-w-none mt-16 md:mt-20">{product.content}</div>
     </article>
