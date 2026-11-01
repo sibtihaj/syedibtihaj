@@ -3,21 +3,21 @@ import type { SimpleIcon } from "simple-icons";
 type TechStackBrandIconProps = {
   icon: SimpleIcon;
   className?: string;
+  /** Paint the glyph in the brand's own colour instead of the inherited text colour. */
+  brandColor?: boolean;
 };
 
 /**
- * Renders a Simple Icons glyph at 24×24 with brand color on the SVG.
+ * Renders a Simple Icons glyph at 24x24. Decorative: the label sits next to it.
  */
-export function TechStackBrandIcon({ icon, className }: TechStackBrandIconProps) {
+export function TechStackBrandIcon({ icon, className, brandColor = false }: TechStackBrandIconProps) {
   return (
     <svg
-      role="img"
       viewBox="0 0 24 24"
       className={className}
       aria-hidden
-      style={{ color: `#${icon.hex}` }}
+      style={brandColor ? { color: `#${icon.hex}` } : undefined}
     >
-      <title>{icon.title}</title>
       <path fill="currentColor" d={icon.path} />
     </svg>
   );
