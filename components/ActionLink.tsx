@@ -20,12 +20,15 @@ export const ActionLink = ({
   variant = "primary",
   className,
   download,
+  newTab,
 }: {
   href: string;
   children: React.ReactNode;
   variant?: Variant;
   className?: string;
   download?: boolean;
+  /** Open in a new tab even for a same-site path (e.g. a PDF). */
+  newTab?: boolean;
 }) => {
   const classes = cn(
     "inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 text-[0.95rem] transition-colors duration-200",
@@ -34,14 +37,14 @@ export const ActionLink = ({
   );
   const external = /^(https?:|mailto:|tel:)/.test(href);
 
-  if (external || download) {
-    const newTab = href.startsWith("http");
+  if (external || download || newTab) {
+    const openInNewTab = newTab || href.startsWith("http");
     return (
       <a
         href={href}
         className={classes}
         download={download || undefined}
-        {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(openInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
         {children}
       </a>
