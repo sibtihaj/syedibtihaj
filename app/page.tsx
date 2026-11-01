@@ -116,7 +116,7 @@ export default async function Home() {
         </aside>
       </section>
 
-      <section aria-labelledby="work" className="mt-28 scroll-mt-24 md:mt-36">
+      <section aria-labelledby="work" className="mt-20 scroll-mt-24 md:mt-36">
         <SectionHeading
           index="01"
           id="work"
@@ -130,7 +130,7 @@ export default async function Home() {
         <ProjectList />
       </section>
 
-      <section aria-labelledby="writing" className="mt-28 md:mt-36">
+      <section aria-labelledby="writing" className="mt-20 md:mt-36">
         <SectionHeading
           index="02"
           id="writing"
@@ -140,11 +140,11 @@ export default async function Home() {
         <ArticleIndex articles={articles} />
       </section>
 
-      <section aria-labelledby="stack" className="mt-28 md:mt-36">
+      <section aria-labelledby="stack" className="mt-20 md:mt-36">
         <TechStack />
       </section>
 
-      <section className="mt-28 md:mt-36">
+      <section className="mt-20 md:mt-36">
         <div className="relative overflow-hidden rounded-2xl bg-ink px-6 py-12 text-paper sm:px-10 md:px-14 md:py-16">
           <div
             aria-hidden
