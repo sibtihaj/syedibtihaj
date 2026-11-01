@@ -9,6 +9,8 @@ const Grainient = dynamic(() => import("./Grainient"), { ssr: false });
  * Page backdrop: a static blue ink wash on paper, plus a slow WebGL grain on
  * wide screens. The WebGL layer is skipped on small screens and when the
  * visitor asks for reduced motion; the static wash is the same picture at rest.
+ * Strengths are capped so rail text (--ink-body) stays above 4.5:1 at the
+ * darkest point the wash and grain can reach together.
  */
 export function Backdrop() {
   const [animated, setAnimated] = useState(false);
@@ -32,7 +34,7 @@ export function Backdrop() {
         className="absolute inset-0"
         style={{
           background: [
-            "radial-gradient(55% 45% at 0% 0%, rgba(37, 99, 235, 0.24), transparent 70%)",
+            "radial-gradient(55% 45% at 0% 0%, rgba(37, 99, 235, 0.16), transparent 70%)",
             "radial-gradient(45% 40% at 100% 0%, rgba(59, 130, 246, 0.16), transparent 70%)",
             "radial-gradient(60% 55% at 85% 100%, rgba(47, 111, 224, 0.20), transparent 70%)",
             "radial-gradient(50% 50% at 0% 100%, rgba(14, 116, 204, 0.14), transparent 70%)",
@@ -41,7 +43,7 @@ export function Backdrop() {
         }}
       />
       {animated ? (
-        <div className="absolute inset-0 opacity-[0.22] mix-blend-multiply">
+        <div className="absolute inset-0 opacity-[0.16] mix-blend-multiply">
           <Grainient
             color1="#1e4fd6"
             color2="#0b2a6f"
