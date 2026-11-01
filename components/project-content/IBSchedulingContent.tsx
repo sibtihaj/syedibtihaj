@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { IBSchedulingDeploymentDiagram, IBSchedulingSystemDiagram } from "@/components/diagrams/IBSchedulingDiagrams";
+import { DataTable } from "@/components/data/DataTable";
 
 const GRAFANA_DASHBOARD_URL =
   "https://grafana-production-53f7.up.railway.app/d/booking-api/go-booking-api?from=now-15m&to=now&timezone=browser";
@@ -39,6 +40,24 @@ export function IBSchedulingContent() {
           <code>access_token</code> as a <code>Bearer</code> JWT, verified
           against the Auth issuer.
         </p>
+        <DataTable
+          caption="The stack, layer by layer"
+          stackBelow="sm"
+          columns={[{ label: "Layer", width: "26%" }, { label: "What runs there" }]}
+          rows={[
+            { key: "ui", cells: ["Web app", "Next.js and TypeScript on Vercel: the product UI and the browser session"] },
+            { key: "api", cells: ["API", "Go with chi and pgx on Railway: booking rules and all database access"] },
+            {
+              key: "identity",
+              cells: ["Identity", "Supabase Auth issues the JWT; Go verifies it against the OIDC issuer's JWKS"],
+            },
+            { key: "data", cells: ["Data", "One Supabase Postgres database, reached through a service or pooler role"] },
+            {
+              key: "metrics",
+              cells: ["Metrics", <>Prometheus scrapes the API&apos;s <code key="m">/metrics</code>; Grafana dashboards query it</>],
+            },
+          ]}
+        />
       </section>
 
       <section className="not-prose">
@@ -172,100 +191,98 @@ export function IBSchedulingContent() {
           <code>apps/api/cmd/server/main.go</code>. Protected handlers expect{" "}
           <code>Authorization: Bearer &lt;supabase access_token&gt;</code>.
         </p>
-        <div className="not-prose my-4 overflow-x-auto rounded-xl border border-rule">
-          <table className="w-full min-w-[32rem] text-left text-sm text-ink-body">
-            <thead className="bg-paper-deep/60 text-[0.8125rem] text-ink-muted">
-              <tr>
-                <th className="px-3 py-2 font-normal">Method</th>
-                <th className="px-3 py-2 font-normal">Path</th>
-                <th className="px-3 py-2 font-normal">Auth</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-rule">
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">/health</td>
-                <td className="px-3 py-2">None</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/db-status
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/availability
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/reservations
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/reservations
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">/api/v1/slots</td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/benchmark/booking-rush
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/mimic/notification/email
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/mimic/notification/whatsapp
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          caption="Routes and the auth each one needs"
+          hideCaption
+          stackBelow="sm"
+          compact
+          columns={[{ label: "Route" }, { label: "Auth", width: "20%" }]}
+          rows={[
+            ["GET", "/health", "None"],
+            ["GET", "/api/v1/db-status", "Bearer"],
+            ["GET", "/api/v1/availability", "Bearer"],
+            ["GET", "/api/v1/reservations", "Bearer"],
+            ["POST", "/api/v1/reservations", "Bearer"],
+            ["POST", "/api/v1/slots", "Bearer"],
+            ["POST", "/api/v1/benchmark/booking-rush", "Bearer"],
+            ["POST", "/api/v1/mimic/notification/email", "Bearer"],
+            ["POST", "/api/v1/mimic/notification/whatsapp", "Bearer"],
+          ].map(([method, path, auth]) => ({
+            key: `${method} ${path}`,
+            cells: [
+              <span key="r" className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="w-10 font-mono text-[0.8125rem] text-ink-muted">{method}</span>
+                <code>
+                  {path.split("/").map((part, i) => (
+                    <React.Fragment key={i}>
+                      {i > 0 ? "/" : null}
+                      {i > 1 ? <wbr /> : null}
+                      {part}
+                    </React.Fragment>
+                  ))}
+                </code>
+              </span>,
+              auth,
+            ],
+          }))}
+        />
       </section>
 
       <section>
         <h2>Database invariants</h2>
-        <ul>
-          <li>
-            <code>public.resources</code> - bookable entity
-          </li>
-          <li>
-            <code>public.slots</code> - <code>UNIQUE (resource_id, starts_at)</code>{" "}
-            - discrete windows
-          </li>
-          <li>
-            <code>public.reservations</code> -{" "}
-            <code>UNIQUE (slot_id)</code> - at most one confirmed row per slot ({" "}
-            <code>ON CONFLICT</code> target)
-          </li>
-          <li>
-            <code>reservations.user_id</code> references{" "}
-            <code>auth.users(id)</code> - aligns with JWT <code>sub</code>
-          </li>
-        </ul>
+        <DataTable
+          caption="Tables, their constraints and what each guarantees"
+          hideCaption
+          stackBelow="md"
+          columns={[
+            { label: "Table", width: "26%" },
+            { label: "Constraint", width: "34%" },
+            { label: "What it guarantees" },
+          ]}
+          rows={[
+            {
+              key: "resources",
+              cells: [
+                <code key="t">public.resources</code>,
+                <span key="c" className="text-ink-muted">
+                  <span aria-hidden="true">-</span>
+                  <span className="sr-only">No extra constraint</span>
+                </span>,
+                "The bookable entity",
+              ],
+            },
+            {
+              key: "slots",
+              cells: [
+                <code key="t">public.slots</code>,
+                <code key="c">UNIQUE (resource_id, starts_at)</code>,
+                "Discrete windows: one slot per resource per start time",
+              ],
+            },
+            {
+              key: "reservations",
+              cells: [
+                <code key="t">public.reservations</code>,
+                <code key="c">UNIQUE (slot_id)</code>,
+                <>
+                  At most one confirmed reservation per slot; this is the <code key="o">ON CONFLICT</code> target
+                </>,
+              ],
+            },
+            {
+              key: "user",
+              cells: [
+                <code key="t">reservations.user_id</code>,
+                <>
+                  References <code key="r">auth.users(id)</code>
+                </>,
+                <>
+                  Matches the JWT <code key="s">sub</code>, so a booking always belongs to a real user
+                </>,
+              ],
+            },
+          ]}
+        />
       </section>
 
       <section>
@@ -282,6 +299,48 @@ export function IBSchedulingContent() {
           reservation) via LEFT JOIN; the UI sends the Supabase access token on
           every call through a small fetch wrapper.
         </p>
+        <DataTable
+          caption="What the system guarantees, and what enforces it"
+          stackBelow="sm"
+          columns={[{ label: "Guarantee", width: "38%" }, { label: "Enforced by" }]}
+          rows={[
+            {
+              key: "one-booking",
+              cells: [
+                "Two people cannot book the same slot",
+                <>
+                  A transaction that locks the slot row with <code key="f">FOR UPDATE</code>, plus{" "}
+                  <code key="u">UNIQUE (slot_id)</code> on reservations
+                </>,
+              ],
+            },
+            {
+              key: "conflict",
+              cells: ["The loser of a race gets a clear answer", "A duplicate insert returns 409 instead of a second booking"],
+            },
+            {
+              key: "auth",
+              cells: [
+                "Only signed-in users can read or book",
+                "Every booking route verifies the Supabase JWT against the OIDC issuer",
+              ],
+            },
+            {
+              key: "client",
+              cells: ["Nothing authoritative runs in the browser", "Booking rules and Postgres access are owned by the Go API"],
+            },
+            {
+              key: "secrets",
+              cells: [
+                "Database credentials never reach the browser",
+                <>
+                  <code key="d">DATABASE_URL</code> stays on the Go service, which never sees the Supabase anon key
+                </>,
+              ],
+            },
+            { key: "cors", cells: ["Only the web app can call the API from a browser", "CORS restricted to the web origin"] },
+          ]}
+        />
       </section>
 
       <section>
