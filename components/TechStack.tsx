@@ -28,7 +28,6 @@ import {
   siPython,
   siRedis,
   siRender,
-  siSqlite,
   siSupabase,
   siTerraform,
   siTypescript,
@@ -43,7 +42,7 @@ type ToolboxItem =
   | { label: string; kind: "text" };
 
 /**
- * Advanced surfaces from HashiCorp/AWS day work plus the Cruvio and EdTech AI platform builds.
+ * Advanced surfaces from HashiCorp/AWS day work plus the EdTech AI platform build.
  * Intentionally omits commodity labels (Git, Tailwind, generic Node).
  */
 const toolboxGroups: { name: string; items: ToolboxItem[] }[] = [
@@ -60,19 +59,16 @@ const toolboxGroups: { name: string; items: ToolboxItem[] }[] = [
       { label: "AWS", kind: "image", src: "/images/logos/aws.webp", alt: "" },
       { label: "Google Cloud", kind: "icon", icon: siGooglecloud },
       { label: "Azure", kind: "text" },
+      { label: "Redis", kind: "icon", icon: siRedis },
     ],
   },
   {
-    name: "Cruvio and EdTech AI platform systems",
+    name: "EdTech AI platform systems",
     items: [
-      { label: "Go", kind: "icon", icon: siGo },
       { label: "Python", kind: "icon", icon: siPython },
       { label: "FastAPI", kind: "icon", icon: siFastapi },
       { label: "PostgreSQL", kind: "icon", icon: siPostgresql },
       { label: "Supabase", kind: "icon", icon: siSupabase },
-      { label: "Redis", kind: "icon", icon: siRedis },
-      { label: "SQLite", kind: "icon", icon: siSqlite },
-      { label: "River", kind: "text" },
       { label: "Render", kind: "icon", icon: siRender },
       { label: "Vercel", kind: "icon", icon: siVercel },
     ],
@@ -105,6 +101,7 @@ const toolboxGroups: { name: string; items: ToolboxItem[] }[] = [
     items: [
       { label: "Next.js", kind: "icon", icon: siNextdotjs },
       { label: "TypeScript", kind: "icon", icon: siTypescript },
+      { label: "Go", kind: "icon", icon: siGo },
     ],
   },
 ];
@@ -116,7 +113,7 @@ const focusAreas = [
   },
   {
     title: "Product systems",
-    body: "Cruvio and the EdTech AI platform are where the harder build work shows up: Go governance APIs, River workers, FastAPI RAG sidecars, Pinecone retrieval, Supabase RLS, and AWS-backed object storage.",
+    body: "The EdTech AI platform is where the harder build work shows up: a FastAPI RAG service, Pinecone retrieval, LangGraph grading, Supabase row-level security, and AWS-hosted deployment.",
   },
   {
     title: "How systems fail",
@@ -151,8 +148,7 @@ export const TechStack = () => {
       <p className="max-w-measure text-[1.0625rem] leading-relaxed text-ink-body">
         At HashiCorp most of my week was self-managed Terraform Enterprise, Consul and Nomad across AWS, Azure and
         GCP; at CodeRabbit it is AI code review and enterprise self-hosted installs. The harder product engineering
-        shows up in Cruvio (governance APIs, connectors, document pipelines) and the EdTech AI platform (RAG, grading
-        graphs, vector retrieval). The names below are the surfaces those systems actually touch, not a beginner
+        shows up in the EdTech AI platform (RAG, grading graphs, vector retrieval). The names below are the surfaces those systems actually touch, not a beginner
         checklist. Detail lives in{" "}
         <Link href="/projects" className="ink-link">
           selected projects
@@ -176,7 +172,7 @@ export const TechStack = () => {
       <div className="mt-16">
         <h3 className="text-[1.2rem]">Systems I build and operate with</h3>
         <p className="mt-2 max-w-measure text-[0.95rem] text-ink-muted">
-          From enterprise platform support and from shipping Cruvio and the EdTech AI platform. Not every logo is a specialty, but
+          From enterprise platform support and from building the EdTech AI platform. Not every logo is a specialty, but
           none of these are filler.
         </p>
         <dl className="mt-6 divide-y divide-rule border-y border-rule">
