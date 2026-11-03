@@ -3,6 +3,8 @@
  * Keep this file, constants/timeline.tsx and the PDF in sync when the CV changes.
  */
 
+import { formatExperience } from "@/lib/experience";
+
 export const resumeHeader = {
   name: "Syed Haque",
   email: "syedibtihaj12@gmail.com",
@@ -14,12 +16,18 @@ export const resumeHeader = {
   githubHref: "https://github.com/sibtihaj",
 } as const;
 
-/** Career summary from the PDF, word for word, split into paragraphs for reading on screen. */
-export const careerSummary = [
-  "Customer-facing infrastructure engineer with approximately seven years of experience across technical support, enterprise infrastructure and software development. At AWS I handled Amazon EKS escalations for business-critical Kubernetes and container workloads, working directly with customers under strict SLAs. At HashiCorp (IBM) I supported self-managed Terraform Enterprise, Consul and Nomad deployments, focusing on the DevOps and CI/CD pipelines around them, including incidents that interrupted infrastructure delivery across whole organisations. That work involved troubleshooting Kubernetes, cloud networking, databases, TLS and CI/CD integrations, and turning findings into clear guidance, reproducible issues and product feedback.",
-  "At CodeRabbit I apply that background to AI developer tooling and support for enterprise self-hosted deployments. I investigate customer-reported bugs, document findings in Linear, implement fixes and submit pull requests for engineering review.",
-  "Alongside these roles, I founded Webifex Labs and delivered 20+ production applications using Next.js, TypeScript and LLM tooling. I built the Python RAG pipeline for an EdTech AI platform, covering document processing, hybrid retrieval and rubric-based grading, integrating model APIs and adding evaluation and diagnostic tooling. I hold Kubernetes, AWS and HashiCorp certifications and a cybersecurity degree from Monash, and am completing the Machine Learning Specialization.",
-] as const;
+/**
+ * Career summary from the PDF, split into paragraphs for reading on screen.
+ * Built per request (not at module load) so the experience length never goes stale;
+ * routes that render it must revalidate.
+ */
+export function getCareerSummary(experience: string = formatExperience()) {
+  return [
+    `Customer-facing infrastructure engineer with ${experience} of experience across technical support, enterprise infrastructure and software development. At AWS I handled Amazon EKS escalations for business-critical Kubernetes and container workloads, working directly with customers under strict SLAs. At HashiCorp (IBM) I supported self-managed Terraform Enterprise, Consul and Nomad deployments, focusing on the DevOps and CI/CD pipelines around them, including incidents that interrupted infrastructure delivery across whole organisations. That work involved troubleshooting Kubernetes, cloud networking, databases, TLS and CI/CD integrations, and turning findings into clear guidance, reproducible issues and product feedback.`,
+    "At CodeRabbit I apply that background to AI developer tooling and support for enterprise self-hosted deployments. I investigate customer-reported bugs, document findings in Linear, implement fixes and submit pull requests for engineering review.",
+    "Alongside these roles, I founded Webifex Labs and delivered 20+ production applications using Next.js, TypeScript and LLM tooling. I built the Python RAG pipeline for an EdTech AI platform, covering document processing, hybrid retrieval and rubric-based grading, integrating model APIs and adding evaluation and diagnostic tooling. I hold Kubernetes, AWS and HashiCorp certifications and a cybersecurity degree from Monash, and am completing the Machine Learning Specialization.",
+  ];
+}
 
 export const education = [
   {

@@ -4,13 +4,16 @@ import { Container } from "@/components/Container";
 import { ResumeCertifications, ResumeSkills } from "@/components/ResumeSkills";
 import { SectionHeading } from "@/components/SectionHeading";
 import { WorkHistory } from "@/components/WorkHistory";
-import { careerSummary, education, resumeHeader } from "@/constants/resumeContent";
+import { getCareerSummary, education, resumeHeader } from "@/constants/resumeContent";
 
 export const metadata: Metadata = {
   title: "Resume",
   description:
     "Resume of Syed Ibtihaj: Senior Product Support Engineer at CodeRabbit, previously self-managed Terraform Enterprise, Consul and Nomad support at HashiCorp (IBM) and Amazon EKS escalations at AWS.",
 };
+
+/** Daily ISR so the exact experience length in the summary stays current. */
+export const revalidate = 86400;
 
 const RESUME_PDF = "/ibtihaj-resume.pdf";
 const delay = (ms: number) => ({ ["--rise-delay" as string]: `${ms}ms` });
@@ -70,7 +73,7 @@ export default function ResumePage() {
         <div>
           <SectionHeading index="01" id="summary" title="Summary" />
           <div className="max-w-measure space-y-4 text-[1.0625rem] leading-relaxed text-ink-body md:text-lg">
-            {careerSummary.map((paragraph) => (
+            {getCareerSummary().map((paragraph) => (
               <p key={paragraph.slice(0, 32)}>{paragraph}</p>
             ))}
           </div>
