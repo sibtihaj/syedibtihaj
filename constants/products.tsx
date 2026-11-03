@@ -1,6 +1,12 @@
 import type { Product } from "@/types/products";
 import { AIIncidentAssistantContent } from "@/components/project-content/AIIncidentAssistantContent";
 import { IBSchedulingContent } from "@/components/project-content/IBSchedulingContent";
+import { AIMarkingContent } from "@/components/project-content/AIMarkingContent";
+import {
+  AIIncidentBanner,
+  IBSchedulingBanner,
+  AIMarkingBanner,
+} from "@/components/banners/ProjectBanners";
 const ibSchedulingHome = "/images/ib-scheduling-home.png";
 const ibSchedulingArch = "/images/ib-scheduling-architecture.png";
 const ibSchedulingGrafana = "/images/grafana.png";
@@ -10,11 +16,35 @@ const aiIncidentFlow = "/images/ai-incident-assistant-flow.png";
 
 export const products: Product[] = [
   {
+    // Not publicly launched, so there is no live link and no screenshots.
+    href: "",
+    title: "EdTech AI Platform: AI Marking for Handwritten VCE Maths",
+    description:
+      "A study platform for VCE students that reads photos of handwritten maths working, retrieves the official marking guide and marks it step by step. I built the Next.js portals, the Python marking service and the AWS infrastructure behind it.",
+    Banner: AIMarkingBanner,
+    images: [],
+    stack: [
+      "Next.js",
+      "Python",
+      "FastAPI",
+      "LangGraph",
+      "Pinecone",
+      "Supabase",
+      "AWS Bedrock",
+      "Mathpix",
+      "AWS EC2",
+      "Terraform",
+    ],
+    slug: "ai-marking",
+    content: <AIMarkingContent />,
+  },
+  {
     href: "https://ai-incident-assistant.vercel.app/",
     title: "AI Incident Assistant",
     description:
       "Production-style incident response playground: authenticated chat, MCP incident tools, template-driven CAN/RCA generation, Supabase sessions + quotas, and gateway-routed model orchestration.",
     thumbnail: aiIncidentHome,
+    Banner: AIIncidentBanner,
     images: [aiIncidentHome, aiIncidentLogin, aiIncidentFlow],
     stack: [
       "Next.js",
@@ -35,6 +65,7 @@ export const products: Product[] = [
     description:
       "Portfolio booking engine: Supabase Auth + Postgres, Go API (chi, pgx, OIDC JWT) on Railway, Next.js on Vercel, Prometheus/Grafana for metrics - race-safe reservations and full telemetry.",
     thumbnail: ibSchedulingHome,
+    Banner: IBSchedulingBanner,
     images: [ibSchedulingHome, ibSchedulingArch, ibSchedulingGrafana],
     stack: [
       "Next.js",

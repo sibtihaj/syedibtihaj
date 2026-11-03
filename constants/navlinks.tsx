@@ -1,35 +1,16 @@
-import {
-  IconArticle,
-  IconBolt,
-  IconBriefcase2,
-  IconMail,
-  IconMessage2,
-} from "@tabler/icons-react";
+import { FileText, FolderOpen, House, Mail, PenLine, UserRound, type LucideIcon } from "lucide-react";
+import type { Navlink } from "@/types/navlink";
 
-export const navlinks = [
-  {
-    href: "/",
-    label: "Home",
-    icon: IconBolt,
-  },
-  {
-    href: "/about",
-    label: "About",
-    icon: IconMessage2,
-  },
-  {
-    href: "/projects",
-    label: "Projects",
-    icon: IconBriefcase2,
-  },
-  {
-    href: "/blog",
-    label: "Articles",
-    icon: IconArticle,
-  },
-  {
-    href: "/contact",
-    label: "Contact",
-    icon: IconMail,
-  },
+export type NavItem = Navlink & {
+  /** Decorative glyph shown beside the label; the label stays the accessible name. */
+  icon: LucideIcon;
+};
+
+export const navlinks: NavItem[] = [
+  { href: "/", label: "Home", icon: House },
+  { href: "/about", label: "About", icon: UserRound },
+  { href: "/projects", label: "Projects", icon: FolderOpen },
+  { href: "/blog", label: "Articles", icon: PenLine },
+  { href: "/resume", label: "Resume", icon: FileText },
+  { href: "/contact", label: "Contact", icon: Mail },
 ];

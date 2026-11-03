@@ -1,23 +1,22 @@
-import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconMail,
-} from "@tabler/icons-react";
+import type { SocialLink } from "@/types/navlink";
 
-export const socials = [
+export const socials: SocialLink[] = [
   {
     href: "https://github.com/sibtihaj",
     label: "GitHub",
-    icon: IconBrandGithub,
+    handle: "sibtihaj",
+    external: true,
   },
   {
     href: "https://www.linkedin.com/in/ib-02",
     label: "LinkedIn",
-    icon: IconBrandLinkedin,
+    handle: "in/ib-02",
+    external: true,
   },
   {
     href: "mailto:syedibtihaj12@gmail.com",
     label: "Email",
-    icon: IconMail,
+    handle: "syedibtihaj12@gmail.com",
+    external: false,
   },
 ];

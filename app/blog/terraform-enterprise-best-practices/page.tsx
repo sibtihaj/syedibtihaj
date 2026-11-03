@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { BlogLayout } from "@/components/BlogLayout";
 
 const meta = {
@@ -8,6 +9,11 @@ const meta = {
   image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80",
   category: "Terraform Enterprise Support",
   tags: ["terraform-enterprise", "capacity-planning", "limits", "operations"],
+};
+
+export const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
 };
 
 export default function Page() {

@@ -1,24 +1,16 @@
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/lib/utils";
 
-export const Container = React.forwardRef<
-  HTMLDivElement,
-  {
-    children: React.ReactNode;
-    className?: string;
-  }
->(({ children, className }, ref) => {
+export const Container = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
-    <div
-      ref={ref}
-      className={twMerge(
-        "max-w-6xl w-full mx-auto pt-0 pb-12 md:pb-24 px-6 md:px-12",
-        className
-      )}
-    >
+    <div className={cn("mx-auto w-full max-w-5xl px-5 pb-8 pt-10 sm:px-8 md:px-12 lg:pt-16", className)}>
       {children}
     </div>
   );
-});
-
-Container.displayName = "Container";
+};

@@ -1,133 +1,194 @@
-"use client";
-import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
-import { Products } from "@/components/Products";
-import { TechStack } from "@/components/TechStack";
-import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
+import { ActionLink } from "@/components/ActionLink";
+import { ArticleIndex } from "@/components/ArticleIndex";
+import { Container } from "@/components/Container";
+import { InkUnderline } from "@/components/InkUnderline";
+import { ProjectList } from "@/components/ProjectList";
+import { SectionHeading } from "@/components/SectionHeading";
+import { TechStack } from "@/components/TechStack";
+import { certificationBadges } from "@/constants/certificationBadges";
+import { getAllBlogMeta } from "@/lib/getAllBlogs";
 
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
+const caseFile = [
+  {
+    term: "Now",
+    title: "CodeRabbit",
+    detail: "Senior Product Support Engineer. Since Aug 2026.",
   },
-};
+  {
+    term: "Before",
+    title: "HashiCorp (IBM)",
+    detail: "Senior Product Support Engineer on self-managed Terraform Enterprise, Consul and Nomad. Nov 2024 to Jul 2026.",
+  },
+  {
+    term: "Earlier",
+    title: "Amazon Web Services",
+    detail: "Associate, then Cloud Support Engineer, on Amazon EKS and ECS. 2022 to 2024.",
+  },
+  {
+    term: "Alongside",
+    title: "Webifex Labs",
+    detail: "Founder and lead engineer. Since 2022.",
+  },
+  {
+    term: "Heading toward",
+    title: "Solutions architecture",
+    detail: null,
+  },
+];
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-};
+const delay = (ms: number) => ({ ["--rise-delay" as string]: `${ms}ms` });
 
-export default function Home() {
+export default async function Home() {
+  const articles = await getAllBlogMeta();
+
   return (
-    <Container className="relative overflow-hidden">
-      {/* Decorative background glow */}
-      <div className="absolute -top-24 -left-24 h-[500px] w-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/2 -right-24 h-[400px] w-[400px] bg-teal-500/5 blur-[100px] rounded-full pointer-events-none" />
+    <Container>
+      <section className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:gap-14 xl:gap-20">
+        <div className="pt-2 lg:pt-8">
+          <p className="field-label rise">Syed Ibtihaj, product support engineering</p>
+          <h1
+            className="rise mt-6 text-[2.15rem] leading-[1.08] sm:text-[2.6rem] lg:text-[3.05rem]"
+            style={delay(80)}
+          >
+            I work in the gap between what a team meant to deploy and what{" "}
+            <InkUnderline>still runs</InkUnderline>.
+          </h1>
+          <div
+            className="rise mt-8 max-w-measure space-y-4 text-[1.0625rem] leading-relaxed text-ink-body md:text-lg"
+            style={delay(180)}
+          >
+            <p>
+              I&apos;m a Senior Product Support Engineer at CodeRabbit, working on AI developer tooling and support
+              for enterprise self-hosted deployments. Before that I supported self-managed Terraform Enterprise,
+              Consul and Nomad at HashiCorp (IBM), and handled Amazon EKS escalations at AWS.
+            </p>
+            <p>
+              Alongside those roles I founded Webifex Labs and have delivered 20+ production applications through it.
+              Three builds are written up below: an EdTech AI platform, which I built through Webifex Labs, and two of my own
+              projects.
+            </p>
+          </div>
+          <div className="rise mt-9 flex flex-wrap gap-3" style={delay(260)}>
+            <ActionLink href="/resume">Read the resume</ActionLink>
+            <ActionLink href="#work" variant="quiet">
+              See the builds
+            </ActionLink>
+          </div>
+        </div>
 
-      <motion.section 
-        variants={stagger}
-        initial="initial"
-        animate="animate"
-        className="relative pt-6 lg:pt-14"
-      >
-        <motion.div variants={fadeInUp}>
-          <Heading className="text-2xl md:text-3xl lg:text-4xl mb-8 leading-[1.15]">
-            Hello. I&apos;m <span className="text-brand-gradient italic">Syed.</span>
-          </Heading>
-        </motion.div>
+        <aside
+          aria-label="At a glance"
+          className="rise self-start rounded-2xl border border-ink/10 bg-white/60 p-6 backdrop-blur-sm lg:mt-10"
+          style={delay(340)}
+        >
+          <dl className="divide-y divide-rule">
+            {caseFile.map((row) => (
+              <div key={row.term} className="py-4 first:pt-0">
+                <dt className="field-label">{row.term}</dt>
+                <dd className="mt-1">
+                  <span className="font-heading text-[1.1rem] text-ink">{row.title}</span>
+                  {row.detail ? (
+                    <span className="mt-1 block text-sm leading-snug text-ink-muted">{row.detail}</span>
+                  ) : null}
+                </dd>
+              </div>
+            ))}
+            <div className="pt-4">
+              <dt className="field-label">Certified</dt>
+              <dd className="mt-3">
+                <ul className="flex flex-wrap gap-1.5">
+                  {certificationBadges.map((badge) => (
+                    <li key={badge.title}>
+                      <Image
+                        src={badge.src}
+                        alt={badge.title}
+                        title={badge.title}
+                        width={40}
+                        height={40}
+                        unoptimized
+                        className="h-10 w-10 object-contain"
+                      />
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/resume#certifications" className="ink-link mt-3 inline-block text-sm">
+                  What each one covers
+                </Link>
+              </dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
 
-        <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-2xl text-lg md:text-xl text-stone-700 mb-6 leading-relaxed">
-            I&apos;m Syed, a Senior Product Support Engineer at HashiCorp (now IBM), deep in Terraform Enterprise with
-            enterprises across AWS, Azure, and GCP. My
-            week is the space between what a team meant to deploy and what still runs after upgrades, credentials,
-            data dependencies, and real on call pressure. I am deliberately steering toward{" "}
-            <Highlight className="bg-stone-200/50 text-stone-800 px-2 py-0.5 rounded-md">
-              Solutions Architecture
-            </Highlight>
-            , grounded in university studies in cybersecurity, a career path that has consistently looked like DevOps
-            and site reliability engineering in enterprise settings, and the AI oriented product work I have shipped
-            through Webifex Labs. The bar I am aiming for is clearer tradeoffs with customers, designs that survive
-            production, and roadmaps that stay honest about risk.
-          </Paragraph>
-        </motion.div>
+      <section aria-labelledby="work" className="mt-20 scroll-mt-24 md:mt-36">
+        <SectionHeading
+          index="01"
+          id="work"
+          title="Recent builds"
+          aside={
+            <Link href="/projects" className="ink-link">
+              All projects
+            </Link>
+          }
+        />
+        <ProjectList />
+      </section>
 
-        <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-2xl text-base text-stone-600 mb-6 leading-relaxed">
-            I am also a full stack builder. Through Webifex Labs I have shipped many production web apps over{" "}
-            <span className="text-stone-800 font-medium">six plus years</span> in the cloud. On this site that shows up
-            as{" "}
-            <Link
-              href="/projects/ai-incident-assistant"
-              className="text-emerald-700 underline-offset-4 hover:underline font-medium"
-            >
-              AI Incident Assistant
-            </Link>{" "}
-            (authenticated incident playground, MCP backed tools, Supabase sessions, gateway routed models) and{" "}
-            <Link
-              href="/projects/ib-scheduling"
-              className="text-emerald-700 underline-offset-4 hover:underline font-medium"
-            >
-              IB Scheduling
-            </Link>{" "}
-            (Go API on Railway, Supabase Auth and Postgres, OIDC verified JWTs, Prometheus and Grafana). The{" "}
-            <Link href="/blog" className="text-emerald-700 underline-offset-4 hover:underline font-medium">
-              blog
-            </Link>{" "}
-            holds a small set of Terraform Enterprise support articles I also published on the public HashiCorp and IBM
-            knowledge bases, so the writing matches the work.
-          </Paragraph>
-        </motion.div>
+      <section aria-labelledby="writing" className="mt-20 md:mt-36">
+        <SectionHeading
+          index="02"
+          id="writing"
+          title="Published support articles"
+          aside="Also on HashiCorp and IBM Support"
+        />
+        <ArticleIndex articles={articles} />
+      </section>
 
-        <motion.div variants={fadeInUp}>
-          <Paragraph className="max-w-2xl text-sm text-stone-500 mb-12 leading-relaxed">
-            I am being more deliberate about visibility: selected code lives on{" "}
-            <Link
+      <section aria-labelledby="stack" className="mt-20 md:mt-36">
+        <TechStack />
+      </section>
+
+      <section className="mt-20 md:mt-36">
+        <div className="relative overflow-hidden rounded-2xl bg-ink px-6 py-12 text-paper sm:px-10 md:px-14 md:py-16">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-60 blur-3xl"
+            style={{ background: "radial-gradient(circle, #1e4fd6 0%, transparent 70%)" }}
+          />
+          <h2 className="relative max-w-2xl text-[1.75rem] leading-tight text-paper md:text-[2.2rem]">
+            Hiring for solutions architecture, or have a project in mind?
+          </h2>
+          <p className="relative mt-5 max-w-xl leading-relaxed text-[#c9d3ea]">
+            I would like to hear about roles where someone needs to diagram a target state and defend it under
+            production pressure. Selected code is on{" "}
+            <a
               href="https://github.com/sibtihaj"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-700 hover:text-emerald-800 underline-offset-4 hover:underline font-medium"
+              className="text-paper underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
             >
               GitHub
+            </a>
+            .
+          </p>
+          <div className="relative mt-8 flex flex-wrap gap-3">
+            <a
+              href="mailto:syedibtihaj12@gmail.com"
+              className="inline-flex min-h-[44px] items-center rounded-full bg-paper px-5 text-[0.95rem] text-ink transition-colors hover:bg-white"
+            >
+              Email syedibtihaj12@gmail.com
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex min-h-[44px] items-center rounded-full border border-paper/30 px-5 text-[0.95rem] text-paper transition-colors hover:border-paper/70"
+            >
+              Other ways to reach me
             </Link>
-            , and I treat this portfolio as a living site I refresh as the story and the builds move forward.
-          </Paragraph>
-        </motion.div>
-      </motion.section>
-
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative"
-      >
-        <div className="flex items-end justify-between mb-12">
-          <Heading
-            as="h2"
-            className="text-lg md:text-xl lg:text-2xl font-normal"
-          >
-            Selected <span className="text-stone-400 font-light italic">Works</span>
-          </Heading>
-          <div className="h-px flex-1 bg-stone-200 mx-8 hidden md:block" />
+          </div>
         </div>
-        
-        <Products />
-      </motion.section>
-
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="mt-32"
-      >
-        <TechStack />
-      </motion.section>
+      </section>
     </Container>
   );
 }

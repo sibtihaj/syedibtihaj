@@ -7,12 +7,12 @@ export function NexSevContent() {
   return (
     <div className="space-y-10">
       <div>
-        <p className="text-lg text-zinc-700 leading-relaxed not-prose">
-          <strong className="font-normal text-zinc-900">How we used LLMs and agentic workflows to cut Sev1 response time by 40%</strong>
+        <p className="text-lg text-ink-body leading-relaxed not-prose">
+          <strong className="font-normal text-ink">How we used LLMs and agentic workflows to cut Sev1 response time by 40%</strong>
         </p>
       </div>
 
-      <hr className="border-zinc-100 not-prose" />
+      <hr className="border-rule not-prose" />
 
       <section>
         <h2>The problem: incident response is a time sink</h2>
@@ -112,22 +112,22 @@ export function NexSevContent() {
         <p>Support engineers live in Slack during incidents. We shipped slash-style workflows such as:</p>
         <ul>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev analyze</code>
+            <code className="text-sm bg-cobalt-wash px-1.5 py-0.5 rounded">/nexsev analyze</code>
             {" "}
             to suggest troubleshooting steps for the active incident
           </li>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev rca [ticket-id]</code>
+            <code className="text-sm bg-cobalt-wash px-1.5 py-0.5 rounded">/nexsev rca [ticket-id]</code>
             {" "}
             for an RCA draft on a resolved incident
           </li>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev can [ticket-id]</code>
+            <code className="text-sm bg-cobalt-wash px-1.5 py-0.5 rounded">/nexsev can [ticket-id]</code>
             {" "}
             for a CAN draft
           </li>
           <li>
-            <code className="text-sm bg-zinc-100 px-1.5 py-0.5 rounded">/nexsev search [query]</code>
+            <code className="text-sm bg-cobalt-wash px-1.5 py-0.5 rounded">/nexsev search [query]</code>
             {" "}
             for knowledge base search
           </li>
@@ -184,8 +184,8 @@ export function NexSevContent() {
 
       <section>
         <h2>Technical details</h2>
-        <p className="not-prose font-normal text-zinc-900">Reference stack</p>
-        <pre className="not-prose overflow-x-auto rounded-2xl bg-zinc-900 text-zinc-100 p-5 text-xs leading-relaxed font-mono">
+        <p className="not-prose font-normal text-ink">Reference stack</p>
+        <pre className="not-prose overflow-x-auto rounded-2xl bg-ink text-[#e7ecf7] p-5 text-xs leading-relaxed font-mono">
           <code>{`Backend:
 - Python 3.11
 - LangChain (agent orchestration)
@@ -220,8 +220,8 @@ Models:
         </p>
       </section>
 
-      <footer className="not-prose pt-6 border-t border-zinc-100">
-        <p className="text-sm text-zinc-500 italic leading-relaxed">
+      <footer className="not-prose pt-6 border-t border-rule">
+        <p className="text-sm text-ink-muted italic leading-relaxed">
           Syed Ibtihaj is a Senior Product Support Engineer at HashiCorp/IBM, specializing in Terraform Enterprise and Kubernetes infrastructure. He also runs Webifex Labs, shipping Next.js products for clients from Melbourne, Australia.
         </p>
       </footer>

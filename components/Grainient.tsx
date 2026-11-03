@@ -1,5 +1,12 @@
 "use client";
 
+/*
+ * Grainient background, adapted from React Bits (https://reactbits.dev).
+ * React Bits is licensed MIT + Commons Clause v1.0; keep this notice with the file.
+ * Local changes: blue palette passed in by components/Backdrop.tsx, and the render
+ * loop pauses while the tab is hidden.
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
 
@@ -156,14 +163,20 @@ const Grainient: React.FC<GrainientProps> = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const renderer = new Renderer({
-      webgl: 2,
-      alpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
-    });
-
+    let renderer: Renderer;
+    try {
+      renderer = new Renderer({
+        webgl: 2,
+        alpha: true,
+        antialias: false,
+        dpr: Math.min(window.devicePixelRatio || 1, 2)
+      });
+    } catch {
+      // No WebGL: the static backdrop underneath is enough.
+      return;
+    }
     const gl = renderer.gl;
+    if (!gl) return;
     const canvas = gl.canvas as HTMLCanvasElement;
     canvas.style.width = '100%';
     canvas.style.height = '100%';
@@ -226,10 +239,16 @@ const Grainient: React.FC<GrainientProps> = ({
       renderer.render({ scene: mesh });
       raf = requestAnimationFrame(loop);
     };
+    const onVisibility = () => {
+      cancelAnimationFrame(raf);
+      if (!document.hidden) raf = requestAnimationFrame(loop);
+    };
+    document.addEventListener('visibilitychange', onVisibility);
     raf = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(raf);
+      document.removeEventListener('visibilitychange', onVisibility);
       ro.disconnect();
       try {
         container.removeChild(canvas);

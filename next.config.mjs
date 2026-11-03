@@ -1,8 +1,15 @@
-/** @type {import('next').NextConfig} */
 import nextMDX from "@next/mdx";
 import remarkGfm from "remark-gfm";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
+// A stray package-lock.json in the home directory makes Next.js guess the wrong
+// workspace root; pin tracing to this project.
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingRoot: projectRoot,
   images: {
     remotePatterns: [
       {

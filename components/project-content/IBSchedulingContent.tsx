@@ -1,121 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { MermaidBlock } from "@/components/MermaidBlock";
+import { IBSchedulingDeploymentDiagram, IBSchedulingSystemDiagram } from "@/components/diagrams/IBSchedulingDiagrams";
+import { DataTable } from "@/components/data/DataTable";
 
 const GRAFANA_DASHBOARD_URL =
   "https://grafana-production-53f7.up.railway.app/d/booking-api/go-booking-api?from=now-15m&to=now&timezone=browser";
-
-/** Zoned system-architecture style: client → edge → Supabase → Go → observability (matches go-booking-system app diagram). */
-const SYSTEM_DIAGRAM = `flowchart TB
-  subgraph ZONE_CLIENT["Client layer"]
-    direction TB
-    BR["Browser UI - Next.js App Router"]
-  end
-
-  subgraph ZONE_EDGE["Edge / SSR"]
-    direction TB
-    MW["Middleware and SSR - session cookies"]
-  end
-
-  subgraph ZONE_SUPA["Supabase platform"]
-    direction TB
-    AUTH["Supabase Auth - OIDC JWKS"]
-    PG["Postgres - slots and reservations"]
-  end
-
-  subgraph ZONE_GO["Go backend"]
-    direction TB
-    API["Go API - chi, go-oidc, pgx"]
-    METRICS["Go /metrics - Prometheus exposition"]
-  end
-
-  subgraph ZONE_OBS["Observability"]
-    direction TB
-    PROM["Prometheus - scrape and store"]
-    GRAF["Grafana - PromQL dashboards"]
-  end
-
-  BR --> MW
-  BR -->|"supabase-js refresh session"| AUTH
-  BR -->|"Bearer JWT"| API
-  API -->|"go-oidc validate"| AUTH
-  API -->|"pgx SQL"| PG
-  API -->|"exports counters / gauges"| METRICS
-  METRICS -->|"scrapes /metrics"| PROM
-  PROM -->|"PromQL queries"| GRAF
-
-  style ZONE_CLIENT fill:#ecfdf5,stroke:#059669,stroke-width:2px
-  style ZONE_EDGE fill:#f0fdf4,stroke:#10b981,stroke-width:2px
-  style ZONE_SUPA fill:#ede9fe,stroke:#7c3aed,stroke-width:2px
-  style ZONE_GO fill:#ffedd5,stroke:#ea580c,stroke-width:2px
-  style ZONE_OBS fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
-
-  classDef zoneClient fill:#fff,stroke:#059669,stroke-width:1px,color:#064e3b
-  classDef zoneEdge fill:#fff,stroke:#10b981,stroke-width:1px,color:#14532d
-  classDef zoneSupa fill:#fff,stroke:#7c3aed,stroke-width:1px,color:#4c1d95
-  classDef zoneGo fill:#fff,stroke:#ea580c,stroke-width:1px,color:#9a3412
-  classDef zoneObs fill:#fff,stroke:#0284c7,stroke-width:1px,color:#0c4a6e
-
-  class BR zoneClient
-  class MW zoneEdge
-  class AUTH,PG zoneSupa
-  class API,METRICS zoneGo
-  class PROM,GRAF zoneObs`;
-
-/** Production deployment: Users → Vercel → Supabase Cloud + Railway (matches deployment-architecture diagram). */
-const DEPLOYMENT_DIAGRAM = `flowchart LR
-  subgraph USERS["Users / Browsers"]
-    direction TB
-    U[Users]
-  end
-
-  subgraph VERCEL["VERCEL"]
-    direction TB
-    FE["Next.js Frontend"]
-    RW["Vercel rewrites - /grafana-dashboard - /prometheus-dashboard"]
-  end
-
-  subgraph SUPA["SUPABASE CLOUD"]
-    direction TB
-    SAUTH["Supabase Auth"]
-    SPG["Supabase Postgres"]
-  end
-
-  subgraph RAIL["RAILWAY"]
-    direction TB
-    GOAPI["Go API Service"]
-    GMET["Go /metrics endpoint"]
-    PROM["Prometheus Container"]
-    GRAF["Grafana Container"]
-  end
-
-  U -->|"HTTPS"| FE
-  FE -->|"supabase-js auth/session"| SAUTH
-  FE -->|"Bearer JWT + API calls"| GOAPI
-  GOAPI -->|"OIDC/JWKS verification"| SAUTH
-  GOAPI -->|"SQL over pgx"| SPG
-  GOAPI -->|"exports Prometheus counters/gauges"| GMET
-  GMET -->|"scrapes /metrics"| PROM
-  PROM -->|"PromQL dashboards"| GRAF
-  FE --> RW
-  U -->|"open observability via app domain"| RW
-  RW -->|"proxy to Railway Grafana"| GRAF
-  RW -->|"proxy to Railway Prometheus"| PROM
-
-  style USERS fill:#f4f4f5,stroke:#71717a,stroke-width:2px
-  style VERCEL fill:#ecfdf5,stroke:#059669,stroke-width:2px
-  style SUPA fill:#ede9fe,stroke:#7c3aed,stroke-width:2px
-  style RAIL fill:#ffedd5,stroke:#ea580c,stroke-width:2px
-
-  classDef cUsers fill:#fff,stroke:#71717a,stroke-width:1px,color:#18181b
-  classDef cVercel fill:#fff,stroke:#059669,stroke-width:1px,color:#064e3b
-  classDef cSupa fill:#fff,stroke:#7c3aed,stroke-width:1px,color:#4c1d95
-  classDef cRail fill:#fff,stroke:#ea580c,stroke-width:1px,color:#9a3412
-
-  class U cUsers
-  class FE,RW cVercel
-  class SAUTH,SPG cSupa
-  class GOAPI,GMET,PROM,GRAF cRail`;
 
 /**
  * Case study: IB Scheduling (Go booking system) - portfolio project detail.
@@ -151,34 +40,46 @@ export function IBSchedulingContent() {
           <code>access_token</code> as a <code>Bearer</code> JWT, verified
           against the Auth issuer.
         </p>
+        <DataTable
+          caption="The stack, layer by layer"
+          stackBelow="sm"
+          columns={[{ label: "Layer", width: "26%" }, { label: "What runs there" }]}
+          rows={[
+            { key: "ui", cells: ["Web app", "Next.js and TypeScript on Vercel: the product UI and the browser session"] },
+            { key: "api", cells: ["API", "Go with chi and pgx on Railway: booking rules and all database access"] },
+            {
+              key: "identity",
+              cells: ["Identity", "Supabase Auth issues the JWT; Go verifies it against the OIDC issuer's JWKS"],
+            },
+            { key: "data", cells: ["Data", "One Supabase Postgres database, reached through a service or pooler role"] },
+            {
+              key: "metrics",
+              cells: ["Metrics", <>Prometheus scrapes the API&apos;s <code key="m">/metrics</code>; Grafana dashboards query it</>],
+            },
+          ]}
+        />
       </section>
 
       <section className="not-prose">
-        <h2 className="mb-4 text-xl font-normal text-zinc-900">
+        <h2 className="mb-4 text-xl font-normal text-ink">
           System diagram
         </h2>
-        <p className="mb-4 text-base leading-relaxed text-zinc-600">
+        <p className="mb-4 text-base leading-relaxed text-ink-body">
           How the browser, Next.js, Supabase (Auth + Postgres), and the Go API
           exchange requests. Observability shows metrics scrape/query
           (Prometheus/Grafana), not centralized logs.
         </p>
-        <MermaidBlock
-          chart={SYSTEM_DIAGRAM}
-          caption="Zoned like the live app: client → edge → Supabase → Go → observability, with labeled flows (JWT, pgx, scrape, PromQL)."
-        />
+        <IBSchedulingSystemDiagram />
       </section>
 
       <section className="not-prose">
-        <h2 className="mb-4 text-xl font-normal text-zinc-900">
+        <h2 className="mb-4 text-xl font-normal text-ink">
           Deployment diagram
         </h2>
-        <p className="mb-4 text-base leading-relaxed text-zinc-600">
+        <p className="mb-4 text-base leading-relaxed text-ink-body">
           How Supabase, Vercel, and Railway services connect in production.
         </p>
-        <MermaidBlock
-          chart={DEPLOYMENT_DIAGRAM}
-          caption="Production shape: Users → Vercel (Next + rewrites) ↔ Supabase Auth/Postgres; Railway runs Go API, /metrics, Prometheus, and Grafana (same layout as go-booking-system deployment diagram)."
-        />
+        <IBSchedulingDeploymentDiagram />
       </section>
 
       <section>
@@ -195,7 +96,7 @@ export function IBSchedulingContent() {
               href="https://grafana-production-53f7.up.railway.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Grafana (Railway)
             </a>{" "}
@@ -206,7 +107,7 @@ export function IBSchedulingContent() {
               href="https://railway-prometheus-production-07f7.up.railway.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Prometheus (Railway)
             </a>{" "}
@@ -217,7 +118,7 @@ export function IBSchedulingContent() {
               href="https://go-booking-api-production.up.railway.app/metrics"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Go API /metrics
             </a>{" "}
@@ -253,10 +154,10 @@ export function IBSchedulingContent() {
         </aside>
 
         <figure className="not-prose mt-8">
-          <h3 className="mb-3 text-lg font-normal text-zinc-900">
+          <h3 className="mb-3 text-lg font-normal text-ink">
             Go booking API dashboard (Grafana)
           </h3>
-          <div className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-rule bg-paper-deep/60 shadow-sm">
             <Image
               src="/images/grafana.png"
               alt="Grafana dashboard showing Go booking API metrics including goroutines and runtime signals"
@@ -267,13 +168,13 @@ export function IBSchedulingContent() {
               priority={false}
             />
           </div>
-          <figcaption className="mt-3 text-sm text-zinc-500">
+          <figcaption className="mt-3 text-sm text-ink-muted">
             Snapshot of the live{" "}
             <a
               href={GRAFANA_DASHBOARD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline-offset-4 hover:underline"
+              className="text-cobalt underline-offset-4 hover:underline"
             >
               Go booking API
             </a>{" "}
@@ -290,100 +191,98 @@ export function IBSchedulingContent() {
           <code>apps/api/cmd/server/main.go</code>. Protected handlers expect{" "}
           <code>Authorization: Bearer &lt;supabase access_token&gt;</code>.
         </p>
-        <div className="not-prose my-4 overflow-x-auto rounded-xl border border-zinc-200">
-          <table className="w-full min-w-[32rem] text-left text-sm text-zinc-700">
-            <thead className="bg-zinc-50 text-xs uppercase tracking-wide text-zinc-500">
-              <tr>
-                <th className="px-3 py-2 font-normal">Method</th>
-                <th className="px-3 py-2 font-normal">Path</th>
-                <th className="px-3 py-2 font-normal">Auth</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-100">
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">/health</td>
-                <td className="px-3 py-2">None</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/db-status
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/availability
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">GET</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/reservations
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/reservations
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">/api/v1/slots</td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/benchmark/booking-rush
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/mimic/notification/email
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-              <tr>
-                <td className="px-3 py-2 font-mono text-xs">POST</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  /api/v1/mimic/notification/whatsapp
-                </td>
-                <td className="px-3 py-2">Bearer</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          caption="Routes and the auth each one needs"
+          hideCaption
+          stackBelow="sm"
+          compact
+          columns={[{ label: "Route" }, { label: "Auth", width: "20%" }]}
+          rows={[
+            ["GET", "/health", "None"],
+            ["GET", "/api/v1/db-status", "Bearer"],
+            ["GET", "/api/v1/availability", "Bearer"],
+            ["GET", "/api/v1/reservations", "Bearer"],
+            ["POST", "/api/v1/reservations", "Bearer"],
+            ["POST", "/api/v1/slots", "Bearer"],
+            ["POST", "/api/v1/benchmark/booking-rush", "Bearer"],
+            ["POST", "/api/v1/mimic/notification/email", "Bearer"],
+            ["POST", "/api/v1/mimic/notification/whatsapp", "Bearer"],
+          ].map(([method, path, auth]) => ({
+            key: `${method} ${path}`,
+            cells: [
+              <span key="r" className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="w-10 font-mono text-[0.8125rem] text-ink-muted">{method}</span>
+                <code>
+                  {path.split("/").map((part, i) => (
+                    <React.Fragment key={i}>
+                      {i > 0 ? "/" : null}
+                      {i > 1 ? <wbr /> : null}
+                      {part}
+                    </React.Fragment>
+                  ))}
+                </code>
+              </span>,
+              auth,
+            ],
+          }))}
+        />
       </section>
 
       <section>
         <h2>Database invariants</h2>
-        <ul>
-          <li>
-            <code>public.resources</code> - bookable entity
-          </li>
-          <li>
-            <code>public.slots</code> - <code>UNIQUE (resource_id, starts_at)</code>{" "}
-            - discrete windows
-          </li>
-          <li>
-            <code>public.reservations</code> -{" "}
-            <code>UNIQUE (slot_id)</code> - at most one confirmed row per slot ({" "}
-            <code>ON CONFLICT</code> target)
-          </li>
-          <li>
-            <code>reservations.user_id</code> references{" "}
-            <code>auth.users(id)</code> - aligns with JWT <code>sub</code>
-          </li>
-        </ul>
+        <DataTable
+          caption="Tables, their constraints and what each guarantees"
+          hideCaption
+          stackBelow="md"
+          columns={[
+            { label: "Table", width: "26%" },
+            { label: "Constraint", width: "34%" },
+            { label: "What it guarantees" },
+          ]}
+          rows={[
+            {
+              key: "resources",
+              cells: [
+                <code key="t">public.resources</code>,
+                <span key="c" className="text-ink-muted">
+                  <span aria-hidden="true">-</span>
+                  <span className="sr-only">No extra constraint</span>
+                </span>,
+                "The bookable entity",
+              ],
+            },
+            {
+              key: "slots",
+              cells: [
+                <code key="t">public.slots</code>,
+                <code key="c">UNIQUE (resource_id, starts_at)</code>,
+                "Discrete windows: one slot per resource per start time",
+              ],
+            },
+            {
+              key: "reservations",
+              cells: [
+                <code key="t">public.reservations</code>,
+                <code key="c">UNIQUE (slot_id)</code>,
+                <>
+                  At most one confirmed reservation per slot; this is the <code key="o">ON CONFLICT</code> target
+                </>,
+              ],
+            },
+            {
+              key: "user",
+              cells: [
+                <code key="t">reservations.user_id</code>,
+                <>
+                  References <code key="r">auth.users(id)</code>
+                </>,
+                <>
+                  Matches the JWT <code key="s">sub</code>, so a booking always belongs to a real user
+                </>,
+              ],
+            },
+          ]}
+        />
       </section>
 
       <section>
@@ -400,6 +299,48 @@ export function IBSchedulingContent() {
           reservation) via LEFT JOIN; the UI sends the Supabase access token on
           every call through a small fetch wrapper.
         </p>
+        <DataTable
+          caption="What the system guarantees, and what enforces it"
+          stackBelow="sm"
+          columns={[{ label: "Guarantee", width: "38%" }, { label: "Enforced by" }]}
+          rows={[
+            {
+              key: "one-booking",
+              cells: [
+                "Two people cannot book the same slot",
+                <>
+                  A transaction that locks the slot row with <code key="f">FOR UPDATE</code>, plus{" "}
+                  <code key="u">UNIQUE (slot_id)</code> on reservations
+                </>,
+              ],
+            },
+            {
+              key: "conflict",
+              cells: ["The loser of a race gets a clear answer", "A duplicate insert returns 409 instead of a second booking"],
+            },
+            {
+              key: "auth",
+              cells: [
+                "Only signed-in users can read or book",
+                "Every booking route verifies the Supabase JWT against the OIDC issuer",
+              ],
+            },
+            {
+              key: "client",
+              cells: ["Nothing authoritative runs in the browser", "Booking rules and Postgres access are owned by the Go API"],
+            },
+            {
+              key: "secrets",
+              cells: [
+                "Database credentials never reach the browser",
+                <>
+                  <code key="d">DATABASE_URL</code> stays on the Go service, which never sees the Supabase anon key
+                </>,
+              ],
+            },
+            { key: "cors", cells: ["Only the web app can call the API from a browser", "CORS restricted to the web origin"] },
+          ]}
+        />
       </section>
 
       <section>
@@ -410,7 +351,7 @@ export function IBSchedulingContent() {
             href="https://github.com/sibtihaj/go-booking-system"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline-offset-4 hover:underline"
+            className="text-cobalt underline-offset-4 hover:underline"
           >
             sibtihaj/go-booking-system
           </a>
@@ -419,7 +360,7 @@ export function IBSchedulingContent() {
             href="https://go-booking-system.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline-offset-4 hover:underline"
+            className="text-cobalt underline-offset-4 hover:underline"
           >
             go-booking-system.vercel.app
           </a>{" "}

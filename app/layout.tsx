@@ -1,32 +1,37 @@
 import { Sidebar } from "@/components/Sidebar";
-import Grainient from "@/components/Grainient";
+import { Backdrop } from "@/components/Backdrop";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Outfit, Source_Serif_4 } from "next/font/google";
-import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 import { getSiteUrl } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
+// Variable fonts: Source Serif 4 keeps its optical-size axis so large headings
+// use the display cut and small ones the text cut.
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-heading",
-  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
-  weight: ["300", "400", "500", "600"],
 });
 
 const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "Syed Ibtihaj",
+  title: {
+    default: "Syed Ibtihaj",
+    template: "%s | Syed Ibtihaj",
+  },
   description:
-    "Syed Ibtihaj is a Senior Product Support Engineer at HashiCorp and the founder of Webifex Labs, a freelance studio shipping web products for clients.",
+    "Syed Ibtihaj is a Senior Product Support Engineer at CodeRabbit and the founder of Webifex Labs, which builds web applications for clients.",
   metadataBase: new URL(siteUrl),
   robots: {
     index: true,
@@ -61,7 +66,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f4f4f5",
+  themeColor: "#f6f5f1",
 };
 
 export default function RootLayout({
@@ -70,38 +75,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={twMerge(sourceSerif.variable, outfit.variable)}
-    >
-      <body
-        className={twMerge(
-          "antialiased bg-[#FAF9F6] text-stone-800 font-sans selection:bg-emerald-500/20 selection:text-emerald-900",
-          outfit.className
-        )}
-      >
-        <div className="fixed inset-0 pointer-events-none opacity-[0.15] z-0">
-          <Grainient
-            color1="#047857" // emerald-700
-            color2="#0f766e" // teal-700
-            color3="#4d7c0f" // lime-700
-            warpStrength={0.7}
-            timeSpeed={0.05}
-            grainAmount={0.08}
-          />
-        </div>
+    <html lang="en" className={cn(sourceSerif.variable, outfit.variable)}>
+      <body className="min-h-screen bg-paper font-sans text-ink-body antialiased">
+        <a
+          href="#main"
+          className="sr-only z-[60] rounded-full bg-ink px-4 py-2 text-sm text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        <Backdrop />
 
-        {/* Main Noise Overlay */}
-        <div className="fixed inset-0 pointer-events-none opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-50 mix-blend-multiply"></div>
+        <div className="relative min-h-screen lg:flex">
+          <Sidebar />
 
-        <div className="flex flex-col lg:flex-row min-h-screen relative">
-          <aside className="lg:sticky lg:top-0 lg:h-screen z-[100]">
-            <Sidebar />
-          </aside>
-
-          <main className="flex-1 lg:pl-2">
-            <div className="min-h-screen lg:rounded-tl-[2.5rem] border-l border-t border-stone-200/60 bg-[#FAF9F6]/90 backdrop-blur-md shadow-2xl relative">
-              {children}
+          <main id="main" tabIndex={-1} className="outline-none min-w-0 flex-1 lg:py-3 lg:pr-3">
+            <div className="flex min-h-[calc(100vh-4rem)] flex-col bg-paper/[0.92] lg:min-h-[calc(100vh-1.5rem)] lg:rounded-[1.75rem] lg:border lg:border-white/70 lg:shadow-[0_1px_2px_rgba(13,27,62,0.04),0_40px_80px_-48px_rgba(13,27,62,0.35)]">
+              <div className="flex-1">{children}</div>
               <Footer />
             </div>
           </main>

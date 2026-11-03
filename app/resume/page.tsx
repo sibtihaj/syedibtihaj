@@ -1,209 +1,117 @@
-"use client";
-
-import React from "react";
+import type { Metadata } from "next";
+import { ActionLink } from "@/components/ActionLink";
 import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Paragraph } from "@/components/Paragraph";
-import { ResumeSkills } from "@/components/ResumeSkills";
+import { ResumeCertifications, ResumeSkills } from "@/components/ResumeSkills";
+import { SectionHeading } from "@/components/SectionHeading";
 import { WorkHistory } from "@/components/WorkHistory";
-import {
-  careerSummary,
-  certificationsDetailed,
-  education,
-  referencesNote,
-  resumeHeader,
-} from "@/constants/resumeContent";
-import { motion } from "framer-motion";
-import {
-  IconDownload,
-  IconExternalLink,
-  IconFileText,
-  IconArrowRight,
-  IconMail,
-  IconPhone,
-  IconMapPin,
-  IconBrandLinkedin,
-} from "@tabler/icons-react";
-import Link from "next/link";
+import { careerSummary, education, resumeHeader } from "@/constants/resumeContent";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description:
+    "Resume of Syed Ibtihaj: Senior Product Support Engineer at CodeRabbit, previously self-managed Terraform Enterprise, Consul and Nomad support at HashiCorp (IBM) and Amazon EKS escalations at AWS.",
+};
+
+const RESUME_PDF = "/ibtihaj-resume.pdf";
+const delay = (ms: number) => ({ ["--rise-delay" as string]: `${ms}ms` });
 
 export default function ResumePage() {
+  const contacts = [
+    { label: resumeHeader.email, href: `mailto:${resumeHeader.email}` },
+    { label: resumeHeader.phone, href: `tel:+61${resumeHeader.phone.replace(/\s/g, "").replace(/^0/, "")}` },
+    { label: resumeHeader.location },
+    { label: "LinkedIn", href: resumeHeader.linkedInHref, external: true },
+    { label: "GitHub", href: resumeHeader.githubHref, external: true },
+  ];
+
   return (
-    <Container className="relative pb-32">
-      <motion.section
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative pt-12 lg:pt-20"
-      >
-        {/* Header - Minimal & Refined */}
-        <div className="mb-24 flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-3xl space-y-8">
-            <div className="flex items-center gap-3">
-              <div className="h-px w-8 bg-stone-300" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-stone-400">
-                Professional Dossier
-              </span>
-            </div>
-
-            <div>
-              <Heading className="text-xl font-normal leading-tight tracking-tight text-stone-500 md:text-2xl lg:text-3xl">
-                Solutions <span className="text-stone-900">Architecture</span>
-                <br />
-                <span className="font-light italic opacity-60">
-                  Grounded in platform engineering.
-                </span>
-              </Heading>
-            </div>
-
-            <div className="flex flex-wrap gap-x-8 gap-y-4">
-              <ContactItem
-                icon={IconMail}
-                href={`mailto:${resumeHeader.email}`}
-                label={resumeHeader.email}
-              />
-              <ContactItem
-                icon={IconPhone}
-                label={resumeHeader.phone}
-              />
-              <ContactItem
-                icon={IconMapPin}
-                label={resumeHeader.location}
-              />
-              <ContactItem
-                icon={IconBrandLinkedin}
-                href={resumeHeader.linkedInHref}
-                label="LinkedIn"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-row gap-4 lg:flex-col">
-            <motion.a
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              href="/ibtihaj-resume.pdf"
-              target="_blank"
-              className="group flex items-center gap-3 rounded-2xl bg-zinc-900 px-6 py-3 text-xs font-normal uppercase tracking-[0.2em] text-white transition-all hover:bg-zinc-800 shadow-xl shadow-zinc-200"
-            >
-              <IconExternalLink size={16} className="text-sky-400" />
-              View PDF
-            </motion.a>
-            <motion.a
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              href="/ibtihaj-resume.pdf"
-              download
-              className="group flex items-center gap-3 rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-xs font-normal uppercase tracking-[0.2em] text-zinc-600 transition-all hover:border-blue-500/30 hover:text-zinc-900 shadow-sm"
-            >
-              <IconDownload size={16} className="text-blue-500" />
-              Download
-            </motion.a>
-          </div>
+    <Container>
+      <header className="mb-16 grid gap-8 md:mb-24 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <div>
+          <p className="field-label rise">Resume</p>
+          <h1 className="rise mt-5 text-[2.2rem] leading-[1.08] sm:text-[2.6rem] lg:text-[2.9rem]" style={delay(80)}>
+            Syed Ibtihaj
+          </h1>
+          <p className="rise mt-3 text-lg leading-snug text-ink-body" style={delay(140)}>
+            Senior Product Support Engineer
+            <span className="ink-text mt-1 block font-heading text-[1.15em] italic">CodeRabbit</span>
+          </p>
+          <ul className="rise mt-6 flex flex-wrap gap-x-6 gap-y-1 text-[0.95rem]" style={delay(200)}>
+            {contacts.map((c) => (
+              <li key={c.label}>
+                {c.href ? (
+                  <a
+                    href={c.href}
+                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="inline-flex min-h-[44px] items-center text-ink-body transition-colors hover:text-cobalt"
+                  >
+                    {c.label}
+                    {c.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
+                  </a>
+                ) : (
+                  <span className="inline-flex min-h-[44px] items-center text-ink-muted">{c.label}</span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
-
-        {/* Summary & Education Grid */}
-        <div className="mb-32 grid grid-cols-1 gap-20 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <div className="mb-8 flex items-center gap-4">
-              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-300">
-                Summary
-              </span>
-              <div className="h-px flex-1 bg-zinc-100" />
-            </div>
-            <p className="font-sans text-lg font-light leading-relaxed text-zinc-600 md:text-xl">
-              {careerSummary}
-            </p>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="mb-8 flex items-center gap-4">
-              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-300">
-                Education
-              </span>
-              <div className="h-px flex-1 bg-zinc-100" />
-            </div>
-            <div className="space-y-8">
-              {education.map((item) => (
-                <div key={item.institution} className="group">
-                  <p className="font-heading text-lg font-normal text-zinc-900 transition-colors group-hover:text-blue-600">
-                    {item.institution}
-                  </p>
-                  <p className="mt-1 text-sm text-zinc-500">{item.credential}</p>
-                  <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
-                    {item.period}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="rise flex flex-wrap gap-3" style={delay(260)}>
+          <ActionLink href={RESUME_PDF} newTab>
+            View PDF
+            <span className="sr-only"> (opens in a new tab)</span>
+          </ActionLink>
+          <ActionLink href={RESUME_PDF} variant="quiet" download>
+            Download PDF
+          </ActionLink>
         </div>
+      </header>
 
-        {/* Skills & Badges Section */}
-        <ResumeSkills />
-
-        {/* Experience Section */}
-        <WorkHistory />
-
-        {/* Certifications Prose Section */}
-        <div className="mt-32 mb-32">
-          <div className="mb-12 flex items-center gap-4">
-            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-300">
-              Certifications &amp; Training
-            </span>
-            <div className="h-px flex-1 bg-zinc-100" />
-          </div>
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-            {certificationsDetailed.map((cert) => (
-              <div key={cert.title} className="group relative rounded-3xl border border-zinc-100 bg-white p-8 transition-all duration-500 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-500/5">
-                <h4 className="font-heading text-base font-normal text-zinc-900 group-hover:text-blue-600 transition-colors">
-                  {cert.title}
-                </h4>
-                <p className="mt-4 font-sans text-sm leading-relaxed text-zinc-500">
-                  {cert.description}
-                </p>
-              </div>
+      <section aria-labelledby="summary" className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-16">
+        <div>
+          <SectionHeading index="01" id="summary" title="Summary" />
+          <div className="max-w-measure space-y-4 text-[1.0625rem] leading-relaxed text-ink-body md:text-lg">
+            {careerSummary.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
             ))}
           </div>
         </div>
+        <aside aria-labelledby="education" className="lg:pt-[4.6rem]">
+          <h2 id="education" className="field-label">
+            Education
+          </h2>
+          <ul className="mt-3 space-y-5">
+            {education.map((item) => (
+              <li key={item.institution}>
+                <p className="font-heading text-[1.15rem] text-ink">{item.institution}</p>
+                <p className="mt-1 text-[0.95rem] text-ink-body">{item.credential}</p>
+                <p className="mt-1 text-sm tabular-nums text-ink-muted">{item.period}</p>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </section>
 
-        {/* Footer */}
-        <footer className="mt-48 border-t border-zinc-100 pt-16">
-          <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-400">
-                References
-              </p>
-              <p className="mt-2 font-sans text-sm text-zinc-500">{referencesNote}</p>
-            </div>
-            <Link 
-              href="/contact"
-              className="group flex items-center gap-3 rounded-full bg-emerald-50 px-8 py-4 text-xs font-normal uppercase tracking-[0.2em] text-emerald-800 transition-all hover:bg-emerald-100"
-            >
-              Start a conversation
-              <IconArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </footer>
-      </motion.section>
+      <section aria-labelledby="skills" className="mt-24 md:mt-32">
+        <SectionHeading index="02" id="skills" title="Skills" />
+        <ResumeSkills />
+      </section>
+
+      <section aria-labelledby="certifications" className="mt-24 scroll-mt-24 md:mt-32">
+        <SectionHeading index="03" id="certifications" title="Certifications" />
+        <ResumeCertifications />
+      </section>
+
+      <section aria-labelledby="experience" className="mt-24 scroll-mt-24 md:mt-32">
+        <SectionHeading index="04" id="experience" title="Experience" />
+        <WorkHistory />
+      </section>
+
+      <section className="mt-20 flex flex-col gap-6 border-t border-rule pt-10 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-ink-body">Want the details behind any of this?</p>
+        <ActionLink href="/contact" variant="quiet">
+          Get in touch
+        </ActionLink>
+      </section>
     </Container>
   );
-}
-
-function ContactItem({ icon: Icon, label, href }: { icon: any; label: string; href?: string }) {
-  const content = (
-    <div className="flex items-center gap-2 group cursor-default">
-      <Icon size={14} className="text-stone-400 group-hover:text-emerald-700 transition-colors" />
-      <span className="text-sm text-stone-500 group-hover:text-stone-900 transition-colors">{label}</span>
-    </div>
-  );
-
-  if (href) {
-    return (
-      <Link href={href} target={href.startsWith('http') ? "_blank" : undefined} rel={href.startsWith('http') ? "noopener noreferrer" : undefined}>
-        {content}
-      </Link>
-    );
-  }
-
-  return content;
 }
